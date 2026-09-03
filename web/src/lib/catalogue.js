@@ -65,9 +65,11 @@ export const STEPS = [
   { n: '10–12', t: 'Fetch', d: 'National layers from the STRI GIS Portal, OSM features via Overpass, and the government strategy encoded as structured data with derived destination polygons.' },
   { n: '20', t: 'Grid', d: 'H3 resolution-6 hexagons (~37 km²) covering all land plus tourism-relevant coastal water — 10 km from every coastline, extended to 30 km over shallow shelf and marine protected areas — so island archipelagos get real marine cells. 3,417 cells.' },
   { n: '13–16', t: 'Measure', d: 'Zonal statistics from WorldCover, Copernicus DEM and WorldPop; GBIF richness; a 500 m least-cost travel-time surface; and vector joins for protection, ecosystems, bathymetry and tourism assets.' },
+  { n: '17', t: 'Feasibility', d: 'Road access, remoteness and the Darién Gap advisory zone, applied later as hard gates on development recommendations rather than as score penalties.' },
   { n: '30', t: 'Indicators', d: 'Six named families built from ~25 sub-indicators, each percentile-ranked. Zone-aware weighting so marine cells are not penalised for having no forest.' },
-  { n: '40', t: 'Classify', d: 'Continuous fit scores for four action types; the strongest becomes the primary recommendation and the others are retained as secondary. Development fit is damped where sensitivity is high.' },
-  { n: '50–55', t: 'Cluster & narrate', d: 'Strongly-scoring contiguous cells of the same type are joined into named Opportunity Areas, and an investment narrative is composed from each area’s own measured values.' },
+  { n: '40', t: 'Classify', d: 'A cell must meet an absolute evidence threshold before an action is considered for it; qualifying fits are then compared by percentile rank. Cells qualifying for nothing are reported as No strong basis.' },
+  { n: '50–52', t: 'Cluster and locate', d: 'Contiguous strong cells form named Opportunity Areas. Within each, specific tourism investment sites and ecosystem protect/restore zones are identified.' },
+  { n: '55', t: 'Narrate and cost', d: 'An investment narrative and an indicative employment range are composed from each area’s own measured values.' },
   { n: '60', t: 'Export', d: 'Simplified, coordinate-rounded GeoJSON and JSON for the application; full scored grid and area table as CSV.' },
 ]
 

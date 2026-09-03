@@ -4,16 +4,14 @@
   "land_km2": 74274,
   "coastal_band_km": 30,
   "by_action": {
-    "INVEST": 931,
-    "PROTECT": 904,
-    "ADAPT": 813,
-    "MANAGE": 769
+    "NONE": 1284,
+    "PROTECT": 1107,
+    "ADAPT": 380,
+    "INVEST": 346,
+    "MANAGE": 300
   },
-  "by_gov_relation": {
-    "new": 2773,
-    "refines": 464,
-    "reinforces": 180
-  },
+  "cells_no_basis": 1284,
+  "dev_feasible_cells": 1820,
   "cells_in_gov_dest": 644,
   "share_in_gov_dest": 18.8,
   "protected_share": 30.1,
@@ -32,19 +30,17 @@
     "RES": 40.5,
     "JOBS": 38.3
   },
-  "opportunity_areas": 28,
+  "opportunity_areas": 20,
   "opp_by_action": {
-    "MANAGE": 8,
-    "PROTECT": 7,
-    "INVEST": 7,
-    "ADAPT": 6
+    "PROTECT": 6,
+    "INVEST": 5,
+    "MANAGE": 5,
+    "ADAPT": 4
   },
-  "opp_by_gov_relation": {
-    "refines": 10,
-    "new": 9,
-    "partial": 7,
-    "reinforces": 2
-  },
+  "tourism_nodes": 33,
+  "nature_zones": 37,
+  "opp_in_gov_plan": 13,
+  "opp_outside_gov_plan": 7,
   "corr_nav_tdl": 0.374,
   "cells_high_nav_low_tdl": 218
 }

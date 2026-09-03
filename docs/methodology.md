@@ -100,6 +100,31 @@ sub-indicators apply in which zone and renormalises its weights over the applica
 front of low-lying people and assets, or catchment tree cover on slopes above them. No
 hydrodynamic or probabilistic modelling has been done and no avoided damages are estimated.
 
+## 4b. Development feasibility
+
+Three screens are computed in `17_feasibility.py` and applied as **hard gates** on
+development recommendations, not as score penalties:
+
+| Screen | Rule |
+|---|---|
+| Road access | nearest mapped road of tertiary class or better within 10 km |
+| Remoteness | under 8 hours modelled travel from the nearest tourism gateway |
+| Advisory zone | outside the Darien Gap border region |
+
+**On the advisory zone.** The Darien Gap - the roadless forest along the Colombian border -
+carries standing "do not travel" advisories and is an active irregular migration corridor. No
+open dataset encodes this, so it is defined here explicitly: land within 40 km of the Colombian
+border (geoBoundaries COL ADM0) that has no road access. It is a documented analytical
+exclusion, not a measurement, and it is labelled as such wherever it appears. It suppresses
+tourism-development recommendations only; the conservation value of the Darien is unaffected
+and still scored.
+
+1,820 of 3,417 cells (53%) pass all three screens.
+
+*Why this was needed:* the first version recommended tourism development on cells with a
+nature-attraction score of 0, no population, no road and a modelled 17-hour journey from the
+nearest gateway, deep inside the Darien Gap.
+
 ## 5. Classification
 
 Four action types, each scored continuously so that a place can be several things at once.
@@ -136,7 +161,22 @@ if attraction is low, no amount of accessibility or headroom rescues the score.
 `damp` is the deliberate asymmetry that stops the tool recommending construction in every
 accessible beautiful place. `pressure` is what stops Manage / Avoid landing on the unreachable.
 
-### Comparing the four fits
+### Qualification before ranking
+
+A cell must show **absolute** evidence before an action can be considered for it. These floors
+cannot be traded off against another indicator:
+
+| Action | Requires |
+|---|---|
+| Invest / Develop | NAV >= 40, ACC >= 35, **and** passing all three feasibility screens |
+| Protect / Restore | BCV >= 40 |
+| Adapt / Strengthen | TDL >= 25 - tourism supply that actually exists |
+| Manage / Avoid | BCV >= 45 **and** ACC >= 35 - pressure requires reachability |
+
+A cell qualifying for nothing is reported as **No strong basis**, not assigned a recommendation
+by default. 38% of cells fall into this class, which is the honest answer for most of a country.
+
+### Comparing the qualifying fits
 
 The four scores do not share a natural scale — protection headroom is high almost everywhere in
 Panama, so `fit_protect` sits structurally above `fit_invest`, and a raw argmax labelled 69% of
@@ -176,6 +216,44 @@ large one.
 Each area is tagged against the government plan by the share of its cells falling inside a
 priority destination: **reinforces** (≥50% and a development recommendation), **refines** (≥50%
 with a conservation, resilience or pressure recommendation), **partial** (>15%), **new** (≤15%).
+
+## 6b. Tourism nodes and nature action zones
+
+An Opportunity Area is still hundreds of square kilometres. `52_zones.py` produces the two
+things a task team can act on, as separate outputs:
+
+**Tourism nodes** - candidate sites for visitor infrastructure, anchored on a real named
+natural feature (a beach, waterfall, dive site, viewpoint, peak). A site is admitted only if it
+has a road within 2.5 km, a settlement within 12 km, and lies outside a strict protection core.
+Assets within 4 km are grouped into one node. Built attractions count toward a node's asset mix
+but never name it. Nodes are produced only for Invest and Adapt areas.
+
+**Nature action zones** - ecosystem-specific areas labelled with the ecosystem and whether the
+action is PROTECT (it is present and functioning) or RESTORE (it belongs here and is degraded
+or absent, judged by whether the ecosystem occurs elsewhere in the same area). Covers mangrove,
+reef and shallow shelf, forest, wetland and coastal woodland.
+
+## 6c. Indicative employment
+
+`jobs_model.py` translates a stated hypothetical package into a job range. Every coefficient is
+a published or conventional planning benchmark, given as a range, and every output is a range.
+
+| Coefficient | Range |
+|---|---|
+| Jobs per hotel room | 0.4-0.8 direct |
+| Food, retail and transport per room | 0.25-0.5 |
+| Guiding and activities per developed natural asset | 1.5-4 |
+| Ecosystem restoration | 0.15-0.45 person-years per hectare |
+| Protected-area management | 0.4-1.2 posts per 1,000 ha |
+| Indirect and induced multiplier | 1.7-2.4x direct |
+
+Restoration figures derive from restoration costs of roughly US$2,500-6,000/ha in a Latin
+American setting, a ~35% labour share and ~US$5,000 per person-year, expressed as FTE over a
+five-year programme. The multiplier is consistent with WTTC's Panama total of about 392,000
+travel and tourism jobs in 2024 against a direct share of roughly 40%.
+
+**This is not a forecast.** It assumes finance, tenure, skills and visitor demand the screening
+cannot observe, and the package itself is hypothetical.
 
 ## 7. Narratives
 

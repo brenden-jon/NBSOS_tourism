@@ -48,6 +48,7 @@ def main() -> None:
     geom = dict(zip(grid.h3, grid.geometry))
 
     # threshold within each class so every action type can surface somewhere
+    d = d[d.primary != "NONE"]   # cells with no qualifying action cannot form an opportunity
     keep = []
     for cls, grp in d.groupby("primary"):
         thr = grp.primary_fit.quantile(FIT_PCTL)
@@ -149,9 +150,7 @@ def main() -> None:
             "watershed": sub.watershed.value_counts().idxmax() if sub.watershed.notna().any() else None,
             "gov_dest": gov_dest,
             "gov_share": round(gov_share, 2),
-            "gov_relation": ("reinforces" if gov_share >= 0.5 and cls == "INVEST"
-                             else "refines" if gov_share >= 0.5
-                             else "partial" if gov_share > 0.15 else "new"),
+            "in_gov_plan": int(gov_share >= 0.25),
             "assets": "; ".join(assets),
             "h3_cells": ",".join(comp),
             "geometry": poly,
@@ -182,7 +181,7 @@ def main() -> None:
     log("  top 20:")
     for r in g.head(20).itertuples():
         log(f"    {r.rank:2d}. [{r.action:7s}] {r.name[:38]:38s} {r.area_km2:7.0f} km2  "
-            f"fit {r.fit:4.1f}  gov:{r.gov_relation}")
+            f"fit {r.fit:4.1f}  {'in plan' if r.in_gov_plan else 'outside plan'}")
 
     g["geometry"] = g.geometry.simplify(200)
     save_geojson(g, "opportunity_areas", decimals=4)

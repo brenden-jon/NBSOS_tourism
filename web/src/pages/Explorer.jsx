@@ -27,17 +27,17 @@ const SUPPLY_POIS = ['accommodation', 'food_service', 'attraction', 'visitor_inf
 const VIEWS = {
   ecosystems: {
     label: 'Ecosystems',
-    blurb: 'Every screening cell labelled by the ecosystem that defines it, from ESA WorldCover 10 m land cover and national bathymetry. Rarer, more policy-relevant systems — mangrove, wetland, shallow reef habitat — take precedence over the general land-cover majority, so they stay visible.',
+    blurb: 'Each screening cell labelled by its defining ecosystem, from ESA WorldCover 10 m land cover and national bathymetry. Rarer systems — mangrove, wetland, shallow reef habitat — take precedence over the land-cover majority so they remain visible.',
     field: 'eco_class', classes: ECO_CLASSES, defaultPois: NATURE_POIS,
   },
   tourism: {
     label: 'Tourism assets',
-    blurb: 'Existing tourism supply from OpenStreetMap, smoothed over each cell and its immediate neighbours because a destination does not stop at a hexagon boundary. Only about one cell in eight carries any mapped supply at all — the concentration is the finding.',
+    blurb: 'Existing tourism supply from OpenStreetMap, smoothed across each cell and its immediate neighbours since destinations do not stop at cell boundaries. Roughly one cell in eight carries any mapped supply.',
     field: 'tourism_class', classes: TOURISM_CLASSES, defaultPois: SUPPLY_POIS,
   },
   protection: {
     label: 'Protection',
-    blurb: "Panama's own protected-area register (SINAP, 2025 edition, 91 areas) with IUCN category and marine/terrestrial realm. A third of the national territory is protected, and most headline visitor experiences happen inside it.",
+    blurb: "Panama's protected-area register (SINAP, 2025 edition, 91 areas) with IUCN category and marine or terrestrial realm. Around a third of national territory is protected, and most headline visitor experiences occur inside it.",
     field: null, classes: [], defaultPois: [],
   },
 }
@@ -116,7 +116,7 @@ export default function Explorer() {
   return (
     <>
       <Hero eyebrow="Inputs" title="Data explorer"
-        lead="The evidence base, mapped as it actually is. Protection from Panama's own SINAP register, tourism assets from OpenStreetMap, ecosystems from ESA WorldCover and national bathymetry, terrain from Copernicus. Nothing on this page is modelled." />
+        lead="The underlying data. Protection from Panama's SINAP register, tourism assets from OpenStreetMap, ecosystems from ESA WorldCover and national bathymetry, terrain from Copernicus. Nothing on this page is modelled." />
 
       <div className="wrap py-8">
         <div className="flex flex-wrap gap-2 mb-4">

@@ -60,14 +60,15 @@ def tourism_class(tdl):
 # 33 fields on 3,417 polygons produced a 3.25 MB payload that took tens of seconds to tile -
 # and nine of those fields were repeated strings (ecoregion, protected-area name, district).
 GRID_FIELDS = [
-    "h3", "zone", "primary",
+    "h3", "zone", "primary", "dev_feasible",
     "NAV", "TDL", "ACC", "BCV", "RES", "JOBS",
     "sensitivity", "protection_gap", "supply_gap",
     "eco_class", "tourism_class",
 ]
 
 DETAIL_FIELDS = [
-    "district", "province", "gov_dest", "gov_relation", "primary_label", "secondary",
+    "district", "province", "gov_dest", "in_gov_dest", "primary_label", "secondary",
+    "infeasible_reason", "dist_road_km", "advisory_zone",
     "primary_fit", "pa_name", "ecoregion", "lc_tree", "lc_mangrove", "shallow_frac",
     "pa_frac", "pa_strict_frac", "relief_m", "gbif_species", "tt_gateway_h",
     "population", "n_accommodation",
@@ -130,6 +131,13 @@ def main() -> None:
     trails = gpd.read_file("data/processed/osm_trails.geojson")[["name", "geometry"]]
     save_geojson(trails, "osm_trails", decimals=5, to_web=True)
 
+    # ---- concrete zones ----
+    for name in ("tourism_nodes", "nature_zones"):
+        src = Path("data/processed") / f"{name}.geojson"
+        if src.exists():
+            gg = gpd.read_file(src)
+            save_geojson(gg, name, decimals=5, to_web=True)
+
     # ---- national summary for the Analysis page ----
     tot_area = float(d.area_km2.sum()) if "area_km2" in d else np.nan
     summary = {
@@ -138,7 +146,8 @@ def main() -> None:
         "land_km2": 74274,
         "coastal_band_km": 30,
         "by_action": {k: int(v) for k, v in d.primary.value_counts().items()},
-        "by_gov_relation": {k: int(v) for k, v in d.gov_relation.value_counts().items()},
+        "cells_no_basis": int((d.primary == "NONE").sum()),
+        "dev_feasible_cells": int(d.dev_feasible.sum()) if "dev_feasible" in d else None,
         "cells_in_gov_dest": int(d.gov_dest.notna().sum()),
         "share_in_gov_dest": round(100 * float(d.gov_dest.notna().mean()), 1),
         "protected_share": round(100 * float(d.pa_frac.mean()), 1),
@@ -153,7 +162,12 @@ def main() -> None:
                          ["NAV", "TDL", "ACC", "BCV", "RES", "JOBS"]},
         "opportunity_areas": int(len(opp)),
         "opp_by_action": {k: int(v) for k, v in opp.action.value_counts().items()},
-        "opp_by_gov_relation": {k: int(v) for k, v in opp.gov_relation.value_counts().items()},
+        "tourism_nodes": int(len(gpd.read_file(Path("data/processed/tourism_nodes.geojson")))
+                             if Path("data/processed/tourism_nodes.geojson").exists() else 0),
+        "nature_zones": int(len(gpd.read_file(Path("data/processed/nature_zones.geojson")))
+                            if Path("data/processed/nature_zones.geojson").exists() else 0),
+        "opp_in_gov_plan": int(opp.in_gov_plan.sum()),
+        "opp_outside_gov_plan": int((1 - opp.in_gov_plan).sum()),
     }
     # correlation between attraction and supply - the core "gap" story
     summary["corr_nav_tdl"] = round(float(d.NAV.corr(d.TDL)), 3)

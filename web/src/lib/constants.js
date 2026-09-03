@@ -7,6 +7,8 @@ export const ACTIONS = {
     blurb: 'Established destination whose natural base needs shoring up.' },
   MANAGE:  { key: 'MANAGE',  label: 'Manage / Avoid',    color: '#9B4B54',
     blurb: 'Sensitive places where tourism pressure should be limited or carefully managed.' },
+  NONE:    { key: 'NONE',    label: 'No strong basis',   color: '#D3DAE0',
+    blurb: 'Nothing here meets the evidence threshold for a screening-level recommendation.' },
 }
 
 export const FAMILIES = [
@@ -18,11 +20,11 @@ export const FAMILIES = [
   { key: 'JOBS', label: 'Local opportunity',   desc: 'Local labour pool, community-tourism context and contribution to decentralisation.' },
 ]
 
-export const GOV_RELATION = {
-  reinforces: { label: 'Reinforces a government priority', color: '#7FA23A' },
-  refines:    { label: 'Refines a government priority',    color: '#D99A2B' },
-  partial:    { label: 'Partly overlaps a priority',       color: '#8EA0AF' },
-  new:        { label: 'Outside government priorities',    color: '#3E7CAB' },
+// A single, plain distinction. The earlier four-way taxonomy made readers learn a
+// vocabulary before they could read a result.
+export const GOV_PLAN = {
+  1: { label: 'In a government priority destination', color: '#7FA23A' },
+  0: { label: 'Outside the government plan', color: '#8EA0AF' },
 }
 
 export const BASE = import.meta.env.BASE_URL

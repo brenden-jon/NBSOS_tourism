@@ -13,7 +13,10 @@ deliberately blunt: a screening tool that overstates its own confidence is worse
 - **Not a protected-area designation recommendation.** Areas classified *Protect / Restore* —
   including any implied new or extended marine protection — are analytical candidates for
   further ecological, social, legal and stakeholder assessment.
-- **Not a jobs forecast.** No employment numbers are estimated anywhere.
+- **Not a jobs forecast.** Employment figures are order-of-magnitude ranges for a stated
+  hypothetical investment package, derived from published planning benchmarks. They assume
+  finance, tenure, skills and visitor demand that this screening cannot observe. Restoration
+  employment is full-time equivalents while a five-year programme runs, not permanent posts.
 
 ## Data limitations
 
@@ -42,6 +45,19 @@ in reality it depends on scheduled services from specific ports.
 **Population is an estimate.** WorldPop constrained totals run ~6% below census figures here.
 
 **Elevation is a surface model.** Copernicus GLO-30 includes canopy and structures.
+
+**The Darien Gap advisory zone is a judgement, not a dataset.** It is defined here as land
+within 40 km of the Colombian border with no road access. Security conditions change, the
+boundary is approximate, and it should be replaced by current official advisory geography
+before any use beyond screening. It suppresses development recommendations only.
+
+**Feasibility thresholds are round numbers.** 10 km to a road and 8 hours to a gateway are
+defensible screening cut-offs, not researched thresholds. A site just outside them is not
+meaningfully different from one just inside.
+
+**Tourism nodes depend on OSM naming.** A node exists only where a natural feature has been
+named in OpenStreetMap. Real assets that nobody has mapped produce no node, so an area
+reporting zero sites may be an OSM gap rather than a genuine absence.
 
 ## Method limitations
 

@@ -1,4 +1,4 @@
-import { ACTIONS, GOV_RELATION } from '../lib/constants'
+import { ACTIONS } from '../lib/constants'
 
 export function Hero({ eyebrow, title, lead, children, tone = 'dark' }) {
   return (
@@ -49,15 +49,6 @@ export function ActionChip({ action, size = 'sm' }) {
   return (
     <span className={`chip text-white ${size === 'lg' ? 'text-[12px] px-3 py-1.5' : ''}`}
       style={{ backgroundColor: a.color }}>{a.label}</span>
-  )
-}
-
-export function GovChip({ relation }) {
-  const g = GOV_RELATION[relation] || GOV_RELATION.new
-  return (
-    <span className="chip border" style={{ borderColor: g.color, color: g.color }}>
-      {g.label}
-    </span>
   )
 }
 

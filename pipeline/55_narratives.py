@@ -15,6 +15,7 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).parent))
 from common import PROC, WEB_DATA, log  # noqa: E402
+from jobs_model import RANGES, estimate  # noqa: E402
 
 
 def sfield(r, name: str) -> str:
@@ -24,7 +25,12 @@ def sfield(r, name: str) -> str:
 
 
 def pct(x):
-    return f"{100*float(x):.0f}%"
+    """Percent, but never round a real value down to a bare 0% - "0% protected" reads as
+    "no data" when it actually means "a sliver"."""
+    v = 100 * float(x)
+    if 0 < v < 0.5:
+        return "under 1%"
+    return f"{v:.0f}%"
 
 
 def people(n):
@@ -222,47 +228,78 @@ def conservation_action(r):
     return acts
 
 
-def tourism_investment(r):
+def tourism_investment(r, nodes):
+    """WHERE to put visitor infrastructure, and what. Anchored on the concrete nodes."""
     kinds = dict(ecosystems(r))
-    named = assets_of(r)
-    inv = []
-    if r.action == "INVEST":
-        if "reef" in kinds or r.n_dive_surf > 0:
-            inv.append("Snorkelling and diving access: mooring buoys to prevent anchor damage, a small "
-                       "landing and briefing facility, operator licensing and safety standards.")
-        if "beach" in kinds:
-            inv.append("Managed beach access: parking set back from the dune line, sanitation, shade, "
-                       "waste collection and signage.")
-        if "forest" in kinds or "mountain" in kinds:
-            inv.append("A designed trail network with viewpoints, interpretation and a trailhead facility, "
-                       "built to a standard that survives the wet season.")
-        if "mangrove" in kinds:
-            inv.append("Low-impact mangrove access — boardwalk, kayak launch, guided boat routes — sited "
-                       "to avoid nesting and nursery areas.")
-        inv.append("Destination-level basics that currently constrain length of stay: potable water, "
-                   "wastewater treatment, mobile coverage and last-mile road or pier condition.")
-    elif r.action == "ADAPT":
-        inv.append("Upgrade rather than expand: retrofit existing visitor infrastructure for resilience "
-                   "and reduce the destination's own pressure on the asset that draws visitors.")
-        inv.append("Visitor management — carrying capacity, timed access at pinch points, and "
-                   "redistribution of demand to shoulder sites within the same destination.")
-    elif r.action == "PROTECT":
-        inv.append("Modest, carefully sited visitor access that gives the protected asset an economic "
-                   "constituency: a visitor centre or ranger post, defined trails or moorings, and "
-                   "concession arrangements that channel revenue to management.")
-        inv.append("Support for local enterprises operating under the protected-area management plan "
-                   "rather than outside it.")
-    else:  # MANAGE
-        inv.append("Direct new accommodation and construction to already-developed settlements at the "
-                   "periphery, not into the sensitive core.")
-        inv.append("Invest in the management capacity — rangers, monitoring, enforcement, permitting — "
-                   "that a rising visitor trend will require.")
-    if named:
-        inv.append(f"Anchor points for any package: {listify(named, 5)}.")
-    return inv
+    items = []
+    if len(nodes):
+        for n in nodes.itertuples():
+            what = []
+            mix = str(n.asset_mix)
+            if "beach" in mix:
+                what.append("managed beach access with parking set back from the dune line, "
+                            "sanitation, shade and waste collection")
+            if "dive" in mix or "reef" in mix:
+                what.append("mooring buoys to stop anchor damage, a small landing and "
+                            "briefing facility, and operator licensing")
+            if "waterfall" in mix or "peak" in mix or "viewpoint" in mix:
+                what.append("a designed trail and viewpoint built to survive the wet season, "
+                            "with interpretation and a trailhead facility")
+            if "marina" in mix:
+                what.append("upgraded landing and small-boat handling")
+            if not what:
+                what.append("visitor orientation, sanitation and safe access")
+            items.append(
+                f"**{n.name}** ({n.anchor_type}, {n.n_assets} mapped assets within 4 km; "
+                f"{n.road_km:.1f} km from a road, {n.settlement_km:.1f} km from a settlement) "
+                f"\u2014 {'; '.join(what)}.")
+    else:
+        items.append("No site inside this area currently meets the screening test for visitor "
+                     "infrastructure (road access within 2.5 km, a settlement within 12 km, and "
+                     "outside a strict protection core). The case here is conservation-led.")
+    if r.action in ("INVEST", "ADAPT"):
+        items.append("Destination-level basics that cap length of stay everywhere in this area: "
+                     "potable water, wastewater treatment, mobile coverage and last-mile road "
+                     "or pier condition.")
+    if r.action == "ADAPT":
+        items.append("Upgrade before expansion. The constraint here is the quality and "
+                     "resilience of what exists, not the quantity of it.")
+    if r.action == "MANAGE":
+        items.append("Direct new construction to already-developed settlements at the periphery, "
+                     "and invest in the management capacity - rangers, monitoring, permitting - "
+                     "that a rising visitor trend will require.")
+    return items
 
 
-def jobs_text(r):
+def nature_investment(r, zones):
+    """WHERE to invest in nature, WHICH ecosystem, and whether to protect or restore."""
+    items = []
+    if not len(zones):
+        items.append("No ecosystem-specific action zone was identified inside this area at "
+                     "screening scale.")
+        return items
+    for z in zones.sort_values(["action", "eco_ha"], ascending=[True, False]).itertuples():
+        verb = "Protect" if z.action == "protect" else "Restore"
+        items.append(
+            f"**{verb} {z.ecosystem}** \u2014 about {z.eco_ha:,} ha across {z.area_km2:,.0f} km2. "
+            f"{z.rationale}")
+    protect_ha = int(zones.loc[zones.action == "protect", "eco_ha"].sum())
+    restore_ha = int(zones.loc[zones.action == "restore", "eco_ha"].sum())
+    items.append(
+        f"In total: roughly {protect_ha:,} ha to hold under better protection and "
+        f"{restore_ha:,} ha to restore. Protecting functioning ecosystems is cheaper and more "
+        f"certain than recreating them, so the protection actions should be sequenced first.")
+    return items
+
+
+def jobs_block(r, nodes, zones):
+    """Indicative employment. Ranges, stated assumptions, explicitly not a forecast."""
+    n_nodes = int(len(nodes))
+    n_assets = int(nodes.n_natural.sum()) if len(nodes) else 0
+    restore_ha = float(zones.loc[zones.action == "restore", "eco_ha"].sum()) if len(zones) else 0.0
+    protect_ha = float(zones.loc[zones.action == "protect", "eco_ha"].sum()) if len(zones) else 0.0
+    est = estimate(r.action, n_nodes, n_assets, restore_ha, protect_ha)
+
     kinds = dict(ecosystems(r))
     ch = []
     if "reef" in kinds or r.n_dive_surf > 0:
@@ -270,21 +307,41 @@ def jobs_text(r):
     if "forest" in kinds or "mountain" in kinds:
         ch.append("nature and birding guiding, trail construction and maintenance")
     if "mangrove" in kinds:
-        ch.append("kayak and boat tours, and paid mangrove restoration and monitoring crews")
+        ch.append("kayak and boat tours, and paid mangrove restoration crews")
     if "beach" in kinds:
         ch.append("beach services, food and beverage, and small accommodation")
     if r.pa_frac > 0.2:
         ch.append("protected-area management, ranger and interpretation roles")
     ch.append("local food supply, crafts and transport into the visitor economy")
-    txt = (f"With about {people(r.population)} residents inside the area and a local-opportunity score of "
-           f"{r.JOBS:.0f}/100, the plausible employment channels are {listify(ch, 4)}.")
+
+    lo, hi = est["direct_total"]
+    tlo, thi = est["with_indirect"]
+    parts = []
+    if n_nodes:
+        parts.append(f"{est['rooms'][0]}-{est['rooms'][1]} rooms across {n_nodes} "
+                     f"site{'' if n_nodes == 1 else 's'}")
+    if est["restore_ha"]:
+        parts.append(f"{est['restore_ha']:,} ha of restoration")
+    if est["protect_ha"]:
+        parts.append(f"{est['protect_ha']:,} ha brought under active management")
+    package = listify(parts, 3) or "management and community enterprise support only"
+    narrative = (
+        f"An indicative package here - {package} - would support roughly "
+        f"**{lo}-{hi} direct jobs**, or **{tlo}-{thi} including indirect and induced** "
+        f"employment. About {people(r.population)} people live inside the area. "
+        f"The plausible channels are {listify(ch, 4)}."
+    )
+    caveat = (
+        "These are order-of-magnitude figures for a hypothetical package, not a forecast. They "
+        "assume finance, tenure, skills and visitor demand that this screening cannot observe, "
+        "and restoration employment is expressed as full-time equivalents while a "
+        f"{est['programme_years']}-year programme runs, not permanent posts."
+    )
     if r.is_comarca:
-        txt += (" Because the area intersects an indigenous comarca, the master plan's own requirement "
-                "applies: development must be community-led, with free prior and informed consent and "
-                "equitable, durable benefit sharing.")
-    txt += (" No employment numbers are estimated. Converting these channels into jobs depends on "
-            "skills, finance and tenure conditions this screening cannot observe.")
-    return txt
+        caveat += (" Because the area intersects an indigenous comarca, the master plan's own "
+                   "requirement applies: development must be community-led, with free prior and "
+                   "informed consent and equitable, durable benefit sharing.")
+    return {"estimate": est, "narrative": narrative, "caveat": caveat}
 
 
 def risks(r):
@@ -332,32 +389,37 @@ def further_analysis(r):
 
 
 def gov_text(r):
-    if r.gov_relation == "reinforces":
-        return (f"This area falls within the government's priority destination "
-                f"\u201c{sfield(r, 'gov_dest')}\u201d ({pct(r.gov_share)} of the area). The analysis REINFORCES that "
-                f"priority and points to the specific nature-based content of the investment.")
-    if r.gov_relation == "refines":
-        return (f"This area falls within the government's priority destination \u201c{sfield(r, 'gov_dest')}\u201d "
-                f"({pct(r.gov_share)} of the area), but the analysis REFINES the emphasis: the binding "
-                f"issue identified here is conservation, resilience or pressure management rather than "
-                f"expansion of tourism supply.")
-    if r.gov_relation == "partial":
-        return (f"About {pct(r.gov_share)} of this area overlaps the government priority destination "
-                f"\u201c{sfield(r, 'gov_dest')}\u201d. The analysis suggests the useful geography extends beyond the "
-                f"destination as currently framed.")
-    return ("This area lies OUTSIDE the ten priority destinations of the Plan Maestro 2025–2030. "
-            "It is surfaced by the spatial analysis alone and would be a NEW candidate for "
-            "consideration in tourism planning.")
+    """One plain sentence. The four-way taxonomy the first version used asked readers to
+    learn a vocabulary before they could read a result."""
+    dest = sfield(r, "gov_dest")
+    if r.in_gov_plan and dest:
+        return (f"This area lies within the government's priority destination "
+                f"\u201c{dest}\u201d ({pct(r.gov_share)} of the area), so the findings here "
+                f"speak to a destination the Plan Maestro 2025-2030 has already committed to.")
+    if dest:
+        return (f"This area sits mostly outside the ten priority destinations of the Plan "
+                f"Maestro 2025-2030, though it touches \u201c{dest}\u201d "
+                f"({pct(r.gov_share)} of the area).")
+    return ("This area lies outside the ten priority destinations of the Plan Maestro "
+            "2025-2030. It is surfaced by the spatial analysis alone.")
 
 
 def main() -> None:
     df = pd.read_csv(PROC / "opportunity_areas.csv")
-    log(f"  composing narratives for {len(df)} areas")
+    nodes_all = pd.read_csv(PROC / "tourism_nodes.csv") if (PROC / "tourism_nodes.csv").exists() \
+        else pd.DataFrame(columns=["area_id"])
+    zones_all = pd.read_csv(PROC / "nature_zones.csv") if (PROC / "nature_zones.csv").exists() \
+        else pd.DataFrame(columns=["area_id"])
+    log(f"  composing narratives for {len(df)} areas "
+        f"({len(nodes_all)} nodes, {len(zones_all)} nature zones)")
     out = []
     for r in df.itertuples():
+        nodes = nodes_all[nodes_all.area_id == r.cluster_id] if len(nodes_all) else nodes_all
+        zones = zones_all[zones_all.area_id == r.cluster_id] if len(zones_all) else zones_all
+        jobs = jobs_block(r, nodes, zones)
         out.append({
             "cluster_id": r.cluster_id, "rank": int(r.rank), "name": str(r.name),
-            "action": r.action, "gov_relation": r.gov_relation,
+            "action": r.action, "in_gov_plan": int(r.in_gov_plan),
             "gov_dest": sfield(r, "gov_dest") or None,
             "headline": headline(r),
             "why_here": why_here(r),
@@ -371,13 +433,20 @@ def main() -> None:
                 f"protection gap {r.protection_gap:.0f}/100."),
             "resilience": resilience_text(r),
             "conservation_action": conservation_action(r),
-            "tourism_investment": tourism_investment(r),
-            "jobs": jobs_text(r),
+            "tourism_investment": tourism_investment(r, nodes),
+            "nature_investment": nature_investment(r, zones),
+            "jobs": jobs["narrative"],
+            "jobs_estimate": jobs["estimate"],
+            "jobs_caveat": jobs["caveat"],
+            "n_nodes": int(len(nodes)),
+            "n_nature_zones": int(len(zones)),
             "risks": risks(r),
             "further_analysis": further_analysis(r),
             "gov_alignment": gov_text(r),
         })
-    payload = {"generated_from": "pipeline/55_narratives.py", "areas": out}
+    payload = {"generated_from": "pipeline/55_narratives.py",
+               "jobs_assumptions": {k: list(v) for k, v in RANGES.items()},
+               "areas": out}
     # allow_nan=False is deliberate. Python's json.dumps emits bare NaN by default, which is
     # NOT valid JSON: the browser's fetch().json() throws and the whole narrative payload
     # silently fails to load, leaving every dossier blank. Fail loudly here instead.

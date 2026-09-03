@@ -27,10 +27,16 @@ protected-area designation recommendation or a jobs forecast.
   named, inspectable sub-indicators. **No single opaque composite index.**
 - Four recommendation types per cell, as continuous fit scores: **Protect / Restore**,
   **Invest / Develop**, **Adapt / Strengthen**, **Manage / Avoid**.
-- **28 named Opportunity Areas**: contiguous clusters of strongly-scoring cells, each with a
-  generated investment narrative — assets, biodiversity, protection status, resilience,
-  recommended conservation action, recommended tourism investment, job channels, risks, and
-  what further analysis is needed.
+- **Named Opportunity Areas**, each reporting two things separately:
+  - **tourism investment sites** — specific locations anchored on a named natural feature,
+    with road access and a settlement within reach, outside strict protection cores;
+  - **nature action zones** — ecosystem-specific areas labelled protect or restore, with
+    hectares.
+- An **indicative employment range** per area from published planning benchmarks, stated as a
+  range for a hypothetical package and explicitly not a forecast.
+- **Development feasibility gates**: no recommendation to develop where there is no road access
+  within 10 km, where travel exceeds 8 hours from a gateway, or inside the Darien Gap advisory
+  zone.
 - An explicit statement, for every area, of how it relates to the government's own plan:
   **reinforces**, **refines**, **partly overlaps**, or **outside** the priority destinations.
 
@@ -53,6 +59,7 @@ pipeline/        numbered, reproducible analysis steps (Python)
   12_gov_strategy.py     ATP master plan encoded as data + derived destination polygons
   gov_strategy_source.py the structured encoding of the plan itself
   20_grid.py             H3 grid over land + tourism-relevant coastal water
+  17_feasibility.py      road access, remoteness and Darien Gap advisory screens
   13_rasters.py          WorldCover / Copernicus DEM / WorldPop zonal statistics
   14_gbif.py             vertebrate species richness and recording effort
   15_access.py           500 m least-cost travel-time surface
@@ -60,6 +67,8 @@ pipeline/        numbered, reproducible analysis steps (Python)
   30_indicators.py       six indicator families
   40_classify.py         recommendation typology
   50_opportunities.py    clustering into named Opportunity Areas
+  52_zones.py            tourism investment sites + nature protect/restore zones
+  jobs_model.py          indicative employment benchmarks
   55_narratives.py       investment narrative generation
   60_export.py           compact web-ready artefacts
 data/raw/        download cache (git-ignored, fully reproducible)

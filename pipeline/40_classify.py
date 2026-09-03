@@ -7,6 +7,16 @@ restoring, restore before building new):
   INVEST    Invest / Develop      real attraction, workable access, little tourism supply yet
   ADAPT     Adapt / Strengthen    established destination whose nature base needs shoring up
   MANAGE    Manage / Avoid        sensitive, reachable places where pressure should be limited
+  NONE      No strong basis       nothing here rises to a screening-level recommendation
+
+WHY A FIFTH, EMPTY CLASS EXISTS
+  Ranking four fits and taking the best forces every cell into a recommendation, including
+  cells that are at the bottom of everything. That produced the worst output of the first
+  version: cells with a nature-attraction score of 0, no population, no road and a modelled
+  17-hour journey from the nearest gateway, deep in the Darien Gap, classified as
+  "Invest / Develop" purely because that was their least-bad percentile. A class must now be
+  QUALIFIED on absolute evidence before it can be ranked at all, and a cell that qualifies
+  for nothing is reported as such.
 
 WHY WEIGHTED GEOMETRIC MEANS RATHER THAN WEIGHTED SUMS
   An additive score lets a missing condition be bought back by the others. In a first pass
@@ -43,7 +53,23 @@ ACTIONS = {
     "INVEST": "Invest / Develop",
     "ADAPT": "Adapt / Strengthen",
     "MANAGE": "Manage / Avoid",
+    "NONE": "No strong basis",
 }
+
+# Absolute evidence a cell must show before an action can even be considered for it.
+# These are floors, not weights: they cannot be traded off against another indicator.
+QUALIFY = {
+    "INVEST":  "real natural attraction, workable access, and development feasibility",
+    "PROTECT": "genuine biodiversity or resilience value to protect",
+    "ADAPT":   "tourism supply that actually exists on the ground",
+    "MANAGE":  "high sensitivity AND enough access for pressure to be real",
+}
+MIN_NAV_INVEST = 40
+MIN_ACC_INVEST = 35
+MIN_BCV_PROTECT = 40
+MIN_TDL_ADAPT = 25
+MIN_BCV_MANAGE = 45
+MIN_ACC_MANAGE = 35
 
 
 def geo(**terms: tuple[pd.Series, float]) -> pd.Series:
@@ -62,7 +88,10 @@ def geo(**terms: tuple[pd.Series, float]) -> pd.Series:
 
 def main() -> None:
     d = pd.read_csv(PROC / "grid_indicators.csv").copy()
-    log(f"  {len(d)} cells")
+    feas = pd.read_csv(PROC / "grid_feasibility.csv")
+    d = d.merge(feas, on="h3", how="left")
+    d["dev_feasible"] = d.dev_feasible.fillna(0).astype(int)
+    log(f"  {len(d)} cells, {int(d.dev_feasible.sum())} development-feasible")
 
     NAV, TDL, ACC = d.NAV, d.TDL, d.ACC
     BCV, RES, JOBS = d.BCV, d.RES, d.JOBS
@@ -133,24 +162,41 @@ def main() -> None:
     pct.columns = [f"pct_{c}" for c in fits.columns]
     d = pd.concat([d, pct.round(1)], axis=1)
 
-    primary = [keys[i] for i in np.argmax(pct.values, axis=1)]
+    # ---- absolute qualification gates -----------------------------------------------
+    qual = pd.DataFrame({
+        "PROTECT": BCV >= MIN_BCV_PROTECT,
+        "INVEST": (d.dev_feasible == 1) & (NAV >= MIN_NAV_INVEST) & (ACC >= MIN_ACC_INVEST),
+        "ADAPT": TDL >= MIN_TDL_ADAPT,
+        "MANAGE": (BCV >= MIN_BCV_MANAGE) & (ACC >= MIN_ACC_MANAGE),
+    })
+    log("  cells qualifying for each action (absolute gates):")
+    for k in keys:
+        log(f"    {ACTIONS[k]:22s} {int(qual[k].sum()):5d}")
 
-    sec = []
-    for i, p in enumerate(primary):
-        row = pct.iloc[i]
-        sec.append("; ".join(k for k, c in zip(keys, pct.columns)
-                             if k != p and row[c] >= 75))
+    masked = pct.copy()
+    masked.columns = keys
+    masked = masked.where(qual, other=-1.0)
+
+    primary, sec = [], []
+    for i in range(len(d)):
+        row = masked.iloc[i]
+        if (row < 0).all():
+            primary.append("NONE")
+            sec.append("")
+            continue
+        best = row.idxmax()
+        primary.append(best)
+        sec.append("; ".join(k for k in keys if k != best and row[k] >= 75))
 
     d = pd.concat([d, pd.DataFrame({
         "primary": primary,
-        "primary_fit": fits.max(axis=1).round(1),
-        "primary_rank": pct.max(axis=1).round(1),
+        "primary_fit": np.where(np.array(primary) == "NONE", 0.0,
+                                [fits.iloc[i][f"fit_{p.lower()}"] if p != "NONE" else 0.0
+                                 for i, p in enumerate(primary)]),
+        "primary_rank": masked.max(axis=1).clip(lower=0).round(1),
         "primary_label": [ACTIONS[p] for p in primary],
         "secondary": sec,
-        "gov_relation": np.where(
-            d.gov_dest.notna(),
-            np.where(np.isin(primary, ["PROTECT", "ADAPT", "MANAGE"]), "refines", "reinforces"),
-            "new"),
+        "in_gov_dest": d.gov_dest.notna().astype(int).values,
     }, index=d.index)], axis=1)
 
     log("  primary class distribution:")
@@ -163,7 +209,11 @@ def main() -> None:
     for line in prof.to_string().split("\n"):
         log("    " + line)
 
-    log(f"  relation to government destinations: {d.gov_relation.value_counts().to_dict()}")
+    log(f"  cells inside a government priority destination: {int(d.in_gov_dest.sum())}")
+    inv = d[d.primary == "INVEST"]
+    log(f"  INVEST sanity: max travel time {inv.tt_gateway_h.max():.1f} h, "
+        f"max road distance {inv.dist_road_km.max():.1f} km, "
+        f"advisory-zone cells {int(inv.advisory_zone.sum())} (must be 0)")
     d.to_csv(PROC / "grid_classified.csv", index=False)
     log(f"  wrote grid_classified.csv ({d.shape[0]} rows, {d.shape[1]} cols)")
 

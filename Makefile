@@ -15,9 +15,11 @@ analyse:
 	$(PY) pipeline/14_gbif.py
 	$(PY) pipeline/15_access.py
 	$(PY) pipeline/16_vectors.py
+	$(PY) pipeline/17_feasibility.py
 	$(PY) pipeline/30_indicators.py
 	$(PY) pipeline/40_classify.py
 	$(PY) pipeline/50_opportunities.py
+	$(PY) pipeline/52_zones.py
 	$(PY) pipeline/55_narratives.py
 	$(PY) pipeline/60_export.py
 

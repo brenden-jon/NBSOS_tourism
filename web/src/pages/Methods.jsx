@@ -5,10 +5,10 @@ import { FAMILIES } from '../lib/constants'
 export default function Methods() {
   return (
     <>
-      <Hero eyebrow="Transparency" title="Methods, data and limitations"
-        lead="Everything this prototype claims rests on data you can trace and steps you can rerun. This section documents the sources and their licences, the analytical pipeline, and — at least as importantly — what the analysis cannot tell you." />
+      <Hero eyebrow="Documentation" title="Method, data and limitations"
+        lead="Documentation of the data sources and their licences, the analytical pipeline, and the limitations of the analysis." />
 
-      <Section eyebrow="Approach" title="From the NBS Opportunity Scan to a tourism question">
+      <Section eyebrow="Approach" title="Adapting the NBS Opportunity Scan">
         <div className="grid gap-6 lg:grid-cols-2">
           <div className="prose-wb space-y-4">
             <p>
@@ -47,7 +47,7 @@ export default function Methods() {
         </div>
       </Section>
 
-      <Section tint eyebrow="Pipeline" title="Seven stages, all reproducible">
+      <Section tint eyebrow="Pipeline" title="Processing stages">
         <div className="grid gap-3">
           {STEPS.map(s => (
             <div key={s.n} className="card p-4 flex gap-4">
@@ -67,7 +67,7 @@ export default function Methods() {
         </p>
       </Section>
 
-      <Section eyebrow="Indicators" title="What each family is built from">
+      <Section eyebrow="Indicators" title="Indicator construction">
         <div className="overflow-x-auto">
           <table className="tbl min-w-[720px]">
             <thead><tr><th className="w-[130px]">Family</th><th>Definition</th></tr></thead>
@@ -83,14 +83,14 @@ export default function Methods() {
           </table>
         </div>
         <div className="mt-6 grid gap-5 lg:grid-cols-2">
-          <Callout title="Why percentile ranks, not min–max" tone="blue">
+          <Callout title="Percentile ranks rather than min–max" tone="blue">
             Almost every count variable here is heavily right-skewed — Panama City has two orders of
             magnitude more accommodation than anywhere else. Min–max normalisation would flatten the
             rest of the country to near zero. Percentile ranking preserves discrimination across the
             whole distribution. True zeros are pinned to zero rather than given the mid-rank of the
             tied zero block.
           </Callout>
-          <Callout title="Why zone-aware weighting" tone="green">
+          <Callout title="Zone-aware weighting" tone="green">
             A marine cell has no forest and an inland cell has no reef. Scoring absent features as
             zero would systematically punish whole zones. Each family declares which sub-indicators
             apply in which zone and renormalises its weights over the applicable set.
@@ -121,7 +121,7 @@ export default function Methods() {
         </div>
       </Section>
 
-      <Section eyebrow="Deliberate omissions" title="Datasets considered and not used"
+      <Section eyebrow="Omissions" title="Datasets considered and not used"
         lead="Each of these would improve the analysis. Each is excluded for a stated reason, and each is a candidate for phase 2.">
         <div className="grid gap-4 sm:grid-cols-2">
           {NOT_USED.map(s => (
@@ -135,7 +135,7 @@ export default function Methods() {
         </div>
       </Section>
 
-      <Section tint eyebrow="Honesty" title="Limitations">
+      <Section tint eyebrow="Limitations" title="What this analysis cannot tell you">
         <div className="grid gap-4 lg:grid-cols-2">
           {LIMITS.map(l => (
             <div key={l.t} className="card p-5 border-l-4 border-l-act-manage">

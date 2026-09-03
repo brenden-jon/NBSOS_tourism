@@ -15,10 +15,15 @@ const MODES = [
   { key: 'supply_gap', label: 'Tourism supply gap', kind: 'num',
     desc: 'Natural attraction minus existing tourism development.' },
   { key: 'sensitivity', label: 'Ecological sensitivity', kind: 'num',
-    desc: 'Biodiversity value weighted with strict protection — damps development recommendations.' },
+    desc: 'Biodiversity value weighted with strict protection. Damps development recommendations.' },
+  { key: 'dev_feasible', label: 'Development feasibility', kind: 'bool',
+    desc: 'Green where a cell has road access within 10 km, is under 8 hours from a tourism gateway, and lies outside the Darién Gap advisory zone. Development recommendations are gated on this.' },
 ]
 
 function colourExpr(mode) {
+  if (mode.kind === 'bool') {
+    return ['case', ['==', ['get', 'dev_feasible'], 1], '#5C8A2E', '#C9928F']
+  }
   if (mode.kind === 'cat') {
     return ['match', ['get', 'primary'],
       'PROTECT', ACTIONS.PROTECT.color, 'INVEST', ACTIONS.INVEST.color,
@@ -70,9 +75,15 @@ function Inspector({ f, detail, onClose }) {
         {d.pa_name && <div className="text-[12px]"><span className="text-wb-muted">Protected area: </span>
           <span className="font-semibold text-wb-slateDk">{d.pa_name}</span></div>}
         {d.ecoregion && <div className="text-[12px]"><span className="text-wb-muted">Ecoregion: </span>{d.ecoregion}</div>}
+        {d.infeasible_reason && (
+          <div className="text-[12px] rounded bg-act-manage/[0.07] border border-act-manage/25 px-2.5 py-2">
+            <span className="font-semibold text-act-manage">Not feasible for development: </span>
+            <span className="text-wb-slate">{d.infeasible_reason}</span>
+          </div>
+        )}
         <div className="pt-3 border-t border-wb-line text-[12px]">
           <span className="text-wb-muted">Government plan: </span>
-          {d.gov_dest ? <span className="font-semibold text-wb-slateDk">{d.gov_dest} ({d.gov_relation})</span>
+          {d.gov_dest ? <span className="font-semibold text-wb-slateDk">{d.gov_dest}</span>
                       : <span className="text-wb-slate">outside priority destinations</span>}
         </div>
       </div>
@@ -135,7 +146,7 @@ export default function Analysis() {
 
   return (
     <>
-      <Hero eyebrow="National screening" title="The analysis, cell by cell"
+      <Hero eyebrow="National screening" title="Screening results by cell"
         lead="Every 37 km² hexagon across Panama's land area and the coastal water around it — 10 km from every coastline, extended to 30 km over shallow shelf and marine protected areas — scored on six indicator families and classified into a recommendation type. Colour the map by any indicator; click any cell to see the evidence behind it." />
 
       <div className="wrap py-8">
@@ -179,7 +190,19 @@ export default function Analysis() {
               <div className="text-[11px] font-bold uppercase tracking-wider text-wb-slateDk mb-2">
                 {mode.label}
               </div>
-              {mode.kind === 'cat' ? (
+              {mode.kind === 'bool' ? (
+                <div className="space-y-1.5">
+                  <div className="flex items-center gap-2 text-[11.5px] text-wb-slate">
+                    <span className="w-3.5 h-3.5 rounded-sm" style={{ backgroundColor: '#5C8A2E' }} />
+                    Feasible for development
+                  </div>
+                  <div className="flex items-center gap-2 text-[11.5px] text-wb-slate">
+                    <span className="w-3.5 h-3.5 rounded-sm" style={{ backgroundColor: '#C9928F' }} />
+                    Not feasible
+                  </div>
+                  <p className="text-[10.5px] leading-snug text-wb-muted mt-2">{mode.desc}</p>
+                </div>
+              ) : mode.kind === 'cat' ? (
                 <div className="space-y-1.5">
                   {Object.values(ACTIONS).map(a => (
                     <div key={a.key} className="flex items-center gap-2 text-[11.5px] text-wb-slate">
@@ -210,7 +233,7 @@ export default function Analysis() {
       </div>
 
       {s && (
-        <Section tint eyebrow="What the national picture shows" title="Four findings from the screening grid">
+        <Section tint eyebrow="National picture" title="Summary findings">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-8">
             <Stat value={`${s.share_in_gov_dest}%`} label="Inside a priority destination"
               sub={`${s.cells_in_gov_dest.toLocaleString()} of ${s.cells.toLocaleString()} cells. The other ${(100 - s.share_in_gov_dest).toFixed(1)}% is where new opportunities can appear.`} />
@@ -225,10 +248,9 @@ export default function Analysis() {
             <div className="card p-5">
               <div className="h-sub">Natural attraction against existing tourism supply</div>
               <p className="prose-wb text-[13px] mt-1.5 mb-3">
-                Each point is one screening cell, coloured by its recommendation type. The dashed
-                line is where development matches natural draw. Panama's mass sits well below it:
-                the country has far more natural attraction than it has tourism supply to serve it,
-                and the shaded quadrant is where that gap is largest.
+                Each point is one screening cell, coloured by recommendation type. The dashed line
+                marks where tourism development matches natural attraction. Most cells sit below
+                it; the shaded quadrant contains the largest gaps.
               </p>
               <Scatter features={(grid?.features || []).map(f => f.properties)}
                 x="TDL" y="NAV" xLabel="Tourism development (TDL)"
@@ -237,9 +259,8 @@ export default function Analysis() {
             <div className="card p-5">
               <div className="h-sub">Biodiversity value against strict protection</div>
               <p className="prose-wb text-[13px] mt-1.5 mb-3">
-                The vertical spread on the left is the protection gap: cells carrying high
-                biodiversity value with little or no strict IUCN protection. These drive the
-                Protect / Restore recommendations.
+                Cells in the upper left carry high biodiversity value with little or no strict
+                IUCN protection. These drive the Protect / Restore recommendations.
               </p>
               <Scatter features={(grid?.features || []).map(f => ({
                   ...f.properties,
@@ -267,17 +288,21 @@ export default function Analysis() {
                 )
               })}
             </div>
-            <Callout title="How to read the classification" tone="blue">
+            <Callout title="Reading the classification" tone="blue">
               <p>
-                Each cell gets the recommendation type it fits best, but the fit scores for all four
-                are kept. A cell classified <strong>Protect / Restore</strong> that also scores highly
-                for <strong>Invest</strong> is precisely the interesting case: conservation and
-                tourism investment pointing at the same place.
+                A cell must meet an absolute evidence threshold before an action is considered for
+                it. Cells that meet none are reported as <strong>No strong basis</strong> rather
+                than being assigned a recommendation by default.
               </p>
               <p className="mt-2.5">
-                The <em>Invest</em> fit score is deliberately damped where biodiversity value and
-                strict protection are both very high, so the tool does not recommend building in
-                every accessible beautiful place.
+                Fit scores for all four actions are retained. A cell classified Protect / Restore
+                that also scores highly for Invest indicates conservation and tourism investment
+                pointing at the same place.
+              </p>
+              <p className="mt-2.5">
+                Development recommendations are additionally gated on feasibility: road access
+                within 10 km, under 8 hours from a tourism gateway, and outside the Darién Gap
+                advisory zone.
               </p>
             </Callout>
           </div>
