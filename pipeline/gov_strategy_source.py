@@ -1,0 +1,340 @@
+"""Structured encoding of the Government of Panama's tourism strategy.
+
+SOURCE OF RECORD
+  Autoridad de Turismo de Panama (ATP), "Actualizacion del Plan Maestro de Desarrollo
+  Turistico Sostenible de Panama 2025-2030" (PMTS 2025-2030), approved by the Consejo
+  Nacional de Turismo. 687 pp.
+  https://www.atp.gob.pa/wp-content/uploads/2026/07/PMTS-2025-2030-Final-compilado.pdf
+  Accessed 2026-09-02.
+
+  Predecessor: "Plan Maestro de Desarrollo Turistico Sostenible de Panama 2020-2025"
+  https://www.atp.gob.pa/Plan_Maestro_de_Turismo_Sostenible_2020-2025.pdf
+
+IMPORTANT - HOW TO READ THE GEOMETRIES
+  The PMTS names its destinations but does NOT publish destination boundaries. The
+  `districts` list on each destination is OUR operationalisation: the smallest set of
+  official distrito units that contains the places the plan names. Destination polygons
+  are therefore DERIVED, not official. They are used for spatial comparison only and are
+  labelled as such throughout the application.
+
+  `vocation_es` fields are verbatim condensations of the plan's "Vocacion del destino"
+  text. `vocation_en` are our translations.
+"""
+
+PLAN = {
+    "title_es": "Actualizacion del Plan Maestro de Desarrollo Turistico Sostenible de Panama 2025-2030",
+    "title_en": "Update of the Master Plan for Sustainable Tourism Development of Panama 2025-2030",
+    "short": "PMTS 2025-2030",
+    "authority": "Autoridad de Turismo de Panama (ATP)",
+    "approved_by": "Consejo Nacional de Turismo",
+    "period": "2025-2030",
+    "url": "https://www.atp.gob.pa/wp-content/uploads/2026/07/PMTS-2025-2030-Final-compilado.pdf",
+    "accessed": "2026-09-02",
+    "predecessor": {
+        "short": "PMTS 2020-2025",
+        "title_es": "Plan Maestro de Desarrollo Turistico Sostenible de Panama 2020-2025",
+        "url": "https://www.atp.gob.pa/Plan_Maestro_de_Turismo_Sostenible_2020-2025.pdf",
+        "completion_rate": "51.3%",
+        "note": "The previous plan reached 51.3% of its targets; the shortfall is attributed "
+                "largely to pandemic-period budget cuts of 40-60%.",
+    },
+    "selection_logic": (
+        "The 2020-2025 plan chose 8 priority destinations largely on IDB infrastructure "
+        "participation and competitiveness ranking. The 2025-2030 plan re-selected 10 destinations "
+        "on two criteria: capacity to associate/cooperate, and position in a competitiveness ranking "
+        "built from 20+ economic, environmental, commercial and infrastructure variables across the "
+        "34 destinations recognised in a new (not yet approved) Resolution."
+    ),
+    "strategy_note": (
+        "The plan adopts a 'Polos Turisticos' (tourism poles) approach: concentrate effort on a "
+        "small number of destinations to drive decentralisation of investment and activity away "
+        "from Panama City, generating diffusion benefits into surrounding regions."
+    ),
+    "objectives": [
+        {"code": "A", "text_en": "A better-known Panama as a tourism destination",
+         "text_es": "Un Panama mas conocido como destino turistico"},
+        {"code": "B", "text_en": "A more competitive Panamanian tourism sector",
+         "text_es": "Un sector turistico panameno mas competitivo"},
+        {"code": "C", "text_en": "More decentralised tourism - spreading visitor flows to destinations across the country",
+         "text_es": "Un turismo mas descentralizado"},
+        {"code": "D", "text_en": "Tourism policy as a state policy",
+         "text_es": "La politica turistica como politica de Estado"},
+    ],
+    "nature_context": [
+        "33% of Panama's national territory is under protection (terrestrial and marine); the plan "
+        "states that most headline visitor experiences occur inside protected areas, making the "
+        "relationship between tourism and protected-area management central rather than incidental.",
+        "Five 'Rutas Patrimoniales' were designed with the BioMuseo: Bosques de Vida, Aves en el "
+        "Paraiso, Panama Multicultural, Panama Patrimonial and Puente del Mundo - two of which are "
+        "explicitly nature-based products.",
+        "The plan repeatedly conditions destination investment on sustainability criteria 'both in "
+        "concept and in operating technologies', and singles out Bocas del Toro (fragile marine "
+        "ecosystems) and Santa Catalina (adjacent to Coiba National Park) for especially strict criteria.",
+        "Living heritage and indigenous tourism must be developed under strict ethical frameworks "
+        "with the community concerned at the centre of decision-making and benefiting equitably.",
+    ],
+}
+
+# tier: "priority" = one of the 10 PMTS 2025-2030 destinations
+#       "action_plan" = destination with a recent standalone ATP action plan
+DESTINATIONS = [
+    {
+        "id": "panama_taboga", "name": "Ciudad de Panama - Taboga", "tier": "priority",
+        "districts": [("Panamá", "Panamá"), ("Panamá", "San Miguelito"), ("Panamá", "Taboga")],
+        "products": ["MICE / business", "urban cosmopolitan", "gastronomy & shopping", "cruise",
+                     "nautical", "historic heritage", "sun & beach (Taboga)", "cetacean & bird watching"],
+        "vocation_es": "Ciudad de Panama: destino de turismo de negocios/MICE y turismo urbano cosmopolita "
+                       "y activo, potenciando el Canal, cruceros de todo tamano y turismo nautico. Taboga: "
+                       "destino de sol y playa complementario, con avistamiento de cetaceos y aves, turismo "
+                       "nautico y observacion del canal.",
+        "vocation_en": "Panama City is positioned for business/MICE and cosmopolitan urban tourism, "
+                       "leveraging the Canal for cruise and nautical products, complemented by historic, "
+                       "religious and health tourism, and by nature tourism in nearby protected areas. "
+                       "Taboga is a complementary sun-and-beach island with cetacean and bird watching, "
+                       "nautical tourism and Canal viewing; investment there must meet sustainability criteria.",
+        "nature_hooks": ["nearby protected areas", "cetacean watching", "bird watching", "Canal watershed"],
+    },
+    {
+        "id": "riviera_pacifica", "name": "Riviera Pacifica - Valle de Anton - El Cope - Penonome",
+        "tier": "priority",
+        "districts": [("Panamá Oeste", "Chame"), ("Panamá Oeste", "San Carlos"),
+                      ("Coclé", "Antón"), ("Coclé", "Penonomé")],
+        "products": ["sun & beach", "nautical", "nature & active tourism", "archaeology & culture",
+                     "adventure", "agrotourism", "birding"],
+        "vocation_es": "Destino multiproposito que reune playa y turismo nautico, multiples experiencias de "
+                       "contacto con la naturaleza y turismo activo, y recursos arqueologicos y culturales de "
+                       "primera categoria en un espacio pequeno y bien comunicado. Valle de Anton: contacto con "
+                       "la naturaleza en torno a un volcan. Riviera Pacifica: playa y actividades nauticas de alto volumen.",
+        "vocation_en": "A multi-purpose macro-destination combining beach and nautical tourism with nature "
+                       "and active tourism and first-rank archaeological and cultural resources in a small, "
+                       "well-connected area. Valle de Anton offers nature contact around an inhabited volcanic "
+                       "crater; the Riviera Pacifica is a high-volume beach and nautical destination that also "
+                       "complements Panama City's MICE offer; El Cope-Penonome follows a low-impact model.",
+        "nature_hooks": ["Valle de Anton crater", "Pacific beaches", "montane forest (El Cope)", "birding"],
+    },
+    {
+        "id": "boquete", "name": "Boquete", "tier": "priority",
+        "districts": [("Chiriquí", "Boquete")],
+        "products": ["eco-agrotourism (coffee farms)", "active tourism (hiking, cycling)",
+                     "events", "nightlife", "indigenous community experiences"],
+        "vocation_es": "Destino para el turismo activo en la naturaleza y en el medio rural, muy vinculado al "
+                       "agroturismo, con eventos capaces de generar un elevado volumen de visitantes. Podra "
+                       "diversificarse incluyendo experiencias ofrecidas por las comunidades Ngabe cercanas.",
+        "vocation_en": "Active nature and rural tourism strongly tied to agrotourism, especially coffee "
+                       "estates, with events capable of generating high visitor volumes and an attractive "
+                       "nightlife. It complements David and Tierras Altas, and is expected to diversify into "
+                       "experiences offered by nearby Ngabe communities as these consolidate in the market. "
+                       "Investment must apply sustainability criteria in both concept and operating technology.",
+        "nature_hooks": ["Volcan Baru", "cloud forest", "coffee landscapes", "quetzal birding", "rivers"],
+    },
+    {
+        "id": "tierras_altas", "name": "Tierras Altas - Renacimiento", "tier": "priority",
+        "districts": [("Chiriquí", "Tierras Altas"), ("Chiriquí", "Renacimiento")],
+        "products": ["agrotourism (coffee)", "adventure & active nature", "high-quality gastronomy",
+                     "cross-border traffic", "protected-area nature (PILA)"],
+        "vocation_es": "Tierras Altas: destino con encanto para turismo activo, aventura en la naturaleza y el "
+                       "medio rural, especializado en el nicho agroturistico, mas especificamente en las "
+                       "plantaciones cafetaleras. En Renacimiento se identifica el PN La Amistad como el gran "
+                       "recurso, con gran potencial para experiencias de contacto intenso con la naturaleza.",
+        "vocation_en": "Tierras Altas is an active, adventure and rural destination specialising in "
+                       "agrotourism, particularly coffee plantations, with high-quality gastronomy "
+                       "complementing Boquete and David. In Renacimiento, La Amistad International Park is "
+                       "identified as the major resource with strong potential for intensive nature experiences; "
+                       "cross-border traffic also generates tourism business.",
+        "nature_hooks": ["La Amistad International Park (PILA)", "cloud forest", "coffee landscapes", "highland rivers"],
+    },
+    {
+        "id": "david_alanje", "name": "David - Pedregal - Alanje", "tier": "priority",
+        "districts": [("Chiriquí", "David"), ("Chiriquí", "Alanje")],
+        "products": ["business tourism", "cultural tourism", "nautical tourism & sport fishing",
+                     "mangrove tours", "cetacean watching", "beach (Alanje)"],
+        "vocation_es": "David: destino urbano costero de fuerte caracter comercial, con turismo de negocios y "
+                       "cultural, con salida al manglar y el mar a traves de Pedregal y a la playa por Alanje. "
+                       "Puerto Pedregal se orienta a la pesca deportiva y actividades marinas recreativas en el "
+                       "inmenso manglar (38,600 hectareas dentro del Golfo de Chiriqui).",
+        "vocation_en": "David is a coastal urban destination of strong commercial character, developing "
+                       "business and cultural tourism, and acting as a demand hub radiating to Tierras Altas "
+                       "and the Chiriqui coast. Puerto Pedregal is its maritime access point, oriented to sport "
+                       "fishing and recreational marine activity in the vast mangrove system - 38,600 hectares "
+                       "within the Gulf of Chiriqui - with cetacean watching and mangrove tours as strong draws.",
+        "nature_hooks": ["Gulf of Chiriqui mangroves (38,600 ha)", "cetacean watching", "estuarine fisheries"],
+    },
+    {
+        "id": "pedasi_tonosi", "name": "Pedasi - Tonosi - Cambutal", "tier": "priority",
+        "districts": [("Los Santos", "Pedasí"), ("Los Santos", "Tonosí")],
+        "products": ["sun & beach", "surf", "sport fishing", "marine wildlife watching",
+                     "diving & snorkelling", "small luxury cruise", "gastronomy"],
+        "vocation_es": "Pedasi: destino de sol y playa y turismo activo en el mar (surf, pesca deportiva, "
+                       "observacion de fauna marina, buceo y esnorquel), tambien orientado a pequenos cruceros "
+                       "de lujo. Cambutal: destino de sol y playa con un componente mas activo y de contacto "
+                       "con la naturaleza.",
+        "vocation_en": "Pedasi is a sun-and-beach and active marine destination - surf, sport fishing, marine "
+                       "wildlife watching, diving and snorkelling - also targeting small luxury cruises, "
+                       "reinforced by gastronomy and cultural synergies with Chitre, Las Tablas and Guarare. "
+                       "Cambutal is a beach destination with a stronger active and nature-contact component. "
+                       "Infrastructure and facility investment must meet sustainability criteria.",
+        "nature_hooks": ["Isla Iguana", "Isla Canas turtle nesting", "Pacific surf breaks", "marine wildlife"],
+    },
+    {
+        "id": "bocas_del_toro", "name": "Bocas del Toro", "tier": "priority",
+        "districts": [("Bocas del Toro", "Bocas del Toro")],
+        "products": ["low-impact island ecotourism", "nautical activities", "small cruise",
+                     "beach", "scientific tourism", "community & local culture"],
+        "vocation_es": "Destino de ecoturismo insular de bajo impacto y con especializacion en actividades "
+                       "nauticas, pequenos cruceros y playa como complemento al ecoturismo. Debera orientarse "
+                       "tambien hacia el turismo cientifico y fortalecer la participacion de las comunidades "
+                       "locales. Por la fragilidad de sus ecosistemas marinos, el desarrollo de las experiencias "
+                       "y de las inversiones deberan tener un enfoque de sostenibilidad.",
+        "vocation_en": "A low-impact island ecotourism destination specialising in nautical activities, small "
+                       "cruises and beach as a complement to ecotourism, with ecotourism as the governing "
+                       "product. It should also develop scientific tourism and strengthen local community "
+                       "participation. The plan explicitly flags the fragility of its marine ecosystems as "
+                       "requiring a sustainability-led approach to both experiences and investment.",
+        "nature_hooks": ["coral reefs", "mangroves", "Bastimentos Island Marine NP", "sea turtles", "archipelago"],
+    },
+    {
+        "id": "chitre_parita", "name": "Chitre - Parita", "tier": "priority",
+        "districts": [("Herrera", "Chitré"), ("Herrera", "Parita")],
+        "products": ["cultural tourism & folklore", "tradition-based events", "rural accommodation",
+                     "MICE (convention centre)", "religious & historic heritage"],
+        "vocation_es": "Destino basado en actividades culturales principalmente basados en el folklore local y "
+                       "eventos basados en la tradicion, con alojamiento rural, principalmente para un mercado "
+                       "de corta estancia del visitante nacional o de paises de la region. Igualmente, se "
+                       "impulsara el turismo de eventos y reuniones en el Centro de Convenciones existente.",
+        "vocation_en": "A culture-led destination built on local folklore and tradition-based events, with "
+                       "rural accommodation, aimed mainly at short-stay national and regional visitors, plus "
+                       "meetings and events tourism at the existing convention centre. Investment must apply "
+                       "sustainability criteria in concept and operating technology.",
+        "nature_hooks": ["Parita Bay wetlands (shorebird site)", "dry forest", "coastal mangrove"],
+    },
+    {
+        "id": "pacifico_veraguense",
+        "name": "Pacifico Veraguense - Golfo de Montijo - Santa Catalina - Mariato", "tier": "priority",
+        "districts": [("Veraguas", "Mariato"), ("Veraguas", "Montijo"), ("Veraguas", "Soná"),
+                      ("Veraguas", "Santiago"), ("Veraguas", "Atalaya"), ("Veraguas", "Río de Jesús")],
+        "products": ["gateway to Coiba NP", "diving & snorkelling", "surf", "low-impact beach",
+                     "community-based rural tourism", "cetacean watching", "sport fishing",
+                     "scientific tourism", "mangrove & wetland experiences"],
+        "vocation_es": "Santa Catalina-Pixvae: fortalecer su posicionamiento como punto de acceso al Parque "
+                       "Nacional Coiba, destino de playa de bajo impacto, surf, turismo de aventura y "
+                       "ecoturismo. Las inversiones deberan planificarse con criterios de sostenibilidad "
+                       "especialmente estrictos en tanto que se estara desarrollando un destino anexo a una de "
+                       "las reservas naturales mas importantes del pais. Golfo de Montijo-Santiago-Atalaya: "
+                       "destino costero de contacto intenso con la naturaleza (mangle y oceano) y las "
+                       "comunidades locales, turismo cientifico, observacion de cetaceos y pesca deportiva.",
+        "vocation_en": "Santa Catalina-Pixvae is to consolidate as the access point to Coiba National Park and "
+                       "as a low-impact beach, surf, adventure and ecotourism destination - with the plan "
+                       "requiring especially strict sustainability criteria because it adjoins one of the "
+                       "country's most important nature reserves. Golfo de Montijo-Santiago-Atalaya is a "
+                       "coastal destination for intense contact with nature (mangrove and ocean) and local "
+                       "communities, scientific tourism, cetacean watching and sport fishing, with strong local "
+                       "community involvement as the guarantor of authenticity. Mariato is a beach destination "
+                       "for surf and wildlife watching (birds, monkeys, turtles, cetaceans) with a "
+                       "community-based rural tourism focus.",
+        "nature_hooks": ["Coiba National Park (UNESCO WHS)", "Golfo de Montijo Ramsar wetland",
+                         "mangroves", "cetaceans", "Isla Cebaco", "surf breaks"],
+    },
+    {
+        "id": "colon_portobelo", "name": "Colon - Portobelo - Santa Isabel", "tier": "priority",
+        "districts": [("Colón", "Colón"), ("Colón", "Portobelo"), ("Colón", "Santa Isabel")],
+        "products": ["cruise (all sizes)", "nautical (Caribbean & Gatun Lake)", "shopping",
+                     "scientific tourism", "indigenous tourism", "cultural & ethnic heritage",
+                     "low-impact sun & beach", "gastronomy"],
+        "vocation_es": "Colon: destino de cruceros de todo tamano, con actividades nauticas en el Caribe y Lago "
+                       "Gatun y compras; enclave para turismo cientifico y turismo indigena en el entorno del "
+                       "Lago Gatun; destino de contrapeso a Ciudad de Panama. Portobelo: turismo cultural y "
+                       "etnico combinado con sol y playa y actividades de naturaleza, pequenos cruceros y "
+                       "veleros. Santa Isabel: experiencias de sol y playa de bajo impacto.",
+        "vocation_en": "Colon is oriented to cruise tourism of all sizes plus Caribbean and Gatun Lake nautical "
+                       "activity and shopping, and is to become a counterweight entry point to Panama City, "
+                       "developing scientific and indigenous tourism around Gatun Lake. Portobelo combines "
+                       "cultural and ethnic tourism with beach and nature activities, small cruises and "
+                       "yachting, and must respect existing environmental regulation. Santa Isabel is oriented "
+                       "to low-impact sun and beach, drawing on nearby Portobelo.",
+        "nature_hooks": ["Portobelo NP reefs & mangroves", "Gatun Lake", "Caribbean coastal forest",
+                         "San Lorenzo protected area"],
+    },
+    # ---- destinations with recent standalone ATP action plans (not in the top-10) ----
+    {
+        "id": "boca_chica", "name": "Golfo de Chiriqui - Boca Chica", "tier": "action_plan",
+        "districts": [("Chiriquí", "San Lorenzo")],
+        "products": ["island ecotourism", "diving & snorkelling", "sport fishing", "cetacean watching"],
+        "vocation_es": "Destino eco-costero de baja intensidad para el contacto con la naturaleza marina.",
+        "vocation_en": "A low-intensity eco-coastal destination for marine nature contact, with an ATP "
+                       "destination action plan dated 2022.",
+        "nature_hooks": ["Golfo de Chiriqui National Marine Park", "islands", "mangroves", "humpback whales"],
+    },
+    {
+        "id": "las_lajas", "name": "Corredor Oriental - San Felix / Las Lajas", "tier": "action_plan",
+        "districts": [("Chiriquí", "San Félix"), ("Chiriquí", "Remedios")],
+        "products": ["sun & beach", "mangrove visits", "recreational nautical tourism"],
+        "vocation_es": "Destino para experiencias de sol y playa, visitas a manglares y turismo nautico "
+                       "recreativo.",
+        "vocation_en": "A sun-and-beach destination with mangrove visits and recreational nautical tourism; "
+                       "ATP destination action plan dated 2023.",
+        "nature_hooks": ["long Pacific beaches", "mangroves", "gateway to Gulf of Chiriqui"],
+    },
+    {
+        "id": "baru", "name": "Golfo de Chiriqui - Baru", "tier": "action_plan",
+        "districts": [("Chiriquí", "Barú")],
+        "products": ["beach", "agro-industrial visits", "nature"],
+        "vocation_es": "Destino en el que visitar plantas agro-industriales en un entorno natural "
+                       "excelentemente conservado.",
+        "vocation_en": "A destination combining agro-industrial visits with a well-conserved natural setting; "
+                       "ATP destination action plan dated 2023.",
+        "nature_hooks": ["Pacific coast", "mangroves", "banana landscapes"],
+    },
+    {
+        "id": "las_perlas", "name": "Archipielago de Las Perlas", "tier": "action_plan",
+        "districts": [("Panamá", "Balboa")],
+        "products": ["island sun & beach", "diving & snorkelling", "whale watching", "nautical"],
+        "vocation_es": "Destino insular ideal para experiencias de bajo impacto de sol y playa tropical en "
+                       "playas de gran calidad.",
+        "vocation_en": "An island destination oriented to low-impact tropical sun-and-beach experiences on "
+                       "high-quality beaches; ATP destination action plan dated 2022. The archipelago is "
+                       "already a declared marine managed-resources area.",
+        "nature_hooks": ["Las Perlas Archipelago marine managed area", "humpback whale breeding grounds",
+                         "coral communities", "island beaches"],
+    },
+    {
+        "id": "ngabe_soloy", "name": "Comarca Ngabe - Soloy", "tier": "action_plan",
+        "districts": [("Comarca Ngäbe Buglé", "Besiko")],
+        "products": ["indigenous community tourism", "river & waterfall experiences", "cultural immersion"],
+        "vocation_es": "Destino para el descubrimiento de culturas y etnias originarias.",
+        "vocation_en": "A destination for discovering original cultures and ethnicities, developed with the "
+                       "Ngabe community. The plan is explicit that living-heritage tourism must operate under "
+                       "strict ethical frameworks with the community at the centre of decisions and benefiting "
+                       "equitably and durably.",
+        "nature_hooks": ["highland rivers & waterfalls", "Ngabe cultural landscape", "forest"],
+    },
+]
+
+# Thematic routes named in the plan (national scope, no single geography)
+ROUTES = [
+    {"name": "Bosques de Vida", "type": "Ruta Patrimonial", "nature": True,
+     "note": "Forest-based heritage route designed with the BioMuseo."},
+    {"name": "Aves en el Paraiso", "type": "Ruta Patrimonial", "nature": True,
+     "note": "Birdwatching heritage route designed with the BioMuseo."},
+    {"name": "Panama Multicultural", "type": "Ruta Patrimonial", "nature": False,
+     "note": "Multicultural heritage route."},
+    {"name": "Panama Patrimonial", "type": "Ruta Patrimonial", "nature": False,
+     "note": "Built-heritage route."},
+    {"name": "Puente del Mundo", "type": "Ruta Patrimonial", "nature": False,
+     "note": "Links Panama Viejo, Casco Antiguo, Portobelo and San Lorenzo forts, Camino de Cruces."},
+    {"name": "Ruta Colonial Transistmica", "type": "Ruta tematica", "nature": False,
+     "note": "Declared Panamanian Cultural Heritage by Ley 456 de 2024, which also creates a buffer "
+             "zone around the Camino Real and Camino de Cruces prohibiting construction and alteration "
+             "of the natural and cultural setting. Being prepared for a UNESCO World Heritage bid."},
+    {"name": "Ruta de las Tortugas", "type": "Ruta tematica", "nature": True,
+     "note": "Sea-turtle route."},
+    {"name": "Ruta de las Cascadas", "type": "Ruta tematica", "nature": True,
+     "note": "Waterfall route."},
+    {"name": "Circuito del Cafe", "type": "Ruta tematica", "nature": True,
+     "note": "Coffee circuit, concentrated in Boquete and Tierras Altas."},
+    {"name": "Ruta de las Etnias Originarias", "type": "Ruta tematica", "nature": False,
+     "note": "Indigenous peoples route."},
+    {"name": "Ruta Afro", "type": "Ruta tematica", "nature": False,
+     "note": "Afro-Panamanian heritage route."},
+    {"name": "Ruta del Folklore de Azuero", "type": "Ruta tematica", "nature": False,
+     "note": "Azuero folklore route."},
+]

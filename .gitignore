@@ -1,0 +1,17 @@
+# Raw source cache and heavy intermediates - fully reproducible via the pipeline
+data/raw/
+data/processed/
+*.log
+
+# Committed instead: data/outputs/ (final analytical results, small)
+#                    web/public/data/ (simplified, web-ready)
+
+.venv/
+__pycache__/
+*.pyc
+node_modules/
+web/dist/
+.DS_Store
+
+# Large reference documents (public, re-downloadable from ATP)
+reference/

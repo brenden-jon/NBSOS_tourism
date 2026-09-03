@@ -1,0 +1,1176 @@
+{
+ "generated_from": "pipeline/55_narratives.py",
+ "areas": [
+  {
+   "cluster_id": "PR22",
+   "rank": 1,
+   "name": "Palo Seco",
+   "action": "PROTECT",
+   "gov_relation": "partial",
+   "gov_dest": "Comarca Ngabe - Soloy",
+   "headline": "Close a protection gap around Palo Seco: shallow reef habitat, forest, mountain terrain and beaches here carry high biodiversity value, yet only 0% of the area sits under strict protection.",
+   "why_here": [
+    "Nature attraction score 64/100 — top-tier natural draw at national screening scale.",
+    "Attraction exceeds tourism supply by 42 points — a measured development gap.",
+    "Biodiversity value 60/100, with a mean of 380 vertebrate species recorded per screening cell.",
+    "Protection gap 75/100: 75% of the area has some protected status but only 0% is in a strict IUCN category (I–IV).",
+    "Resilience function 72/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Remote: 6.0 hours modelled travel from the nearest gateway — access is the binding constraint.",
+    "About 57,000 people live inside the area — a local labour and enterprise base.",
+    "The area intersects an indigenous comarca; any tourism development must be community-led."
+   ],
+   "natural_assets": "The area's natural asset base comprises shallow shelf under 20 m (184 km²), forest cover over 86% of the area, 901 m of local relief, rising to 2378 m and 4 mapped beaches. It overlaps the protected area(s) Fortuna, La Amistad y Palo Seco, Palo Seco, San San Pond Sak, covering 75% of the area. Named features mapped here include Oreba Chocolate Tour, Boca del Drago, Cangilones de Mague, Balneario Piedra Caliza, Finca Cerro Azul and Quijada del Diablo. It sits predominantly in the Talamancan montane forests ecoregion, draining the Río Changuinola basin.",
+   "tourism_context": "OpenStreetMap records 17 accommodation points, 27 food-service points, 5 attractions, 18 named trails, 0 dive/surf operators and 5 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 6.0 hours; the accessibility score is 29/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 380 vertebrate species have been recorded per screening cell here, in the Talamancan montane forests ecoregion. 75% of the area carries protected status and 0% is in a strict IUCN category. Biodiversity value scores 60/100 and the protection gap 75/100.",
+   "resilience": "Coastal ecosystems here — shallow shelf under 20 m (184 km²) — sit between open water and low-lying settlement and tourism assets. On the screening assumption that intact mangrove and reef attenuate wave energy and stabilise shorelines, the area scores 72/100 for resilience function. This is a spatial coincidence of ecosystem and exposure, not a modelled reduction in flood damage.",
+   "conservation_action": [
+    "Assess the case for new or extended marine protection over the reef–mangrove complex, including whether an existing coastal management category could be upgraded rather than a new area declared.",
+    "Where mangrove has been cleared, target replanting at the landward margin and restore tidal connectivity before considering any engineered shoreline works.",
+    "Consolidate forest protection on upper slopes and restore degraded margins, prioritising continuity with existing protected land rather than isolated patches.",
+    "Review management effectiveness of the existing designation: much of this area carries a permissive category that may not hold the values identified here."
+   ],
+   "tourism_investment": [
+    "Modest, carefully sited visitor access that gives the protected asset an economic constituency: a visitor centre or ranger post, defined trails or moorings, and concession arrangements that channel revenue to management.",
+    "Support for local enterprises operating under the protected-area management plan rather than outside it.",
+    "Anchor points for any package: Oreba Chocolate Tour, Boca del Drago, Cangilones de Mague, Balneario Piedra Caliza and Finca Cerro Azul."
+   ],
+   "jobs": "With about 57,000 residents inside the area and a local-opportunity score of 48/100, the plausible employment channels are dive and snorkel guiding, boat operation and equipment servicing, nature and birding guiding, trail construction and maintenance, beach services, food and beverage, and small accommodation and protected-area management, ranger and interpretation roles. Because the area intersects an indigenous comarca, the master plan's own requirement applies: development must be community-led, with free prior and informed consent and equitable, durable benefit sharing. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "Access at 6.0 hours from a gateway may cap realistic demand; improving access will itself increase pressure.",
+    "Land tenure and governance in comarca territory require a distinct process; conventional concession models may not apply.",
+    "Most of the area is already designated; the binding constraint may be management capacity and enforcement rather than legal status.",
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Reef condition and mangrove health assessment — extent is mapped here, condition is not.",
+    "Coastal hazard overlay once the ~90 m flood hazard layers are available, to convert the resilience proxy into an exposure-based estimate.",
+    "Catchment hydrology and erosion assessment to test the assumed watershed-protection benefit.",
+    "Ecological, social, legal and stakeholder assessment before any protected-area designation or boundary change is proposed. Nothing here constitutes a designation recommendation.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "About 16% of this area overlaps the government priority destination “Comarca Ngabe - Soloy”. The analysis suggests the useful geography extends beyond the destination as currently framed."
+  },
+  {
+   "cluster_id": "AD02",
+   "rank": 2,
+   "name": "Ciudad de Panama - Taboga",
+   "action": "ADAPT",
+   "gov_relation": "refines",
+   "gov_dest": "Ciudad de Panama - Taboga",
+   "headline": "Strengthen the natural base of Ciudad de Panama - Taboga — an established destination (286 accommodation and 1289 food-service points) whose ecosystems carry a measurable protective and attraction function.",
+   "why_here": [
+    "Protection gap 74/100: 9% of the area has some protected status but only 6% is in a strict IUCN category (I–IV).",
+    "Resilience function 78/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Mangrove covers 14 km² (1% of the area).",
+    "25% of the area is shallow shelf under 20 m — reef and seagrass-capable habitat.",
+    "Modelled travel time to the nearest tourism gateway is 0.3 hours.",
+    "About 1,780,000 people live inside the area — a local labour and enterprise base."
+   ],
+   "natural_assets": "The area's natural asset base comprises mangrove (14 km²), shallow shelf under 20 m (305 km²), forest cover over 45% of the area and 33 mapped beaches. It overlaps the protected area(s) Cerro Ancón, Cuenca Alta del Río Pacora, Humedal de Bahía de Panamá, Manglares de Panamá Viejo, P. Nal. Camino de Cruces, covering 9% of the area. Named features mapped here include Miraflores Locks, San Martín, Cabeza de Einstein, Parque Natural Metropolitano, Avalon Resort and Centro de Exhibiciones Marinas. It sits predominantly in the Isthmian-Atlantic moist forests ecoregion, draining the Ríos entre el Caimito y el Juan Díaz basin.",
+   "tourism_context": "OpenStreetMap records 286 accommodation points, 1289 food-service points, 159 attractions, 63 named trails, 1 dive/surf operators and 13 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 0.3 hours; the accessibility score is 83/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 523 vertebrate species have been recorded per screening cell here, in the Isthmian-Atlantic moist forests ecoregion. 9% of the area carries protected status and 6% is in a strict IUCN category. Biodiversity value scores 47/100 and the protection gap 74/100.",
+   "resilience": "Coastal ecosystems here — mangrove (14 km²) and shallow shelf under 20 m (305 km²) — sit between open water and low-lying settlement and tourism assets. On the screening assumption that intact mangrove and reef attenuate wave energy and stabilise shorelines, the area scores 78/100 for resilience function. This is a spatial coincidence of ecosystem and exposure, not a modelled reduction in flood damage.",
+   "conservation_action": [
+    "Restore and protect the mangrove and reef fringe seaward of existing tourism assets, and remove pressures — sediment, wastewater, anchor damage — that degrade it.",
+    "Bring wastewater and solid-waste management up to the standard the destination's own natural asset depends on.",
+    "Restore riparian and upper-catchment forest feeding the destination's water supply."
+   ],
+   "tourism_investment": [
+    "Upgrade rather than expand: retrofit existing visitor infrastructure for resilience and reduce the destination's own pressure on the asset that draws visitors.",
+    "Visitor management — carrying capacity, timed access at pinch points, and redistribution of demand to shoulder sites within the same destination.",
+    "Anchor points for any package: Miraflores Locks, San Martín, Cabeza de Einstein, Parque Natural Metropolitano and Avalon Resort."
+   ],
+   "jobs": "With about 1,780,000 residents inside the area and a local-opportunity score of 60/100, the plausible employment channels are dive and snorkel guiding, boat operation and equipment servicing, nature and birding guiding, trail construction and maintenance, kayak and boat tours, and paid mangrove restoration and monitoring crews and beach services, food and beverage, and small accommodation. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Reef condition and mangrove health assessment — extent is mapped here, condition is not.",
+    "Coastal hazard overlay once the ~90 m flood hazard layers are available, to convert the resilience proxy into an exposure-based estimate.",
+    "Catchment hydrology and erosion assessment to test the assumed watershed-protection benefit.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "This area falls within the government's priority destination “Ciudad de Panama - Taboga” (50% of the area), but the analysis REFINES the emphasis: the binding issue identified here is conservation, resilience or pressure management rather than expansion of tourism supply."
+  },
+  {
+   "cluster_id": "AD01",
+   "rank": 3,
+   "name": "Riviera Pacifica - Valle de Anton - El Cope - Penonome",
+   "action": "ADAPT",
+   "gov_relation": "refines",
+   "gov_dest": "Riviera Pacifica - Valle de Anton - El Cope - Penonome",
+   "headline": "Strengthen the natural base of Riviera Pacifica - Valle de Anton - El Cope - Penonome — an established destination (87 accommodation and 106 food-service points) whose ecosystems carry a measurable protective and attraction function.",
+   "why_here": [
+    "Protection gap 78/100: 2% of the area has some protected status but only 2% is in a strict IUCN category (I–IV).",
+    "Resilience function 79/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "32% of the area is shallow shelf under 20 m — reef and seagrass-capable habitat.",
+    "Modelled travel time to the nearest tourism gateway is 0.8 hours.",
+    "About 81,000 people live inside the area — a local labour and enterprise base."
+   ],
+   "natural_assets": "The area's natural asset base comprises shallow shelf under 20 m (330 km²), forest cover over 42% of the area and 15 mapped beaches. It overlaps the protected area(s) Altos de Campana, Cerro Carigüana, Cerro Gaital, covering 2% of the area. Named features mapped here include Piedra Pintada, Canopy Tours Zip line, Square Trees, arboles cuadrados, APROVACA Orchid Nursery and Carreras Scooter & Supermoto. It sits predominantly in the Panamanian dry forests ecoregion, draining the Ríos entre el Antón y el Caimito basin.",
+   "tourism_context": "OpenStreetMap records 87 accommodation points, 106 food-service points, 22 attractions, 60 named trails, 0 dive/surf operators and 1 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 0.8 hours; the accessibility score is 80/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 403 vertebrate species have been recorded per screening cell here, in the Panamanian dry forests ecoregion. 2% of the area carries protected status and 2% is in a strict IUCN category. Biodiversity value scores 48/100 and the protection gap 78/100.",
+   "resilience": "Coastal ecosystems here — shallow shelf under 20 m (330 km²) — sit between open water and low-lying settlement and tourism assets. On the screening assumption that intact mangrove and reef attenuate wave energy and stabilise shorelines, the area scores 79/100 for resilience function. This is a spatial coincidence of ecosystem and exposure, not a modelled reduction in flood damage.",
+   "conservation_action": [
+    "Restore and protect the mangrove and reef fringe seaward of existing tourism assets, and remove pressures — sediment, wastewater, anchor damage — that degrade it.",
+    "Bring wastewater and solid-waste management up to the standard the destination's own natural asset depends on.",
+    "Restore riparian and upper-catchment forest feeding the destination's water supply."
+   ],
+   "tourism_investment": [
+    "Upgrade rather than expand: retrofit existing visitor infrastructure for resilience and reduce the destination's own pressure on the asset that draws visitors.",
+    "Visitor management — carrying capacity, timed access at pinch points, and redistribution of demand to shoulder sites within the same destination.",
+    "Anchor points for any package: Piedra Pintada, Canopy Tours Zip line, Square Trees, arboles cuadrados and APROVACA Orchid Nursery."
+   ],
+   "jobs": "With about 81,000 residents inside the area and a local-opportunity score of 55/100, the plausible employment channels are dive and snorkel guiding, boat operation and equipment servicing, nature and birding guiding, trail construction and maintenance, beach services, food and beverage, and small accommodation and local food supply, crafts and transport into the visitor economy. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Reef condition and mangrove health assessment — extent is mapped here, condition is not.",
+    "Coastal hazard overlay once the ~90 m flood hazard layers are available, to convert the resilience proxy into an exposure-based estimate.",
+    "Catchment hydrology and erosion assessment to test the assumed watershed-protection benefit.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "This area falls within the government's priority destination “Riviera Pacifica - Valle de Anton - El Cope - Penonome” (71% of the area), but the analysis REFINES the emphasis: the binding issue identified here is conservation, resilience or pressure management rather than expansion of tourism supply."
+  },
+  {
+   "cluster_id": "IN08",
+   "rank": 4,
+   "name": "Capira-Penonomé",
+   "action": "INVEST",
+   "gov_relation": "partial",
+   "gov_dest": "Riviera Pacifica - Valle de Anton - El Cope - Penonome",
+   "headline": "Develop Capira-Penonomé as a nature-tourism destination: strong natural attraction (52/100) and workable access (1.3 h from a gateway) against thin existing supply (5 mapped accommodation points).",
+   "why_here": [
+    "Attraction exceeds tourism supply by 27 points — a measured development gap.",
+    "Protection gap 72/100: 5% of the area has some protected status but only 3% is in a strict IUCN category (I–IV).",
+    "Resilience function 74/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Mangrove covers 20 km² (2% of the area).",
+    "19% of the area is shallow shelf under 20 m — reef and seagrass-capable habitat.",
+    "Modelled travel time to the nearest tourism gateway is 1.3 hours.",
+    "About 47,000 people live inside the area — a local labour and enterprise base."
+   ],
+   "natural_assets": "The area's natural asset base comprises mangrove (20 km²), shallow shelf under 20 m (225 km²), forest cover over 64% of the area and 12 mapped beaches. It overlaps the protected area(s) Altos de Campana, Bahía de Chame, covering 5% of the area. Named features mapped here include Cascada Alba, Playa Santo Dolor Rodilla, Playa California, La Nativa, Las Pailas and Cascada Tavidá. It sits predominantly in the Isthmian-Atlantic moist forests ecoregion, draining the Ríos entre el Antón y el Caimito basin.",
+   "tourism_context": "OpenStreetMap records 5 accommodation points, 16 food-service points, 0 attractions, 22 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 1.3 hours; the accessibility score is 75/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 386 vertebrate species have been recorded per screening cell here, in the Isthmian-Atlantic moist forests ecoregion. 5% of the area carries protected status and 3% is in a strict IUCN category. Biodiversity value scores 48/100 and the protection gap 72/100.",
+   "resilience": "Coastal ecosystems here — mangrove (20 km²) and shallow shelf under 20 m (225 km²) — sit between open water and low-lying settlement and tourism assets. On the screening assumption that intact mangrove and reef attenuate wave energy and stabilise shorelines, the area scores 74/100 for resilience function. This is a spatial coincidence of ecosystem and exposure, not a modelled reduction in flood damage.",
+   "conservation_action": [
+    "Establish the conservation baseline and zoning BEFORE visitor infrastructure is sited, so that access is designed around sensitive habitat rather than retrofitted.",
+    "Protect the mangrove and shallow-water habitat that the proposed marine activities would themselves depend on."
+   ],
+   "tourism_investment": [
+    "Snorkelling and diving access: mooring buoys to prevent anchor damage, a small landing and briefing facility, operator licensing and safety standards.",
+    "Managed beach access: parking set back from the dune line, sanitation, shade, waste collection and signage.",
+    "A designed trail network with viewpoints, interpretation and a trailhead facility, built to a standard that survives the wet season.",
+    "Low-impact mangrove access — boardwalk, kayak launch, guided boat routes — sited to avoid nesting and nursery areas.",
+    "Destination-level basics that currently constrain length of stay: potable water, wastewater treatment, mobile coverage and last-mile road or pier condition.",
+    "Anchor points for any package: Cascada Alba, Playa Santo Dolor Rodilla, Playa California, La Nativa and Las Pailas."
+   ],
+   "jobs": "With about 47,000 residents inside the area and a local-opportunity score of 51/100, the plausible employment channels are dive and snorkel guiding, boat operation and equipment servicing, nature and birding guiding, trail construction and maintenance, kayak and boat tours, and paid mangrove restoration and monitoring crews and beach services, food and beverage, and small accommodation. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Reef condition and mangrove health assessment — extent is mapped here, condition is not.",
+    "Coastal hazard overlay once the ~90 m flood hazard layers are available, to convert the resilience proxy into an exposure-based estimate.",
+    "Catchment hydrology and erosion assessment to test the assumed watershed-protection benefit.",
+    "Demand assessment and site-level feasibility, including tenure, utilities and environmental licensing.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "About 34% of this area overlaps the government priority destination “Riviera Pacifica - Valle de Anton - El Cope - Penonome”. The analysis suggests the useful geography extends beyond the destination as currently framed."
+  },
+  {
+   "cluster_id": "IN10",
+   "rank": 5,
+   "name": "Cuenca del Río Santa María",
+   "action": "INVEST",
+   "gov_relation": "new",
+   "gov_dest": "Riviera Pacifica - Valle de Anton - El Cope - Penonome",
+   "headline": "Develop Cuenca del Río Santa María as a nature-tourism destination: strong natural attraction (54/100) and workable access (2.7 h from a gateway) against thin existing supply (4 mapped accommodation points).",
+   "why_here": [
+    "Attraction exceeds tourism supply by 37 points — a measured development gap.",
+    "Protection gap 74/100: 60% of the area has some protected status but only 2% is in a strict IUCN category (I–IV).",
+    "Resilience function 75/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Modelled travel time to the nearest tourism gateway is 2.7 hours.",
+    "About 32,000 people live inside the area — a local labour and enterprise base.",
+    "The area intersects an indigenous comarca; any tourism development must be community-led."
+   ],
+   "natural_assets": "The area's natural asset base comprises forest cover over 60% of the area. It overlaps the protected area(s) Cerro Guacamaya, Cuenca del Río Santa María, covering 60% of the area. Named features mapped here include La Silampa, Cerro El Salto, Los Valles o Piñero, El Salto : entrada del sendero, Cerro Las Peñitas and Cerro Picacho. It sits predominantly in the Isthmian-Pacific moist forests ecoregion, draining the Río Santa María basin.",
+   "tourism_context": "OpenStreetMap records 4 accommodation points, 5 food-service points, 2 attractions, 0 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 2.7 hours; the accessibility score is 62/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 232 vertebrate species have been recorded per screening cell here, in the Isthmian-Pacific moist forests ecoregion. 60% of the area carries protected status and 2% is in a strict IUCN category. Biodiversity value scores 46/100 and the protection gap 74/100.",
+   "resilience": "Forest covers 60% of the area across 614 m of local relief in the Río Santa María basin. Maintaining that cover on slopes plausibly supports infiltration, limits erosion and moderates runoff reaching downstream settlements and tourism infrastructure. Resilience score 75/100. No hydrological modelling has been undertaken.",
+   "conservation_action": [
+    "Establish the conservation baseline and zoning BEFORE visitor infrastructure is sited, so that access is designed around sensitive habitat rather than retrofitted."
+   ],
+   "tourism_investment": [
+    "A designed trail network with viewpoints, interpretation and a trailhead facility, built to a standard that survives the wet season.",
+    "Destination-level basics that currently constrain length of stay: potable water, wastewater treatment, mobile coverage and last-mile road or pier condition.",
+    "Anchor points for any package: La Silampa, Cerro El Salto, Los Valles o Piñero, El Salto : entrada del sendero and Cerro Las Peñitas."
+   ],
+   "jobs": "With about 32,000 residents inside the area and a local-opportunity score of 49/100, the plausible employment channels are nature and birding guiding, trail construction and maintenance, protected-area management, ranger and interpretation roles and local food supply, crafts and transport into the visitor economy. Because the area intersects an indigenous comarca, the master plan's own requirement applies: development must be community-led, with free prior and informed consent and equitable, durable benefit sharing. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "Land tenure and governance in comarca territory require a distinct process; conventional concession models may not apply.",
+    "Most of the area is already designated; the binding constraint may be management capacity and enforcement rather than legal status.",
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Catchment hydrology and erosion assessment to test the assumed watershed-protection benefit.",
+    "Demand assessment and site-level feasibility, including tenure, utilities and environmental licensing.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "This area lies OUTSIDE the ten priority destinations of the Plan Maestro 2025–2030. It is surfaced by the spatial analysis alone and would be a NEW candidate for consideration in tourism planning."
+  },
+  {
+   "cluster_id": "AD03",
+   "rank": 6,
+   "name": "David - Pedregal - Alanje",
+   "action": "ADAPT",
+   "gov_relation": "refines",
+   "gov_dest": "David - Pedregal - Alanje",
+   "headline": "Strengthen the natural base of David - Pedregal - Alanje — an established destination (111 accommodation and 336 food-service points) whose ecosystems carry a measurable protective and attraction function.",
+   "why_here": [
+    "Protection gap 63/100: 6% of the area has some protected status but only 6% is in a strict IUCN category (I–IV).",
+    "Resilience function 69/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Modelled travel time to the nearest tourism gateway is 0.8 hours.",
+    "About 200,000 people live inside the area — a local labour and enterprise base."
+   ],
+   "natural_assets": "The area's natural asset base comprises mangrove (8 km²) and forest cover over 51% of the area. It overlaps the protected area(s) La Amistad, Volcan Barú, covering 6% of the area. Named features mapped here include Mi jardín es su jardín, Boquete Tree Trek, Torre Campanario de la Catedral de San José, El Exporador Theme Park, El Exporador Entrance and Petroglifos de Caldera. It sits predominantly in the Isthmian-Pacific moist forests ecoregion, draining the Río Chiriquí basin.",
+   "tourism_context": "OpenStreetMap records 111 accommodation points, 336 food-service points, 32 attractions, 118 named trails, 0 dive/surf operators and 2 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 0.8 hours; the accessibility score is 67/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 485 vertebrate species have been recorded per screening cell here, in the Isthmian-Pacific moist forests ecoregion. 6% of the area carries protected status and 6% is in a strict IUCN category. Biodiversity value scores 49/100 and the protection gap 63/100.",
+   "resilience": "Coastal ecosystems here — mangrove (8 km²) — sit between open water and low-lying settlement and tourism assets. On the screening assumption that intact mangrove and reef attenuate wave energy and stabilise shorelines, the area scores 69/100 for resilience function. This is a spatial coincidence of ecosystem and exposure, not a modelled reduction in flood damage.",
+   "conservation_action": [
+    "Restore and protect the mangrove and reef fringe seaward of existing tourism assets, and remove pressures — sediment, wastewater, anchor damage — that degrade it.",
+    "Bring wastewater and solid-waste management up to the standard the destination's own natural asset depends on.",
+    "Restore riparian and upper-catchment forest feeding the destination's water supply."
+   ],
+   "tourism_investment": [
+    "Upgrade rather than expand: retrofit existing visitor infrastructure for resilience and reduce the destination's own pressure on the asset that draws visitors.",
+    "Visitor management — carrying capacity, timed access at pinch points, and redistribution of demand to shoulder sites within the same destination.",
+    "Anchor points for any package: Mi jardín es su jardín, Boquete Tree Trek, Torre Campanario de la Catedral de San José, El Exporador Theme Park and El Exporador Entrance."
+   ],
+   "jobs": "With about 200,000 residents inside the area and a local-opportunity score of 65/100, the plausible employment channels are nature and birding guiding, trail construction and maintenance, kayak and boat tours, and paid mangrove restoration and monitoring crews and local food supply, crafts and transport into the visitor economy. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Catchment hydrology and erosion assessment to test the assumed watershed-protection benefit.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "This area falls within the government's priority destination “David - Pedregal - Alanje” (61% of the area), but the analysis REFINES the emphasis: the binding issue identified here is conservation, resilience or pressure management rather than expansion of tourism supply."
+  },
+  {
+   "cluster_id": "MA16",
+   "rank": 7,
+   "name": "Cuenca del Río Santa María (Aguadulce)",
+   "action": "MANAGE",
+   "gov_relation": "partial",
+   "gov_dest": "Chitre - Parita",
+   "headline": "Manage visitor pressure around Cuenca del Río Santa María (Aguadulce): biodiversity value of 53/100 with accessibility of 70/100 makes this a place to steer development carefully.",
+   "why_here": [
+    "Protection gap 52/100: 86% of the area has some protected status but only 3% is in a strict IUCN category (I–IV).",
+    "Resilience function 54/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Mangrove covers 16 km² (2% of the area).",
+    "13% of the area is shallow shelf under 20 m — reef and seagrass-capable habitat.",
+    "Modelled travel time to the nearest tourism gateway is 1.9 hours.",
+    "About 26,000 people live inside the area — a local labour and enterprise base."
+   ],
+   "natural_assets": "The area's natural asset base comprises mangrove (16 km²), shallow shelf under 20 m (119 km²) and herbaceous wetland (16 km²). It overlaps the protected area(s) Cuenca del Río Santa María, Sarigua, covering 86% of the area. Named features mapped here include Cerro Guacamayo. It sits predominantly in the Panamanian dry forests ecoregion, draining the Río Santa María basin.",
+   "tourism_context": "OpenStreetMap records 3 accommodation points, 8 food-service points, 0 attractions, 0 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 1.9 hours; the accessibility score is 70/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 189 vertebrate species have been recorded per screening cell here, in the Panamanian dry forests ecoregion. 86% of the area carries protected status and 3% is in a strict IUCN category. Biodiversity value scores 53/100 and the protection gap 52/100.",
+   "resilience": "Coastal ecosystems here — mangrove (16 km²) and shallow shelf under 20 m (119 km²) — sit between open water and low-lying settlement and tourism assets. On the screening assumption that intact mangrove and reef attenuate wave energy and stabilise shorelines, the area scores 54/100 for resilience function. This is a spatial coincidence of ecosystem and exposure, not a modelled reduction in flood damage.",
+   "conservation_action": [
+    "Assess the case for new or extended marine protection over the reef–mangrove complex, including whether an existing coastal management category could be upgraded rather than a new area declared.",
+    "Where mangrove has been cleared, target replanting at the landward margin and restore tidal connectivity before considering any engineered shoreline works.",
+    "Review management effectiveness of the existing designation: much of this area carries a permissive category that may not hold the values identified here."
+   ],
+   "tourism_investment": [
+    "Direct new accommodation and construction to already-developed settlements at the periphery, not into the sensitive core.",
+    "Invest in the management capacity — rangers, monitoring, enforcement, permitting — that a rising visitor trend will require.",
+    "Anchor points for any package: Cerro Guacamayo."
+   ],
+   "jobs": "With about 26,000 residents inside the area and a local-opportunity score of 54/100, the plausible employment channels are dive and snorkel guiding, boat operation and equipment servicing, kayak and boat tours, and paid mangrove restoration and monitoring crews, protected-area management, ranger and interpretation roles and local food supply, crafts and transport into the visitor economy. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "Most of the area is already designated; the binding constraint may be management capacity and enforcement rather than legal status.",
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Reef condition and mangrove health assessment — extent is mapped here, condition is not.",
+    "Coastal hazard overlay once the ~90 m flood hazard layers are available, to convert the resilience proxy into an exposure-based estimate.",
+    "Ecological, social, legal and stakeholder assessment before any protected-area designation or boundary change is proposed. Nothing here constitutes a designation recommendation.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "About 25% of this area overlaps the government priority destination “Chitre - Parita”. The analysis suggests the useful geography extends beyond the destination as currently framed."
+  },
+  {
+   "cluster_id": "PR26",
+   "rank": 8,
+   "name": "Riviera Pacifica - Valle de Anton - El Cope - Penonome (Antón)",
+   "action": "PROTECT",
+   "gov_relation": "refines",
+   "gov_dest": "Riviera Pacifica - Valle de Anton - El Cope - Penonome",
+   "headline": "Close a protection gap around Riviera Pacifica - Valle de Anton - El Cope - Penonome (Antón): forest here carry high biodiversity value, yet only 0% of the area sits under strict protection.",
+   "why_here": [
+    "Protection gap 78/100: 3% of the area has some protected status but only 0% is in a strict IUCN category (I–IV).",
+    "Resilience function 78/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Modelled travel time to the nearest tourism gateway is 0.9 hours.",
+    "About 56,000 people live inside the area — a local labour and enterprise base."
+   ],
+   "natural_assets": "The area's natural asset base comprises forest cover over 72% of the area. It overlaps the protected area(s) Cerro Carigüana, Cerro Guacamaya, covering 3% of the area. Named features mapped here include Cerro Guacamaya. It sits predominantly in the Panamanian dry forests ecoregion, draining the Río Grande basin.",
+   "tourism_context": "OpenStreetMap records 4 accommodation points, 15 food-service points, 0 attractions, 3 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 0.9 hours; the accessibility score is 79/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 374 vertebrate species have been recorded per screening cell here, in the Panamanian dry forests ecoregion. 3% of the area carries protected status and 0% is in a strict IUCN category. Biodiversity value scores 52/100 and the protection gap 78/100.",
+   "resilience": "Forest covers 72% of the area across 339 m of local relief in the Río Grande basin. Maintaining that cover on slopes plausibly supports infiltration, limits erosion and moderates runoff reaching downstream settlements and tourism infrastructure. Resilience score 78/100. No hydrological modelling has been undertaken.",
+   "conservation_action": [
+    "Consolidate forest protection on upper slopes and restore degraded margins, prioritising continuity with existing protected land rather than isolated patches."
+   ],
+   "tourism_investment": [
+    "Modest, carefully sited visitor access that gives the protected asset an economic constituency: a visitor centre or ranger post, defined trails or moorings, and concession arrangements that channel revenue to management.",
+    "Support for local enterprises operating under the protected-area management plan rather than outside it.",
+    "Anchor points for any package: Cerro Guacamaya."
+   ],
+   "jobs": "With about 56,000 residents inside the area and a local-opportunity score of 58/100, the plausible employment channels are nature and birding guiding, trail construction and maintenance and local food supply, crafts and transport into the visitor economy. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Catchment hydrology and erosion assessment to test the assumed watershed-protection benefit.",
+    "Ecological, social, legal and stakeholder assessment before any protected-area designation or boundary change is proposed. Nothing here constitutes a designation recommendation.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "This area falls within the government's priority destination “Riviera Pacifica - Valle de Anton - El Cope - Penonome” (88% of the area), but the analysis REFINES the emphasis: the binding issue identified here is conservation, resilience or pressure management rather than expansion of tourism supply."
+  },
+  {
+   "cluster_id": "IN07",
+   "rank": 9,
+   "name": "Palo Seco (Almirante)",
+   "action": "INVEST",
+   "gov_relation": "new",
+   "gov_dest": "Bocas del Toro",
+   "headline": "Develop Palo Seco (Almirante) as a nature-tourism destination: strong natural attraction (54/100) and workable access (2.5 h from a gateway) against thin existing supply (3 mapped accommodation points).",
+   "why_here": [
+    "Attraction exceeds tourism supply by 39 points — a measured development gap.",
+    "Protection gap 64/100: 13% of the area has some protected status but only 0% is in a strict IUCN category (I–IV).",
+    "Resilience function 64/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "15% of the area is shallow shelf under 20 m — reef and seagrass-capable habitat.",
+    "Modelled travel time to the nearest tourism gateway is 2.5 hours.",
+    "About 22,000 people live inside the area — a local labour and enterprise base.",
+    "The area intersects an indigenous comarca; any tourism development must be community-led."
+   ],
+   "natural_assets": "The area's natural asset base comprises shallow shelf under 20 m (104 km²) and forest cover over 71% of the area. It overlaps the protected area(s) Palo Seco, covering 13% of the area. Named features mapped here include Chorro Klosay, Cerro Bocatorito, Cerro Cauchero II, Cerro Cauchero, Cerro Chungal and Cerro Cuan Bight. It sits predominantly in the Isthmian-Atlantic moist forests ecoregion, draining the Ríos entre Changuinola y Cricamola basin.",
+   "tourism_context": "OpenStreetMap records 3 accommodation points, 2 food-service points, 1 attractions, 2 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 2.5 hours; the accessibility score is 52/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 372 vertebrate species have been recorded per screening cell here, in the Isthmian-Atlantic moist forests ecoregion. 13% of the area carries protected status and 0% is in a strict IUCN category. Biodiversity value scores 47/100 and the protection gap 64/100.",
+   "resilience": "Coastal ecosystems here — shallow shelf under 20 m (104 km²) — sit between open water and low-lying settlement and tourism assets. On the screening assumption that intact mangrove and reef attenuate wave energy and stabilise shorelines, the area scores 64/100 for resilience function. This is a spatial coincidence of ecosystem and exposure, not a modelled reduction in flood damage.",
+   "conservation_action": [
+    "Establish the conservation baseline and zoning BEFORE visitor infrastructure is sited, so that access is designed around sensitive habitat rather than retrofitted.",
+    "Protect the mangrove and shallow-water habitat that the proposed marine activities would themselves depend on."
+   ],
+   "tourism_investment": [
+    "Snorkelling and diving access: mooring buoys to prevent anchor damage, a small landing and briefing facility, operator licensing and safety standards.",
+    "A designed trail network with viewpoints, interpretation and a trailhead facility, built to a standard that survives the wet season.",
+    "Destination-level basics that currently constrain length of stay: potable water, wastewater treatment, mobile coverage and last-mile road or pier condition.",
+    "Anchor points for any package: Chorro Klosay, Cerro Bocatorito, Cerro Cauchero II, Cerro Cauchero and Cerro Chungal."
+   ],
+   "jobs": "With about 22,000 residents inside the area and a local-opportunity score of 60/100, the plausible employment channels are dive and snorkel guiding, boat operation and equipment servicing, nature and birding guiding, trail construction and maintenance and local food supply, crafts and transport into the visitor economy. Because the area intersects an indigenous comarca, the master plan's own requirement applies: development must be community-led, with free prior and informed consent and equitable, durable benefit sharing. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "Land tenure and governance in comarca territory require a distinct process; conventional concession models may not apply.",
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Reef condition and mangrove health assessment — extent is mapped here, condition is not.",
+    "Coastal hazard overlay once the ~90 m flood hazard layers are available, to convert the resilience proxy into an exposure-based estimate.",
+    "Catchment hydrology and erosion assessment to test the assumed watershed-protection benefit.",
+    "Demand assessment and site-level feasibility, including tenure, utilities and environmental licensing.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "This area lies OUTSIDE the ten priority destinations of the Plan Maestro 2025–2030. It is surfaced by the spatial analysis alone and would be a NEW candidate for consideration in tourism planning."
+  },
+  {
+   "cluster_id": "MA15",
+   "rank": 10,
+   "name": "Riviera Pacifica - Valle de Anton - El Cope - Penonome (Antón)",
+   "action": "MANAGE",
+   "gov_relation": "refines",
+   "gov_dest": "Riviera Pacifica - Valle de Anton - El Cope - Penonome",
+   "headline": "Manage visitor pressure around Riviera Pacifica - Valle de Anton - El Cope - Penonome (Antón): biodiversity value of 52/100 with accessibility of 77/100 makes this a place to steer development carefully.",
+   "why_here": [
+    "Protection gap 57/100: 4% of the area has some protected status but only 0% is in a strict IUCN category (I–IV).",
+    "Resilience function 57/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Mangrove covers 46 km² (6% of the area).",
+    "17% of the area is shallow shelf under 20 m — reef and seagrass-capable habitat.",
+    "Modelled travel time to the nearest tourism gateway is 1.0 hours.",
+    "About 19,000 people live inside the area — a local labour and enterprise base."
+   ],
+   "natural_assets": "The area's natural asset base comprises mangrove (46 km²), shallow shelf under 20 m (126 km²) and herbaceous wetland (10 km²). It overlaps the protected area(s) Cerro Cerrezuela, Cerro Guacamaya, covering 4% of the area. Named features mapped here include Cerro El Gago, Cerro Posada and Cerro Divisa. It sits predominantly in the Panamanian dry forests ecoregion, draining the Río Grande basin.",
+   "tourism_context": "OpenStreetMap records 1 accommodation points, 0 food-service points, 0 attractions, 0 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 1.0 hours; the accessibility score is 77/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 293 vertebrate species have been recorded per screening cell here, in the Panamanian dry forests ecoregion. 4% of the area carries protected status and 0% is in a strict IUCN category. Biodiversity value scores 52/100 and the protection gap 57/100.",
+   "resilience": "Coastal ecosystems here — mangrove (46 km²) and shallow shelf under 20 m (126 km²) — sit between open water and low-lying settlement and tourism assets. On the screening assumption that intact mangrove and reef attenuate wave energy and stabilise shorelines, the area scores 57/100 for resilience function. This is a spatial coincidence of ecosystem and exposure, not a modelled reduction in flood damage.",
+   "conservation_action": [
+    "Assess the case for new or extended marine protection over the reef–mangrove complex, including whether an existing coastal management category could be upgraded rather than a new area declared.",
+    "Where mangrove has been cleared, target replanting at the landward margin and restore tidal connectivity before considering any engineered shoreline works."
+   ],
+   "tourism_investment": [
+    "Direct new accommodation and construction to already-developed settlements at the periphery, not into the sensitive core.",
+    "Invest in the management capacity — rangers, monitoring, enforcement, permitting — that a rising visitor trend will require.",
+    "Anchor points for any package: Cerro El Gago, Cerro Posada and Cerro Divisa."
+   ],
+   "jobs": "With about 19,000 residents inside the area and a local-opportunity score of 53/100, the plausible employment channels are dive and snorkel guiding, boat operation and equipment servicing, kayak and boat tours, and paid mangrove restoration and monitoring crews and local food supply, crafts and transport into the visitor economy. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Reef condition and mangrove health assessment — extent is mapped here, condition is not.",
+    "Coastal hazard overlay once the ~90 m flood hazard layers are available, to convert the resilience proxy into an exposure-based estimate.",
+    "Ecological, social, legal and stakeholder assessment before any protected-area designation or boundary change is proposed. Nothing here constitutes a designation recommendation.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "This area falls within the government's priority destination “Riviera Pacifica - Valle de Anton - El Cope - Penonome” (80% of the area), but the analysis REFINES the emphasis: the binding issue identified here is conservation, resilience or pressure management rather than expansion of tourism supply."
+  },
+  {
+   "cluster_id": "IN11",
+   "rank": 11,
+   "name": "Mironó",
+   "action": "INVEST",
+   "gov_relation": "partial",
+   "gov_dest": "Corredor Oriental - San Felix / Las Lajas",
+   "headline": "Develop Mironó as a nature-tourism destination: strong natural attraction (50/100) and workable access (1.8 h from a gateway) against thin existing supply (0 mapped accommodation points).",
+   "why_here": [
+    "Attraction exceeds tourism supply by 46 points — a measured development gap.",
+    "Protection gap 60/100: 0% of the area has some protected status but only 0% is in a strict IUCN category (I–IV).",
+    "Resilience function 60/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Modelled travel time to the nearest tourism gateway is 1.8 hours.",
+    "About 21,000 people live inside the area — a local labour and enterprise base.",
+    "The area intersects an indigenous comarca; any tourism development must be community-led."
+   ],
+   "natural_assets": "The area's natural asset base comprises mangrove (4 km²) and forest cover over 78% of the area. Named features mapped here include Parque Arqueológico de Nancito, El Nancito, Mirador de El Nancito, Cerro Brujo, Cerro Barro Blanco and Cerro Banco. It sits predominantly in the Isthmian-Pacific moist forests ecoregion, draining the Ríos entre el Fonseca y el Tabasará basin.",
+   "tourism_context": "OpenStreetMap records 0 accommodation points, 0 food-service points, 2 attractions, 0 named trails, 0 dive/surf operators and 1 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 1.8 hours; the accessibility score is 62/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 191 vertebrate species have been recorded per screening cell here, in the Isthmian-Pacific moist forests ecoregion. 0% of the area carries protected status and 0% is in a strict IUCN category. Biodiversity value scores 46/100 and the protection gap 60/100.",
+   "resilience": "Coastal ecosystems here — mangrove (4 km²) — sit between open water and low-lying settlement and tourism assets. On the screening assumption that intact mangrove and reef attenuate wave energy and stabilise shorelines, the area scores 60/100 for resilience function. This is a spatial coincidence of ecosystem and exposure, not a modelled reduction in flood damage.",
+   "conservation_action": [
+    "Establish the conservation baseline and zoning BEFORE visitor infrastructure is sited, so that access is designed around sensitive habitat rather than retrofitted.",
+    "Protect the mangrove and shallow-water habitat that the proposed marine activities would themselves depend on."
+   ],
+   "tourism_investment": [
+    "A designed trail network with viewpoints, interpretation and a trailhead facility, built to a standard that survives the wet season.",
+    "Low-impact mangrove access — boardwalk, kayak launch, guided boat routes — sited to avoid nesting and nursery areas.",
+    "Destination-level basics that currently constrain length of stay: potable water, wastewater treatment, mobile coverage and last-mile road or pier condition.",
+    "Anchor points for any package: Parque Arqueológico de Nancito, El Nancito, Mirador de El Nancito, Cerro Brujo and Cerro Barro Blanco."
+   ],
+   "jobs": "With about 21,000 residents inside the area and a local-opportunity score of 67/100, the plausible employment channels are nature and birding guiding, trail construction and maintenance, kayak and boat tours, and paid mangrove restoration and monitoring crews and local food supply, crafts and transport into the visitor economy. Because the area intersects an indigenous comarca, the master plan's own requirement applies: development must be community-led, with free prior and informed consent and equitable, durable benefit sharing. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "Land tenure and governance in comarca territory require a distinct process; conventional concession models may not apply.",
+    "No mapped accommodation at all — either a genuine greenfield or an OSM coverage gap. Ground-truth before programming.",
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Catchment hydrology and erosion assessment to test the assumed watershed-protection benefit.",
+    "Demand assessment and site-level feasibility, including tenure, utilities and environmental licensing.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "About 24% of this area overlaps the government priority destination “Corredor Oriental - San Felix / Las Lajas”. The analysis suggests the useful geography extends beyond the destination as currently framed."
+  },
+  {
+   "cluster_id": "AD04",
+   "rank": 12,
+   "name": "Bocas del Toro",
+   "action": "ADAPT",
+   "gov_relation": "partial",
+   "gov_dest": "Bocas del Toro",
+   "headline": "Strengthen the natural base of Bocas del Toro — an established destination (96 accommodation and 96 food-service points) whose ecosystems carry a measurable protective and attraction function.",
+   "why_here": [
+    "Protection gap 77/100: 6% of the area has some protected status but only 6% is in a strict IUCN category (I–IV).",
+    "Resilience function 82/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Mangrove covers 15 km² (3% of the area).",
+    "65% of the area is shallow shelf under 20 m — reef and seagrass-capable habitat.",
+    "Modelled travel time to the nearest tourism gateway is 2.1 hours.",
+    "About 13,000 people live inside the area — a local labour and enterprise base."
+   ],
+   "natural_assets": "The area's natural asset base comprises mangrove (15 km²), shallow shelf under 20 m (334 km²) and 17 mapped beaches. It overlaps the protected area(s) Isla Bastimentos, San San Pond Sak, Zona de Reserva de Matumbal, covering 6% of the area. Named features mapped here include Pure Tree Experience, Museo de Plástico, Silverbacks reefbreak, Surf point break, Isla Perezoso and isla de las estrellas. It sits predominantly in the Isthmian-Atlantic moist forests ecoregion, draining the Ríos entre Changuinola y Cricamola basin.",
+   "tourism_context": "OpenStreetMap records 96 accommodation points, 96 food-service points, 12 attractions, 14 named trails, 9 dive/surf operators and 19 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 2.1 hours; the accessibility score is 50/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 439 vertebrate species have been recorded per screening cell here, in the Isthmian-Atlantic moist forests ecoregion. 6% of the area carries protected status and 6% is in a strict IUCN category. Biodiversity value scores 44/100 and the protection gap 77/100.",
+   "resilience": "Coastal ecosystems here — mangrove (15 km²) and shallow shelf under 20 m (334 km²) — sit between open water and low-lying settlement and tourism assets. On the screening assumption that intact mangrove and reef attenuate wave energy and stabilise shorelines, the area scores 82/100 for resilience function. This is a spatial coincidence of ecosystem and exposure, not a modelled reduction in flood damage.",
+   "conservation_action": [
+    "Restore and protect the mangrove and reef fringe seaward of existing tourism assets, and remove pressures — sediment, wastewater, anchor damage — that degrade it.",
+    "Bring wastewater and solid-waste management up to the standard the destination's own natural asset depends on."
+   ],
+   "tourism_investment": [
+    "Upgrade rather than expand: retrofit existing visitor infrastructure for resilience and reduce the destination's own pressure on the asset that draws visitors.",
+    "Visitor management — carrying capacity, timed access at pinch points, and redistribution of demand to shoulder sites within the same destination.",
+    "Anchor points for any package: Pure Tree Experience, Museo de Plástico, Silverbacks reefbreak, Surf point break and Isla Perezoso."
+   ],
+   "jobs": "With about 13,000 residents inside the area and a local-opportunity score of 59/100, the plausible employment channels are dive and snorkel guiding, boat operation and equipment servicing, kayak and boat tours, and paid mangrove restoration and monitoring crews, beach services, food and beverage, and small accommodation and local food supply, crafts and transport into the visitor economy. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Reef condition and mangrove health assessment — extent is mapped here, condition is not.",
+    "Coastal hazard overlay once the ~90 m flood hazard layers are available, to convert the resilience proxy into an exposure-based estimate.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "About 43% of this area overlaps the government priority destination “Bocas del Toro”. The analysis suggests the useful geography extends beyond the destination as currently framed."
+  },
+  {
+   "cluster_id": "IN09",
+   "rank": 13,
+   "name": "Tierras Altas - Renacimiento",
+   "action": "INVEST",
+   "gov_relation": "reinforces",
+   "gov_dest": "Tierras Altas - Renacimiento",
+   "headline": "Develop Tierras Altas - Renacimiento as a nature-tourism destination: strong natural attraction (46/100) and workable access (1.3 h from a gateway) against thin existing supply (0 mapped accommodation points).",
+   "why_here": [
+    "Attraction exceeds tourism supply by 31 points — a measured development gap.",
+    "Protection gap 65/100: 0% of the area has some protected status but only 0% is in a strict IUCN category (I–IV).",
+    "Resilience function 65/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Modelled travel time to the nearest tourism gateway is 1.3 hours.",
+    "About 18,000 people live inside the area — a local labour and enterprise base."
+   ],
+   "natural_assets": "The area's natural asset base comprises forest cover over 63% of the area. Named features mapped here include Petroglifo Chuspa Paraiso, Alto de Monte Lirio, CH-1082, CH-1163, CH-1225 and CH-1270. It sits predominantly in the Isthmian-Pacific moist forests ecoregion, draining the Río Chiriquí Viejo basin.",
+   "tourism_context": "OpenStreetMap records 0 accommodation points, 3 food-service points, 1 attractions, 3 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 1.3 hours; the accessibility score is 64/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 453 vertebrate species have been recorded per screening cell here, in the Isthmian-Pacific moist forests ecoregion. 0% of the area carries protected status and 0% is in a strict IUCN category. Biodiversity value scores 48/100 and the protection gap 65/100.",
+   "resilience": "Forest covers 63% of the area across 404 m of local relief in the Río Chiriquí Viejo basin. Maintaining that cover on slopes plausibly supports infiltration, limits erosion and moderates runoff reaching downstream settlements and tourism infrastructure. Resilience score 65/100. No hydrological modelling has been undertaken.",
+   "conservation_action": [
+    "Establish the conservation baseline and zoning BEFORE visitor infrastructure is sited, so that access is designed around sensitive habitat rather than retrofitted."
+   ],
+   "tourism_investment": [
+    "A designed trail network with viewpoints, interpretation and a trailhead facility, built to a standard that survives the wet season.",
+    "Destination-level basics that currently constrain length of stay: potable water, wastewater treatment, mobile coverage and last-mile road or pier condition.",
+    "Anchor points for any package: Petroglifo Chuspa Paraiso, Alto de Monte Lirio, CH-1082, CH-1163 and CH-1225."
+   ],
+   "jobs": "With about 18,000 residents inside the area and a local-opportunity score of 62/100, the plausible employment channels are nature and birding guiding, trail construction and maintenance and local food supply, crafts and transport into the visitor economy. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "No mapped accommodation at all — either a genuine greenfield or an OSM coverage gap. Ground-truth before programming.",
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Catchment hydrology and erosion assessment to test the assumed watershed-protection benefit.",
+    "Demand assessment and site-level feasibility, including tenure, utilities and environmental licensing.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "This area falls within the government's priority destination “Tierras Altas - Renacimiento” (57% of the area). The analysis REINFORCES that priority and points to the specific nature-based content of the investment."
+  },
+  {
+   "cluster_id": "MA18",
+   "rank": 14,
+   "name": "La Amistad",
+   "action": "MANAGE",
+   "gov_relation": "refines",
+   "gov_dest": "Tierras Altas - Renacimiento",
+   "headline": "Manage visitor pressure around La Amistad: biodiversity value of 65/100 with accessibility of 50/100 makes this a place to steer development carefully.",
+   "why_here": [
+    "Nature attraction score 71/100 — top-tier natural draw at national screening scale.",
+    "Biodiversity value 65/100, with a mean of 539 vertebrate species recorded per screening cell.",
+    "Resilience function 76/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Modelled travel time to the nearest tourism gateway is 2.5 hours.",
+    "About 15,000 people live inside the area — a local labour and enterprise base."
+   ],
+   "natural_assets": "The area's natural asset base comprises forest cover over 82% of the area and 1282 m of local relief, rising to 3441 m. It overlaps the protected area(s) La Amistad, La Amistad y Palo Seco, La Amistad y Volcán Barú, Volcan Barú, covering 58% of the area. Named features mapped here include Hidden Waterfalls, Finca Dracula, Cenizo (Árbol de 1000 años), Colibri Station, Mirador de Alto Respingo (PNVB) and Mirador Las Rocas. It sits predominantly in the Talamancan montane forests ecoregion, draining the Río Chiriquí Viejo basin.",
+   "tourism_context": "OpenStreetMap records 23 accommodation points, 9 food-service points, 4 attractions, 95 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 2.5 hours; the accessibility score is 50/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 539 vertebrate species have been recorded per screening cell here, in the Talamancan montane forests ecoregion. 58% of the area carries protected status and 50% is in a strict IUCN category. Biodiversity value scores 65/100 and the protection gap 36/100.",
+   "resilience": "Forest covers 82% of the area across 1282 m of local relief in the Río Chiriquí Viejo basin. Maintaining that cover on slopes plausibly supports infiltration, limits erosion and moderates runoff reaching downstream settlements and tourism infrastructure. Resilience score 76/100. No hydrological modelling has been undertaken.",
+   "conservation_action": [
+    "Consolidate forest protection on upper slopes and restore degraded margins, prioritising continuity with existing protected land rather than isolated patches."
+   ],
+   "tourism_investment": [
+    "Direct new accommodation and construction to already-developed settlements at the periphery, not into the sensitive core.",
+    "Invest in the management capacity — rangers, monitoring, enforcement, permitting — that a rising visitor trend will require.",
+    "Anchor points for any package: Hidden Waterfalls, Finca Dracula, Cenizo (Árbol de 1000 años), Colibri Station and Mirador de Alto Respingo (PNVB)."
+   ],
+   "jobs": "With about 15,000 residents inside the area and a local-opportunity score of 58/100, the plausible employment channels are nature and birding guiding, trail construction and maintenance, protected-area management, ranger and interpretation roles and local food supply, crafts and transport into the visitor economy. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Catchment hydrology and erosion assessment to test the assumed watershed-protection benefit.",
+    "Ecological, social, legal and stakeholder assessment before any protected-area designation or boundary change is proposed. Nothing here constitutes a designation recommendation.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "This area falls within the government's priority destination “Tierras Altas - Renacimiento” (77% of the area), but the analysis REFINES the emphasis: the binding issue identified here is conservation, resilience or pressure management rather than expansion of tourism supply."
+  },
+  {
+   "cluster_id": "MA17",
+   "rank": 15,
+   "name": "Golfo de Montijo",
+   "action": "MANAGE",
+   "gov_relation": "refines",
+   "gov_dest": "Pacifico Veraguense - Golfo de Montijo - Santa Catalina - Mariato",
+   "headline": "Manage visitor pressure around Golfo de Montijo: biodiversity value of 58/100 with accessibility of 49/100 makes this a place to steer development carefully.",
+   "why_here": [
+    "Attraction exceeds tourism supply by 27 points — a measured development gap.",
+    "Protection gap 52/100: 75% of the area has some protected status but only 0% is in a strict IUCN category (I–IV).",
+    "Mangrove covers 50 km² (9% of the area).",
+    "59% of the area is shallow shelf under 20 m — reef and seagrass-capable habitat."
+   ],
+   "natural_assets": "The area's natural asset base comprises mangrove (50 km²) and shallow shelf under 20 m (333 km²). It overlaps the protected area(s) Golfo de Montijo, Sur de Veraguas, covering 75% of the area. Named features mapped here include Playa Reina. It sits predominantly in the Isthmian-Pacific moist forests ecoregion, draining the Ríos entre el San Pedro y el Tonosí basin.",
+   "tourism_context": "OpenStreetMap records 0 accommodation points, 5 food-service points, 0 attractions, 0 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 3.9 hours; the accessibility score is 49/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 157 vertebrate species have been recorded per screening cell here, in the Isthmian-Pacific moist forests ecoregion. 75% of the area carries protected status and 0% is in a strict IUCN category. Biodiversity value scores 58/100 and the protection gap 52/100.",
+   "resilience": "Coastal ecosystems here — mangrove (50 km²) and shallow shelf under 20 m (333 km²) — sit between open water and low-lying settlement and tourism assets. On the screening assumption that intact mangrove and reef attenuate wave energy and stabilise shorelines, the area scores 47/100 for resilience function. This is a spatial coincidence of ecosystem and exposure, not a modelled reduction in flood damage.",
+   "conservation_action": [
+    "Assess the case for new or extended marine protection over the reef–mangrove complex, including whether an existing coastal management category could be upgraded rather than a new area declared.",
+    "Where mangrove has been cleared, target replanting at the landward margin and restore tidal connectivity before considering any engineered shoreline works.",
+    "Review management effectiveness of the existing designation: much of this area carries a permissive category that may not hold the values identified here."
+   ],
+   "tourism_investment": [
+    "Direct new accommodation and construction to already-developed settlements at the periphery, not into the sensitive core.",
+    "Invest in the management capacity — rangers, monitoring, enforcement, permitting — that a rising visitor trend will require.",
+    "Anchor points for any package: Playa Reina."
+   ],
+   "jobs": "With about 3,800 residents inside the area and a local-opportunity score of 36/100, the plausible employment channels are dive and snorkel guiding, boat operation and equipment servicing, kayak and boat tours, and paid mangrove restoration and monitoring crews, protected-area management, ranger and interpretation roles and local food supply, crafts and transport into the visitor economy. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "Most of the area is already designated; the binding constraint may be management capacity and enforcement rather than legal status.",
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Reef condition and mangrove health assessment — extent is mapped here, condition is not.",
+    "Coastal hazard overlay once the ~90 m flood hazard layers are available, to convert the resilience proxy into an exposure-based estimate.",
+    "Ecological, social, legal and stakeholder assessment before any protected-area designation or boundary change is proposed. Nothing here constitutes a designation recommendation.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "This area falls within the government's priority destination “Pacifico Veraguense - Golfo de Montijo - Santa Catalina - Mariato” (53% of the area), but the analysis REFINES the emphasis: the binding issue identified here is conservation, resilience or pressure management rather than expansion of tourism supply."
+  },
+  {
+   "cluster_id": "PR25",
+   "rank": 16,
+   "name": "Alto Darién",
+   "action": "PROTECT",
+   "gov_relation": "new",
+   "gov_dest": null,
+   "headline": "Close a protection gap around Alto Darién: forest here carry high biodiversity value, yet only 0% of the area sits under strict protection.",
+   "why_here": [
+    "Attraction exceeds tourism supply by 45 points — a measured development gap.",
+    "Protection gap 67/100: 72% of the area has some protected status but only 0% is in a strict IUCN category (I–IV).",
+    "Resilience function 67/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Remote: 20.2 hours modelled travel from the nearest gateway — access is the binding constraint.",
+    "The area intersects an indigenous comarca; any tourism development must be community-led."
+   ],
+   "natural_assets": "The area's natural asset base comprises forest cover over 100% of the area. It overlaps the protected area(s) Alto Darién, covering 72% of the area. Named features mapped here include Loma alta. It sits predominantly in the Chocó-Darién moist forests ecoregion, draining the Río Chucunaque basin.",
+   "tourism_context": "OpenStreetMap records 0 accommodation points, 0 food-service points, 0 attractions, 0 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 20.2 hours; the accessibility score is 4/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 87 vertebrate species have been recorded per screening cell here, in the Chocó-Darién moist forests ecoregion. 72% of the area carries protected status and 0% is in a strict IUCN category. Biodiversity value scores 55/100 and the protection gap 67/100.",
+   "resilience": "Forest covers 100% of the area across 646 m of local relief in the Río Chucunaque basin. Maintaining that cover on slopes plausibly supports infiltration, limits erosion and moderates runoff reaching downstream settlements and tourism infrastructure. Resilience score 67/100. No hydrological modelling has been undertaken.",
+   "conservation_action": [
+    "Consolidate forest protection on upper slopes and restore degraded margins, prioritising continuity with existing protected land rather than isolated patches.",
+    "Review management effectiveness of the existing designation: much of this area carries a permissive category that may not hold the values identified here."
+   ],
+   "tourism_investment": [
+    "Modest, carefully sited visitor access that gives the protected asset an economic constituency: a visitor centre or ranger post, defined trails or moorings, and concession arrangements that channel revenue to management.",
+    "Support for local enterprises operating under the protected-area management plan rather than outside it.",
+    "Anchor points for any package: Loma alta."
+   ],
+   "jobs": "With about 3,200 residents inside the area and a local-opportunity score of 50/100, the plausible employment channels are nature and birding guiding, trail construction and maintenance, protected-area management, ranger and interpretation roles and local food supply, crafts and transport into the visitor economy. Because the area intersects an indigenous comarca, the master plan's own requirement applies: development must be community-led, with free prior and informed consent and equitable, durable benefit sharing. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "Access at 20.2 hours from a gateway may cap realistic demand; improving access will itself increase pressure.",
+    "Land tenure and governance in comarca territory require a distinct process; conventional concession models may not apply.",
+    "Most of the area is already designated; the binding constraint may be management capacity and enforcement rather than legal status.",
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Catchment hydrology and erosion assessment to test the assumed watershed-protection benefit.",
+    "Ecological, social, legal and stakeholder assessment before any protected-area designation or boundary change is proposed. Nothing here constitutes a designation recommendation.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "This area lies OUTSIDE the ten priority destinations of the Plan Maestro 2025–2030. It is surfaced by the spatial analysis alone and would be a NEW candidate for consideration in tourism planning."
+  },
+  {
+   "cluster_id": "PR27",
+   "rank": 17,
+   "name": "Tierras Altas - Renacimiento (Boquerón)",
+   "action": "PROTECT",
+   "gov_relation": "refines",
+   "gov_dest": "Tierras Altas - Renacimiento",
+   "headline": "Close a protection gap around Tierras Altas - Renacimiento (Boquerón): forest here carry high biodiversity value, yet only 0% of the area sits under strict protection.",
+   "why_here": [
+    "Protection gap 72/100: 0% of the area has some protected status but only 0% is in a strict IUCN category (I–IV).",
+    "Resilience function 72/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Modelled travel time to the nearest tourism gateway is 1.4 hours."
+   ],
+   "natural_assets": "The area's natural asset base comprises forest cover over 62% of the area. It overlaps the protected area(s) La Amistad, Laguna de Volcán, covering 0% of the area. Named features mapped here include Macho de Monte Cascadas, Museo Potrerillos, Waterfall, Macho del Monte, Cascada and CH-1545. It sits predominantly in the Talamancan montane forests ecoregion, draining the Río Chiriquí Viejo basin.",
+   "tourism_context": "OpenStreetMap records 0 accommodation points, 0 food-service points, 2 attractions, 2 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 1.4 hours; the accessibility score is 63/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 570 vertebrate species have been recorded per screening cell here, in the Talamancan montane forests ecoregion. 0% of the area carries protected status and 0% is in a strict IUCN category. Biodiversity value scores 55/100 and the protection gap 72/100.",
+   "resilience": "Forest covers 62% of the area across 606 m of local relief in the Río Chiriquí Viejo basin. Maintaining that cover on slopes plausibly supports infiltration, limits erosion and moderates runoff reaching downstream settlements and tourism infrastructure. Resilience score 72/100. No hydrological modelling has been undertaken.",
+   "conservation_action": [
+    "Consolidate forest protection on upper slopes and restore degraded margins, prioritising continuity with existing protected land rather than isolated patches."
+   ],
+   "tourism_investment": [
+    "Modest, carefully sited visitor access that gives the protected asset an economic constituency: a visitor centre or ranger post, defined trails or moorings, and concession arrangements that channel revenue to management.",
+    "Support for local enterprises operating under the protected-area management plan rather than outside it.",
+    "Anchor points for any package: Macho de Monte Cascadas, Museo Potrerillos, Waterfall, Macho del Monte and Cascada."
+   ],
+   "jobs": "With about 3,600 residents inside the area and a local-opportunity score of 59/100, the plausible employment channels are nature and birding guiding, trail construction and maintenance and local food supply, crafts and transport into the visitor economy. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Catchment hydrology and erosion assessment to test the assumed watershed-protection benefit.",
+    "Ecological, social, legal and stakeholder assessment before any protected-area designation or boundary change is proposed. Nothing here constitutes a designation recommendation.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "This area falls within the government's priority destination “Tierras Altas - Renacimiento” (75% of the area), but the analysis REFINES the emphasis: the binding issue identified here is conservation, resilience or pressure management rather than expansion of tourism supply."
+  },
+  {
+   "cluster_id": "PR23",
+   "rank": 18,
+   "name": "Narganá",
+   "action": "PROTECT",
+   "gov_relation": "new",
+   "gov_dest": null,
+   "headline": "Close a protection gap around Narganá: forest here carry high biodiversity value, yet only 0% of the area sits under strict protection.",
+   "why_here": [
+    "Attraction exceeds tourism supply by 34 points — a measured development gap.",
+    "Biodiversity value 62/100, with a mean of 490 vertebrate species recorded per screening cell.",
+    "Protection gap 69/100: 81% of the area has some protected status but only 0% is in a strict IUCN category (I–IV).",
+    "Resilience function 67/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "The area intersects an indigenous comarca; any tourism development must be community-led."
+   ],
+   "natural_assets": "The area's natural asset base comprises forest cover over 95% of the area. It overlaps the protected area(s) Narganá, covering 81% of the area. It sits predominantly in the Chocó-Darién moist forests ecoregion, draining the Ríos entre el Mandinga y Armila basin.",
+   "tourism_context": "OpenStreetMap records 0 accommodation points, 0 food-service points, 0 attractions, 0 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 4.3 hours; the accessibility score is 48/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 490 vertebrate species have been recorded per screening cell here, in the Chocó-Darién moist forests ecoregion. 81% of the area carries protected status and 0% is in a strict IUCN category. Biodiversity value scores 62/100 and the protection gap 69/100.",
+   "resilience": "Forest covers 95% of the area across 328 m of local relief in the Ríos entre el Mandinga y Armila basin. Maintaining that cover on slopes plausibly supports infiltration, limits erosion and moderates runoff reaching downstream settlements and tourism infrastructure. Resilience score 67/100. No hydrological modelling has been undertaken.",
+   "conservation_action": [
+    "Consolidate forest protection on upper slopes and restore degraded margins, prioritising continuity with existing protected land rather than isolated patches.",
+    "Review management effectiveness of the existing designation: much of this area carries a permissive category that may not hold the values identified here."
+   ],
+   "tourism_investment": [
+    "Modest, carefully sited visitor access that gives the protected asset an economic constituency: a visitor centre or ranger post, defined trails or moorings, and concession arrangements that channel revenue to management.",
+    "Support for local enterprises operating under the protected-area management plan rather than outside it."
+   ],
+   "jobs": "With about 0 residents inside the area and a local-opportunity score of 44/100, the plausible employment channels are nature and birding guiding, trail construction and maintenance, protected-area management, ranger and interpretation roles and local food supply, crafts and transport into the visitor economy. Because the area intersects an indigenous comarca, the master plan's own requirement applies: development must be community-led, with free prior and informed consent and equitable, durable benefit sharing. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "Land tenure and governance in comarca territory require a distinct process; conventional concession models may not apply.",
+    "Most of the area is already designated; the binding constraint may be management capacity and enforcement rather than legal status.",
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Catchment hydrology and erosion assessment to test the assumed watershed-protection benefit.",
+    "Ecological, social, legal and stakeholder assessment before any protected-area designation or boundary change is proposed. Nothing here constitutes a designation recommendation.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "This area lies OUTSIDE the ten priority destinations of the Plan Maestro 2025–2030. It is surfaced by the spatial analysis alone and would be a NEW candidate for consideration in tourism planning."
+  },
+  {
+   "cluster_id": "IN13",
+   "rank": 19,
+   "name": "Colon - Portobelo - Santa Isabel",
+   "action": "INVEST",
+   "gov_relation": "reinforces",
+   "gov_dest": "Colon - Portobelo - Santa Isabel",
+   "headline": "Develop Colon - Portobelo - Santa Isabel as a nature-tourism destination: strong natural attraction (41/100) and workable access (0.6 h from a gateway) against thin existing supply (1 mapped accommodation points).",
+   "why_here": [
+    "Protection gap 71/100: 4% of the area has some protected status but only 1% is in a strict IUCN category (I–IV).",
+    "Resilience function 72/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Mangrove covers 12 km² (4% of the area).",
+    "15% of the area is shallow shelf under 20 m — reef and seagrass-capable habitat.",
+    "Modelled travel time to the nearest tourism gateway is 0.6 hours.",
+    "About 110,000 people live inside the area — a local labour and enterprise base."
+   ],
+   "natural_assets": "The area's natural asset base comprises mangrove (12 km²), shallow shelf under 20 m (48 km²) and forest cover over 60% of the area. It overlaps the protected area(s) Chagres, Isla Galeta, Área Silvestre Protegida (Caribe), covering 4% of the area. Named features mapped here include Crab Beach at galeta. It sits predominantly in the Isthmian-Atlantic moist forests ecoregion, draining the Ríos entre el Chagres y Mandinga basin.",
+   "tourism_context": "OpenStreetMap records 1 accommodation points, 13 food-service points, 0 attractions, 0 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 0.6 hours; the accessibility score is 80/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 440 vertebrate species have been recorded per screening cell here, in the Isthmian-Atlantic moist forests ecoregion. 4% of the area carries protected status and 1% is in a strict IUCN category. Biodiversity value scores 48/100 and the protection gap 71/100.",
+   "resilience": "Coastal ecosystems here — mangrove (12 km²) and shallow shelf under 20 m (48 km²) — sit between open water and low-lying settlement and tourism assets. On the screening assumption that intact mangrove and reef attenuate wave energy and stabilise shorelines, the area scores 72/100 for resilience function. This is a spatial coincidence of ecosystem and exposure, not a modelled reduction in flood damage.",
+   "conservation_action": [
+    "Establish the conservation baseline and zoning BEFORE visitor infrastructure is sited, so that access is designed around sensitive habitat rather than retrofitted.",
+    "Protect the mangrove and shallow-water habitat that the proposed marine activities would themselves depend on."
+   ],
+   "tourism_investment": [
+    "Snorkelling and diving access: mooring buoys to prevent anchor damage, a small landing and briefing facility, operator licensing and safety standards.",
+    "A designed trail network with viewpoints, interpretation and a trailhead facility, built to a standard that survives the wet season.",
+    "Low-impact mangrove access — boardwalk, kayak launch, guided boat routes — sited to avoid nesting and nursery areas.",
+    "Destination-level basics that currently constrain length of stay: potable water, wastewater treatment, mobile coverage and last-mile road or pier condition.",
+    "Anchor points for any package: Crab Beach at galeta."
+   ],
+   "jobs": "With about 110,000 residents inside the area and a local-opportunity score of 59/100, the plausible employment channels are dive and snorkel guiding, boat operation and equipment servicing, nature and birding guiding, trail construction and maintenance, kayak and boat tours, and paid mangrove restoration and monitoring crews and local food supply, crafts and transport into the visitor economy. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Reef condition and mangrove health assessment — extent is mapped here, condition is not.",
+    "Coastal hazard overlay once the ~90 m flood hazard layers are available, to convert the resilience proxy into an exposure-based estimate.",
+    "Catchment hydrology and erosion assessment to test the assumed watershed-protection benefit.",
+    "Demand assessment and site-level feasibility, including tenure, utilities and environmental licensing.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "This area falls within the government's priority destination “Colon - Portobelo - Santa Isabel” (89% of the area). The analysis REINFORCES that priority and points to the specific nature-based content of the investment."
+  },
+  {
+   "cluster_id": "MA21",
+   "rank": 20,
+   "name": "Bahía de Chame",
+   "action": "MANAGE",
+   "gov_relation": "partial",
+   "gov_dest": "Riviera Pacifica - Valle de Anton - El Cope - Penonome",
+   "headline": "Manage visitor pressure around Bahía de Chame: biodiversity value of 61/100 with accessibility of 79/100 makes this a place to steer development carefully.",
+   "why_here": [
+    "Nature attraction score 63/100 — top-tier natural draw at national screening scale.",
+    "Biodiversity value 61/100, with a mean of 392 vertebrate species recorded per screening cell.",
+    "Protection gap 84/100: 24% of the area has some protected status but only 0% is in a strict IUCN category (I–IV).",
+    "Resilience function 83/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Mangrove covers 41 km² (16% of the area).",
+    "56% of the area is shallow shelf under 20 m — reef and seagrass-capable habitat.",
+    "Modelled travel time to the nearest tourism gateway is 1.3 hours.",
+    "About 10,000 people live inside the area — a local labour and enterprise base."
+   ],
+   "natural_assets": "The area's natural asset base comprises mangrove (41 km²), shallow shelf under 20 m (145 km²) and 6 mapped beaches. It overlaps the protected area(s) Bahía de Chame, covering 24% of the area. Named features mapped here include Mirador Cerro Chame, Cerro Tigre, Cerro de la Zona, Cerro Guasimo, Cerro Botija and Cerro Campanita. It sits predominantly in the South American Pacific mangroves ecoregion, draining the Ríos entre el Antón y el Caimito basin.",
+   "tourism_context": "OpenStreetMap records 5 accommodation points, 8 food-service points, 0 attractions, 3 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 1.3 hours; the accessibility score is 79/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 392 vertebrate species have been recorded per screening cell here, in the South American Pacific mangroves ecoregion. 24% of the area carries protected status and 0% is in a strict IUCN category. Biodiversity value scores 61/100 and the protection gap 84/100.",
+   "resilience": "Coastal ecosystems here — mangrove (41 km²) and shallow shelf under 20 m (145 km²) — sit between open water and low-lying settlement and tourism assets. On the screening assumption that intact mangrove and reef attenuate wave energy and stabilise shorelines, the area scores 83/100 for resilience function. This is a spatial coincidence of ecosystem and exposure, not a modelled reduction in flood damage.",
+   "conservation_action": [
+    "Assess the case for new or extended marine protection over the reef–mangrove complex, including whether an existing coastal management category could be upgraded rather than a new area declared.",
+    "Where mangrove has been cleared, target replanting at the landward margin and restore tidal connectivity before considering any engineered shoreline works.",
+    "Review management effectiveness of the existing designation: much of this area carries a permissive category that may not hold the values identified here."
+   ],
+   "tourism_investment": [
+    "Direct new accommodation and construction to already-developed settlements at the periphery, not into the sensitive core.",
+    "Invest in the management capacity — rangers, monitoring, enforcement, permitting — that a rising visitor trend will require.",
+    "Anchor points for any package: Mirador Cerro Chame, Cerro Tigre, Cerro de la Zona, Cerro Guasimo and Cerro Botija."
+   ],
+   "jobs": "With about 10,000 residents inside the area and a local-opportunity score of 42/100, the plausible employment channels are dive and snorkel guiding, boat operation and equipment servicing, kayak and boat tours, and paid mangrove restoration and monitoring crews, beach services, food and beverage, and small accommodation and protected-area management, ranger and interpretation roles. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Reef condition and mangrove health assessment — extent is mapped here, condition is not.",
+    "Coastal hazard overlay once the ~90 m flood hazard layers are available, to convert the resilience proxy into an exposure-based estimate.",
+    "Ecological, social, legal and stakeholder assessment before any protected-area designation or boundary change is proposed. Nothing here constitutes a designation recommendation.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "About 43% of this area overlaps the government priority destination “Riviera Pacifica - Valle de Anton - El Cope - Penonome”. The analysis suggests the useful geography extends beyond the destination as currently framed."
+  },
+  {
+   "cluster_id": "IN12",
+   "rank": 21,
+   "name": "Narganá (Comarca Kuna Yala)",
+   "action": "INVEST",
+   "gov_relation": "partial",
+   "gov_dest": "Colon - Portobelo - Santa Isabel",
+   "headline": "Develop Narganá (Comarca Kuna Yala) as a nature-tourism destination: strong natural attraction (56/100) and workable access (3.2 h from a gateway) against thin existing supply (2 mapped accommodation points).",
+   "why_here": [
+    "Protection gap 70/100: 41% of the area has some protected status but only 0% is in a strict IUCN category (I–IV).",
+    "Resilience function 62/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Mangrove covers 8 km² (4% of the area).",
+    "27% of the area is shallow shelf under 20 m — reef and seagrass-capable habitat.",
+    "The area intersects an indigenous comarca; any tourism development must be community-led."
+   ],
+   "natural_assets": "The area's natural asset base comprises mangrove (8 km²) and shallow shelf under 20 m (58 km²). It overlaps the protected area(s) Narganá, Santa Isabel, covering 41% of the area. Named features mapped here include Museum of Kuna Cultura, Puerto Terminal Barsukan, Puerto Terminal Niga Cantule, Terminal-Puerto Dibin and Puerto Niga Kantule. It sits predominantly in the Chocó-Darién moist forests ecoregion, draining the Ríos entre el Chagres y Mandinga basin.",
+   "tourism_context": "OpenStreetMap records 2 accommodation points, 4 food-service points, 1 attractions, 0 named trails, 0 dive/surf operators and 9 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 3.2 hours; the accessibility score is 60/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 198 vertebrate species have been recorded per screening cell here, in the Chocó-Darién moist forests ecoregion. 41% of the area carries protected status and 0% is in a strict IUCN category. Biodiversity value scores 47/100 and the protection gap 70/100.",
+   "resilience": "Coastal ecosystems here — mangrove (8 km²) and shallow shelf under 20 m (58 km²) — sit between open water and low-lying settlement and tourism assets. On the screening assumption that intact mangrove and reef attenuate wave energy and stabilise shorelines, the area scores 62/100 for resilience function. This is a spatial coincidence of ecosystem and exposure, not a modelled reduction in flood damage.",
+   "conservation_action": [
+    "Establish the conservation baseline and zoning BEFORE visitor infrastructure is sited, so that access is designed around sensitive habitat rather than retrofitted.",
+    "Protect the mangrove and shallow-water habitat that the proposed marine activities would themselves depend on."
+   ],
+   "tourism_investment": [
+    "Snorkelling and diving access: mooring buoys to prevent anchor damage, a small landing and briefing facility, operator licensing and safety standards.",
+    "Low-impact mangrove access — boardwalk, kayak launch, guided boat routes — sited to avoid nesting and nursery areas.",
+    "Destination-level basics that currently constrain length of stay: potable water, wastewater treatment, mobile coverage and last-mile road or pier condition.",
+    "Anchor points for any package: Museum of Kuna Cultura, Puerto Terminal Barsukan, Puerto Terminal Niga Cantule, Terminal-Puerto Dibin and Puerto Niga Kantule."
+   ],
+   "jobs": "With about 3,800 residents inside the area and a local-opportunity score of 58/100, the plausible employment channels are dive and snorkel guiding, boat operation and equipment servicing, kayak and boat tours, and paid mangrove restoration and monitoring crews, protected-area management, ranger and interpretation roles and local food supply, crafts and transport into the visitor economy. Because the area intersects an indigenous comarca, the master plan's own requirement applies: development must be community-led, with free prior and informed consent and equitable, durable benefit sharing. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "Land tenure and governance in comarca territory require a distinct process; conventional concession models may not apply.",
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Reef condition and mangrove health assessment — extent is mapped here, condition is not.",
+    "Coastal hazard overlay once the ~90 m flood hazard layers are available, to convert the resilience proxy into an exposure-based estimate.",
+    "Demand assessment and site-level feasibility, including tenure, utilities and environmental licensing.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "About 17% of this area overlaps the government priority destination “Colon - Portobelo - Santa Isabel”. The analysis suggests the useful geography extends beyond the destination as currently framed."
+  },
+  {
+   "cluster_id": "PR28",
+   "rank": 22,
+   "name": "Aguadulce-Natá",
+   "action": "PROTECT",
+   "gov_relation": "new",
+   "gov_dest": null,
+   "headline": "Close a protection gap around Aguadulce-Natá: mangrove, shallow reef habitat and wetland here carry high biodiversity value, yet only 0% of the area sits under strict protection.",
+   "why_here": [
+    "Attraction exceeds tourism supply by 22 points — a measured development gap.",
+    "Protection gap 85/100: 12% of the area has some protected status but only 0% is in a strict IUCN category (I–IV).",
+    "Resilience function 85/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Mangrove covers 33 km² (18% of the area).",
+    "52% of the area is shallow shelf under 20 m — reef and seagrass-capable habitat.",
+    "Modelled travel time to the nearest tourism gateway is 1.8 hours."
+   ],
+   "natural_assets": "The area's natural asset base comprises mangrove (33 km²), shallow shelf under 20 m (96 km²) and herbaceous wetland (7 km²). It overlaps the protected area(s) Cuenca del Río Santa María, covering 12% of the area. Named features mapped here include Playa El Salado. It sits predominantly in the South American Pacific mangroves ecoregion, draining the Río Grande basin.",
+   "tourism_context": "OpenStreetMap records 0 accommodation points, 5 food-service points, 0 attractions, 0 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 1.8 hours; the accessibility score is 69/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 209 vertebrate species have been recorded per screening cell here, in the South American Pacific mangroves ecoregion. 12% of the area carries protected status and 0% is in a strict IUCN category. Biodiversity value scores 54/100 and the protection gap 85/100.",
+   "resilience": "Coastal ecosystems here — mangrove (33 km²) and shallow shelf under 20 m (96 km²) — sit between open water and low-lying settlement and tourism assets. On the screening assumption that intact mangrove and reef attenuate wave energy and stabilise shorelines, the area scores 85/100 for resilience function. This is a spatial coincidence of ecosystem and exposure, not a modelled reduction in flood damage.",
+   "conservation_action": [
+    "Assess the case for new or extended marine protection over the reef–mangrove complex, including whether an existing coastal management category could be upgraded rather than a new area declared.",
+    "Where mangrove has been cleared, target replanting at the landward margin and restore tidal connectivity before considering any engineered shoreline works."
+   ],
+   "tourism_investment": [
+    "Modest, carefully sited visitor access that gives the protected asset an economic constituency: a visitor centre or ranger post, defined trails or moorings, and concession arrangements that channel revenue to management.",
+    "Support for local enterprises operating under the protected-area management plan rather than outside it.",
+    "Anchor points for any package: Playa El Salado."
+   ],
+   "jobs": "With about 4,400 residents inside the area and a local-opportunity score of 51/100, the plausible employment channels are dive and snorkel guiding, boat operation and equipment servicing, kayak and boat tours, and paid mangrove restoration and monitoring crews and local food supply, crafts and transport into the visitor economy. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Reef condition and mangrove health assessment — extent is mapped here, condition is not.",
+    "Coastal hazard overlay once the ~90 m flood hazard layers are available, to convert the resilience proxy into an exposure-based estimate.",
+    "Ecological, social, legal and stakeholder assessment before any protected-area designation or boundary change is proposed. Nothing here constitutes a designation recommendation.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "This area lies OUTSIDE the ten priority destinations of the Plan Maestro 2025–2030. It is surfaced by the spatial analysis alone and would be a NEW candidate for consideration in tourism planning."
+  },
+  {
+   "cluster_id": "AD05",
+   "rank": 23,
+   "name": "Riviera Pacifica - Valle de Anton - El Cope - Penonome (Antón)",
+   "action": "ADAPT",
+   "gov_relation": "refines",
+   "gov_dest": "Riviera Pacifica - Valle de Anton - El Cope - Penonome",
+   "headline": "Strengthen the natural base of Riviera Pacifica - Valle de Anton - El Cope - Penonome (Antón) — an established destination (10 accommodation and 76 food-service points) whose ecosystems carry a measurable protective and attraction function.",
+   "why_here": [
+    "Protection gap 59/100: 0% of the area has some protected status but only 0% is in a strict IUCN category (I–IV).",
+    "Resilience function 59/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Modelled travel time to the nearest tourism gateway is 0.8 hours.",
+    "About 44,000 people live inside the area — a local labour and enterprise base."
+   ],
+   "natural_assets": "The area's natural asset base comprises forest cover over 42% of the area. Named features mapped here include Simón Bolívar, Excelsa Mujer, Ramón M. Valdés, Museo de la Historia y la Tradición Penonomeña (Museo de Penonomé), Murales Conmemorativos de los Distritos de Coclé and Bicentenario de la Independencia de Panamá de España. It sits predominantly in the Panamanian dry forests ecoregion, draining the Río Grande basin.",
+   "tourism_context": "OpenStreetMap records 10 accommodation points, 76 food-service points, 11 attractions, 0 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 0.8 hours; the accessibility score is 80/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 319 vertebrate species have been recorded per screening cell here, in the Panamanian dry forests ecoregion. 0% of the area carries protected status and 0% is in a strict IUCN category. Biodiversity value scores 51/100 and the protection gap 59/100.",
+   "resilience": "Forest covers 42% of the area across 138 m of local relief in the Río Grande basin. Maintaining that cover on slopes plausibly supports infiltration, limits erosion and moderates runoff reaching downstream settlements and tourism infrastructure. Resilience score 59/100. No hydrological modelling has been undertaken.",
+   "conservation_action": [
+    "Bring wastewater and solid-waste management up to the standard the destination's own natural asset depends on.",
+    "Restore riparian and upper-catchment forest feeding the destination's water supply."
+   ],
+   "tourism_investment": [
+    "Upgrade rather than expand: retrofit existing visitor infrastructure for resilience and reduce the destination's own pressure on the asset that draws visitors.",
+    "Visitor management — carrying capacity, timed access at pinch points, and redistribution of demand to shoulder sites within the same destination.",
+    "Anchor points for any package: Simón Bolívar, Excelsa Mujer, Ramón M. Valdés, Museo de la Historia y la Tradición Penonomeña (Museo de Penonomé) and Murales Conmemorativos de los Distritos de Coclé."
+   ],
+   "jobs": "With about 44,000 residents inside the area and a local-opportunity score of 60/100, the plausible employment channels are nature and birding guiding, trail construction and maintenance and local food supply, crafts and transport into the visitor economy. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Catchment hydrology and erosion assessment to test the assumed watershed-protection benefit.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "This area falls within the government's priority destination “Riviera Pacifica - Valle de Anton - El Cope - Penonome” (100% of the area), but the analysis REFINES the emphasis: the binding issue identified here is conservation, resilience or pressure management rather than expansion of tourism supply."
+  },
+  {
+   "cluster_id": "MA20",
+   "rank": 24,
+   "name": "General de División Omar Torrijos Herrera",
+   "action": "MANAGE",
+   "gov_relation": "new",
+   "gov_dest": null,
+   "headline": "Manage visitor pressure around General de División Omar Torrijos Herrera: biodiversity value of 57/100 with accessibility of 65/100 makes this a place to steer development carefully.",
+   "why_here": [
+    "Attraction exceeds tourism supply by 36 points — a measured development gap.",
+    "Protection gap 58/100: 22% of the area has some protected status but only 22% is in a strict IUCN category (I–IV).",
+    "Resilience function 77/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Modelled travel time to the nearest tourism gateway is 1.9 hours."
+   ],
+   "natural_assets": "The area's natural asset base comprises forest cover over 93% of the area. It overlaps the protected area(s) General de División Omar Torrijos Herrera, covering 22% of the area. It sits predominantly in the Isthmian-Pacific moist forests ecoregion, draining the Río Grande basin.",
+   "tourism_context": "OpenStreetMap records 0 accommodation points, 0 food-service points, 0 attractions, 0 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 1.9 hours; the accessibility score is 65/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 391 vertebrate species have been recorded per screening cell here, in the Isthmian-Pacific moist forests ecoregion. 22% of the area carries protected status and 22% is in a strict IUCN category. Biodiversity value scores 57/100 and the protection gap 58/100.",
+   "resilience": "Forest covers 93% of the area across 621 m of local relief in the Río Grande basin. Maintaining that cover on slopes plausibly supports infiltration, limits erosion and moderates runoff reaching downstream settlements and tourism infrastructure. Resilience score 77/100. No hydrological modelling has been undertaken.",
+   "conservation_action": [
+    "Consolidate forest protection on upper slopes and restore degraded margins, prioritising continuity with existing protected land rather than isolated patches."
+   ],
+   "tourism_investment": [
+    "Direct new accommodation and construction to already-developed settlements at the periphery, not into the sensitive core.",
+    "Invest in the management capacity — rangers, monitoring, enforcement, permitting — that a rising visitor trend will require."
+   ],
+   "jobs": "With about 0 residents inside the area and a local-opportunity score of 40/100, the plausible employment channels are nature and birding guiding, trail construction and maintenance, protected-area management, ranger and interpretation roles and local food supply, crafts and transport into the visitor economy. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Catchment hydrology and erosion assessment to test the assumed watershed-protection benefit.",
+    "Ecological, social, legal and stakeholder assessment before any protected-area designation or boundary change is proposed. Nothing here constitutes a designation recommendation.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "This area lies OUTSIDE the ten priority destinations of the Plan Maestro 2025–2030. It is surfaced by the spatial analysis alone and would be a NEW candidate for consideration in tourism planning."
+  },
+  {
+   "cluster_id": "PR24",
+   "rank": 25,
+   "name": "Jirondai-Kankintú",
+   "action": "PROTECT",
+   "gov_relation": "new",
+   "gov_dest": null,
+   "headline": "Close a protection gap around Jirondai-Kankintú: forest and mountain terrain here carry high biodiversity value, yet only 0% of the area sits under strict protection.",
+   "why_here": [
+    "Attraction exceeds tourism supply by 47 points — a measured development gap.",
+    "Protection gap 82/100: 0% of the area has some protected status but only 0% is in a strict IUCN category (I–IV).",
+    "Resilience function 82/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Remote: 9.5 hours modelled travel from the nearest gateway — access is the binding constraint.",
+    "The area intersects an indigenous comarca; any tourism development must be community-led."
+   ],
+   "natural_assets": "The area's natural asset base comprises forest cover over 96% of the area and 1248 m of local relief, rising to 2203 m. Named features mapped here include Cerro Umanindú. It sits predominantly in the Talamancan montane forests ecoregion, draining the Ríos entre Changuinola y Cricamola basin.",
+   "tourism_context": "OpenStreetMap records 0 accommodation points, 0 food-service points, 0 attractions, 0 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 9.5 hours; the accessibility score is 17/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 180 vertebrate species have been recorded per screening cell here, in the Talamancan montane forests ecoregion. 0% of the area carries protected status and 0% is in a strict IUCN category. Biodiversity value scores 50/100 and the protection gap 82/100.",
+   "resilience": "Forest covers 96% of the area across 1248 m of local relief in the Ríos entre Changuinola y Cricamola basin. Maintaining that cover on slopes plausibly supports infiltration, limits erosion and moderates runoff reaching downstream settlements and tourism infrastructure. Resilience score 82/100. No hydrological modelling has been undertaken.",
+   "conservation_action": [
+    "Consolidate forest protection on upper slopes and restore degraded margins, prioritising continuity with existing protected land rather than isolated patches."
+   ],
+   "tourism_investment": [
+    "Modest, carefully sited visitor access that gives the protected asset an economic constituency: a visitor centre or ranger post, defined trails or moorings, and concession arrangements that channel revenue to management.",
+    "Support for local enterprises operating under the protected-area management plan rather than outside it.",
+    "Anchor points for any package: Cerro Umanindú."
+   ],
+   "jobs": "With about 4,100 residents inside the area and a local-opportunity score of 66/100, the plausible employment channels are nature and birding guiding, trail construction and maintenance and local food supply, crafts and transport into the visitor economy. Because the area intersects an indigenous comarca, the master plan's own requirement applies: development must be community-led, with free prior and informed consent and equitable, durable benefit sharing. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "Access at 9.5 hours from a gateway may cap realistic demand; improving access will itself increase pressure.",
+    "Land tenure and governance in comarca territory require a distinct process; conventional concession models may not apply.",
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Catchment hydrology and erosion assessment to test the assumed watershed-protection benefit.",
+    "Ecological, social, legal and stakeholder assessment before any protected-area designation or boundary change is proposed. Nothing here constitutes a designation recommendation.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "This area lies OUTSIDE the ten priority destinations of the Plan Maestro 2025–2030. It is surfaced by the spatial analysis alone and would be a NEW candidate for consideration in tourism planning."
+  },
+  {
+   "cluster_id": "MA14",
+   "rank": 26,
+   "name": "Narganá (Chepo)",
+   "action": "MANAGE",
+   "gov_relation": "new",
+   "gov_dest": null,
+   "headline": "Manage visitor pressure around Narganá (Chepo): biodiversity value of 54/100 with accessibility of 77/100 makes this a place to steer development carefully.",
+   "why_here": [
+    "Protection gap 71/100: 30% of the area has some protected status but only 0% is in a strict IUCN category (I–IV).",
+    "Resilience function 71/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Modelled travel time to the nearest tourism gateway is 1.4 hours.",
+    "The area intersects an indigenous comarca; any tourism development must be community-led."
+   ],
+   "natural_assets": "The area's natural asset base comprises forest cover over 86% of the area. It overlaps the protected area(s) Narganá, covering 30% of the area. It sits predominantly in the Isthmian-Atlantic moist forests ecoregion, draining the Río Bayano basin.",
+   "tourism_context": "OpenStreetMap records 1 accommodation points, 1 food-service points, 1 attractions, 4 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 1.4 hours; the accessibility score is 77/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 487 vertebrate species have been recorded per screening cell here, in the Isthmian-Atlantic moist forests ecoregion. 30% of the area carries protected status and 0% is in a strict IUCN category. Biodiversity value scores 54/100 and the protection gap 71/100.",
+   "resilience": "Forest covers 86% of the area across 393 m of local relief in the Río Bayano basin. Maintaining that cover on slopes plausibly supports infiltration, limits erosion and moderates runoff reaching downstream settlements and tourism infrastructure. Resilience score 71/100. No hydrological modelling has been undertaken.",
+   "conservation_action": [
+    "Consolidate forest protection on upper slopes and restore degraded margins, prioritising continuity with existing protected land rather than isolated patches.",
+    "Review management effectiveness of the existing designation: much of this area carries a permissive category that may not hold the values identified here."
+   ],
+   "tourism_investment": [
+    "Direct new accommodation and construction to already-developed settlements at the periphery, not into the sensitive core.",
+    "Invest in the management capacity — rangers, monitoring, enforcement, permitting — that a rising visitor trend will require."
+   ],
+   "jobs": "With about 180 residents inside the area and a local-opportunity score of 41/100, the plausible employment channels are nature and birding guiding, trail construction and maintenance, protected-area management, ranger and interpretation roles and local food supply, crafts and transport into the visitor economy. Because the area intersects an indigenous comarca, the master plan's own requirement applies: development must be community-led, with free prior and informed consent and equitable, durable benefit sharing. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "Land tenure and governance in comarca territory require a distinct process; conventional concession models may not apply.",
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Catchment hydrology and erosion assessment to test the assumed watershed-protection benefit.",
+    "Ecological, social, legal and stakeholder assessment before any protected-area designation or boundary change is proposed. Nothing here constitutes a designation recommendation.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "This area lies OUTSIDE the ten priority destinations of the Plan Maestro 2025–2030. It is surfaced by the spatial analysis alone and would be a NEW candidate for consideration in tourism planning."
+  },
+  {
+   "cluster_id": "AD06",
+   "rank": 27,
+   "name": "Las Tablas-Guararé",
+   "action": "ADAPT",
+   "gov_relation": "new",
+   "gov_dest": null,
+   "headline": "Strengthen the natural base of Las Tablas-Guararé — an established destination (2 accommodation and 12 food-service points) whose ecosystems carry a measurable protective and attraction function.",
+   "why_here": [
+    "Protection gap 74/100: 45% of the area has some protected status but only 1% is in a strict IUCN category (I–IV).",
+    "Resilience function 74/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Mangrove covers 14 km² (9% of the area).",
+    "34% of the area is shallow shelf under 20 m — reef and seagrass-capable habitat.",
+    "Modelled travel time to the nearest tourism gateway is 2.5 hours."
+   ],
+   "natural_assets": "The area's natural asset base comprises mangrove (14 km²), shallow shelf under 20 m (52 km²) and 8 mapped beaches. It overlaps the protected area(s) Subcuenca del Río Mensabé, Zona Litoral del Corregimiento de El Espinal, Zona Litoral del Corregimiento de La Enea, covering 45% of the area. Named features mapped here include Caseta del Parque de La Enea, Monumento a Las Madres, Monumento Historico de la Enea, Monumento misión Jubilar año 2000, Monumento de San Antonio and Monumento a Manuel Fernando Zárate. It sits predominantly in the South American Pacific mangroves ecoregion, draining the Ríos entre el Tonosí y La Villa basin.",
+   "tourism_context": "OpenStreetMap records 2 accommodation points, 12 food-service points, 9 attractions, 2 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 2.5 hours; the accessibility score is 62/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 216 vertebrate species have been recorded per screening cell here, in the South American Pacific mangroves ecoregion. 45% of the area carries protected status and 1% is in a strict IUCN category. Biodiversity value scores 54/100 and the protection gap 74/100.",
+   "resilience": "Coastal ecosystems here — mangrove (14 km²) and shallow shelf under 20 m (52 km²) — sit between open water and low-lying settlement and tourism assets. On the screening assumption that intact mangrove and reef attenuate wave energy and stabilise shorelines, the area scores 74/100 for resilience function. This is a spatial coincidence of ecosystem and exposure, not a modelled reduction in flood damage.",
+   "conservation_action": [
+    "Restore and protect the mangrove and reef fringe seaward of existing tourism assets, and remove pressures — sediment, wastewater, anchor damage — that degrade it.",
+    "Bring wastewater and solid-waste management up to the standard the destination's own natural asset depends on."
+   ],
+   "tourism_investment": [
+    "Upgrade rather than expand: retrofit existing visitor infrastructure for resilience and reduce the destination's own pressure on the asset that draws visitors.",
+    "Visitor management — carrying capacity, timed access at pinch points, and redistribution of demand to shoulder sites within the same destination.",
+    "Anchor points for any package: Caseta del Parque de La Enea, Monumento a Las Madres, Monumento Historico de la Enea, Monumento misión Jubilar año 2000 and Monumento de San Antonio."
+   ],
+   "jobs": "With about 3,900 residents inside the area and a local-opportunity score of 55/100, the plausible employment channels are dive and snorkel guiding, boat operation and equipment servicing, kayak and boat tours, and paid mangrove restoration and monitoring crews, beach services, food and beverage, and small accommodation and protected-area management, ranger and interpretation roles. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Reef condition and mangrove health assessment — extent is mapped here, condition is not.",
+    "Coastal hazard overlay once the ~90 m flood hazard layers are available, to convert the resilience proxy into an exposure-based estimate.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "This area lies OUTSIDE the ten priority destinations of the Plan Maestro 2025–2030. It is surfaced by the spatial analysis alone and would be a NEW candidate for consideration in tourism planning."
+  },
+  {
+   "cluster_id": "MA19",
+   "rank": 28,
+   "name": "David - Pedregal - Alanje (Chiriquí)",
+   "action": "MANAGE",
+   "gov_relation": "refines",
+   "gov_dest": "David - Pedregal - Alanje",
+   "headline": "Manage visitor pressure around David - Pedregal - Alanje (Chiriquí): biodiversity value of 52/100 with accessibility of 61/100 makes this a place to steer development carefully.",
+   "why_here": [
+    "Protection gap 54/100: 5% of the area has some protected status but only 5% is in a strict IUCN category (I–IV).",
+    "Resilience function 52/100 — ecosystems here sit between hazard and people or between slope and settlement.",
+    "Mangrove covers 75 km² (50% of the area).",
+    "30% of the area is shallow shelf under 20 m — reef and seagrass-capable habitat.",
+    "Modelled travel time to the nearest tourism gateway is 1.8 hours."
+   ],
+   "natural_assets": "The area's natural asset base comprises mangrove (75 km²) and shallow shelf under 20 m (44 km²). It overlaps the protected area(s) Playa La Barqueta, covering 5% of the area. Named features mapped here include Isla Bajo Pipón. It sits predominantly in the Southern Mesoamerican Pacific mangroves ecoregion, draining the Río Chiriquí basin.",
+   "tourism_context": "OpenStreetMap records 0 accommodation points, 0 food-service points, 0 attractions, 0 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 1.8 hours; the accessibility score is 61/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
+   "biodiversity": "A mean of 287 vertebrate species have been recorded per screening cell here, in the Southern Mesoamerican Pacific mangroves ecoregion. 5% of the area carries protected status and 5% is in a strict IUCN category. Biodiversity value scores 52/100 and the protection gap 54/100.",
+   "resilience": "Coastal ecosystems here — mangrove (75 km²) and shallow shelf under 20 m (44 km²) — sit between open water and low-lying settlement and tourism assets. On the screening assumption that intact mangrove and reef attenuate wave energy and stabilise shorelines, the area scores 52/100 for resilience function. This is a spatial coincidence of ecosystem and exposure, not a modelled reduction in flood damage.",
+   "conservation_action": [
+    "Assess the case for new or extended marine protection over the reef–mangrove complex, including whether an existing coastal management category could be upgraded rather than a new area declared.",
+    "Where mangrove has been cleared, target replanting at the landward margin and restore tidal connectivity before considering any engineered shoreline works."
+   ],
+   "tourism_investment": [
+    "Direct new accommodation and construction to already-developed settlements at the periphery, not into the sensitive core.",
+    "Invest in the management capacity — rangers, monitoring, enforcement, permitting — that a rising visitor trend will require.",
+    "Anchor points for any package: Isla Bajo Pipón."
+   ],
+   "jobs": "With about 0 residents inside the area and a local-opportunity score of 57/100, the plausible employment channels are dive and snorkel guiding, boat operation and equipment servicing, kayak and boat tours, and paid mangrove restoration and monitoring crews and local food supply, crafts and transport into the visitor economy. No employment numbers are estimated. Converting these channels into jobs depends on skills, finance and tenure conditions this screening cannot observe.",
+   "risks": [
+    "OSM-derived supply counts and GBIF-derived richness both carry recording bias; both should be validated locally before investment decisions."
+   ],
+   "further_analysis": [
+    "Ground-truthing of tourism supply and visitor numbers, which no open dataset records reliably at this scale.",
+    "Reef condition and mangrove health assessment — extent is mapped here, condition is not.",
+    "Coastal hazard overlay once the ~90 m flood hazard layers are available, to convert the resilience proxy into an exposure-based estimate.",
+    "Ecological, social, legal and stakeholder assessment before any protected-area designation or boundary change is proposed. Nothing here constitutes a designation recommendation.",
+    "Consultation with ATP, MiAmbiente and the relevant Comité de Gestión de Destino."
+   ],
+   "gov_alignment": "This area falls within the government's priority destination “David - Pedregal - Alanje” (100% of the area), but the analysis REFINES the emphasis: the binding issue identified here is conservation, resilience or pressure management rather than expansion of tourism supply."
+  }
+ ]
+}

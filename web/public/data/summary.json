@@ -1,0 +1,50 @@
+{
+  "cells": 3417,
+  "cell_km2": 37,
+  "land_km2": 74274,
+  "coastal_band_km": 30,
+  "by_action": {
+    "INVEST": 931,
+    "PROTECT": 904,
+    "ADAPT": 813,
+    "MANAGE": 769
+  },
+  "by_gov_relation": {
+    "new": 2773,
+    "refines": 464,
+    "reinforces": 180
+  },
+  "cells_in_gov_dest": 644,
+  "share_in_gov_dest": 18.8,
+  "protected_share": 30.1,
+  "strict_protected_share": 12.9,
+  "mangrove_km2": 1674.0,
+  "forest_share": 48.6,
+  "population": 4022461,
+  "osm_accommodation": 981,
+  "osm_food": 2813,
+  "median_tt_gateway_h": 4.12,
+  "family_means": {
+    "NAV": 35.8,
+    "TDL": 11.9,
+    "ACC": 42.5,
+    "BCV": 39.4,
+    "RES": 40.5,
+    "JOBS": 38.3
+  },
+  "opportunity_areas": 28,
+  "opp_by_action": {
+    "MANAGE": 8,
+    "PROTECT": 7,
+    "INVEST": 7,
+    "ADAPT": 6
+  },
+  "opp_by_gov_relation": {
+    "refines": 10,
+    "new": 9,
+    "partial": 7,
+    "reinforces": 2
+  },
+  "corr_nav_tdl": 0.374,
+  "cells_high_nav_low_tdl": 218
+}
