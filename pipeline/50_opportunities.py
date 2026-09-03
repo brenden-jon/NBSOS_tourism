@@ -17,8 +17,11 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).parent))
 from common import CRS_M, PROC, log, save_geojson  # noqa: E402
 
-MIN_CELLS = 4          # ~150 km2 - below this it is a site, not an area
-FIT_PCTL = 0.85        # keep the strongest cells within each action class
+MIN_CELLS = 3          # ~110 km2 - below this it is a site, not an area
+# 0.78 rather than 0.85: at the tighter threshold many of the government's own priority
+# destinations returned no opportunity area at all, which is not a useful answer for a tool
+# meant to inform investment in exactly those places.
+FIT_PCTL = 0.78
 
 
 def components(cells: set[str]) -> list[list[str]]:
@@ -62,8 +65,41 @@ def main() -> None:
         cset = set(grp.h3)
         for comp in components(cset):
             if len(comp) >= MIN_CELLS:
-                clusters.append((cls, comp))
-    log(f"  {len(clusters)} clusters of >= {MIN_CELLS} cells")
+                clusters.append((cls, comp, "screening"))
+    log(f"  {len(clusters)} clusters from the national screening")
+
+    # ---- guarantee coverage of the government's own priority destinations -------------
+    # A tool meant to inform tourism investment should say something about every destination
+    # the government has already prioritised. Where the national threshold leaves one with no
+    # area at all, take its own best-scoring contiguous cluster instead, at a threshold
+    # relative to that destination rather than to the country. Flagged distinctly so a reader
+    # can tell a nationally-strong area from one included for policy coverage.
+    covered = set()
+    for _, comp, _ in clusters:
+        covered |= set(d.loc[d.h3.isin(comp), "gov_dest"].dropna())
+
+    priority = d[(d.gov_tier == "priority") & d.gov_dest.notna()]
+    for dest, grp in priority.groupby("gov_dest"):
+        if dest in covered:
+            continue
+        best = None
+        for cls, sub in grp.groupby("primary"):
+            if len(sub) < MIN_CELLS:
+                continue
+            thr = sub.primary_fit.quantile(0.55)
+            sel = set(sub[sub.primary_fit >= thr].h3)
+            for comp in components(sel):
+                if len(comp) >= MIN_CELLS:
+                    score = sub[sub.h3.isin(comp)].primary_fit.mean() * len(comp) ** 0.5
+                    if best is None or score > best[0]:
+                        best = (score, cls, comp)
+        if best:
+            clusters.append((best[1], best[2], "government priority coverage"))
+            log(f"  added coverage cluster for '{dest}' ({best[1]}, {len(best[2])} cells)")
+        else:
+            log(f"  !! no cluster could be formed for priority destination '{dest}'")
+
+    log(f"  {len(clusters)} clusters total (>= {MIN_CELLS} cells)")
 
     # ---- naming ---------------------------------------------------------------------
     # Areas are named from authoritative geography, never from an individual OSM point.
@@ -96,7 +132,7 @@ def main() -> None:
         return str(dist.index[0])
 
     rows = []
-    for cls, comp in clusters:
+    for cls, comp, selected_by in clusters:
         sub = d[d.h3.isin(comp)]
         poly = gpd.GeoSeries([geom[h] for h in comp], crs=CRS_M).union_all()
         pa_names = sub.pa_name.dropna()
@@ -144,6 +180,10 @@ def main() -> None:
             "n_dive_surf": int(sub.n_dive_surf.sum()),
             "n_marina_port": int(sub.n_marina_port.sum()),
             "is_comarca": int(sub.is_comarca.max()),
+            "dev_feasible_share": round(float(sub.dev_feasible.mean()), 2),
+            "dist_access_km": round(float(sub.dist_access_km.median()), 1),
+            "access_mode": (sub.access_mode.value_counts().idxmax()
+                            if sub.access_mode.notna().any() else "road"),
             "provinces": "; ".join(sorted(set(sub.province.dropna()))[:4]),
             "districts": "; ".join(sorted(set(sub.district.dropna()))[:6]),
             "ecoregion": sub.ecoregion.value_counts().idxmax() if sub.ecoregion.notna().any() else None,
@@ -151,6 +191,7 @@ def main() -> None:
             "gov_dest": gov_dest,
             "gov_share": round(gov_share, 2),
             "in_gov_plan": int(gov_share >= 0.25),
+            "selected_by": selected_by,
             "assets": "; ".join(assets),
             "h3_cells": ",".join(comp),
             "geometry": poly,

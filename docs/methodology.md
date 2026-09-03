@@ -107,7 +107,7 @@ development recommendations, not as score penalties:
 
 | Screen | Rule |
 |---|---|
-| Road access | nearest mapped road of tertiary class or better within 10 km |
+| Access | a road, marina, ferry terminal or airstrip within 15 km |
 | Remoteness | under 8 hours modelled travel from the nearest tourism gateway |
 | Advisory zone | outside the Darien Gap border region |
 
@@ -119,7 +119,13 @@ exclusion, not a measurement, and it is labelled as such wherever it appears. It
 tourism-development recommendations only; the conservation value of the Darien is unaffected
 and still scored.
 
-1,820 of 3,417 cells (53%) pass all three screens.
+2,221 of 3,417 cells (65%) pass all three screens.
+
+**Access counts sea and air, not only roads.** An earlier version measured road distance
+alone and excluded 131 high-attraction coastal and island cells - including Bocas del Toro
+nearshore, three hours from a gateway - because islands have no roads to them. Panama's
+tourism is substantially island-based (Bocas del Toro, Las Perlas, Guna Yala, the Golfo de
+Chiriqui archipelagos) and boats and airstrips are how those destinations are reached.
 
 *Why this was needed:* the first version recommended tourism development on cells with a
 nature-attraction score of 0, no population, no road and a modelled 17-hour journey from the
@@ -254,6 +260,31 @@ travel and tourism jobs in 2024 against a direct share of roughly 40%.
 
 **This is not a forecast.** It assumes finance, tenure, skills and visitor demand the screening
 cannot observe, and the package itself is hypothetical.
+
+## 6d. Two independent recommendations
+
+Each Opportunity Area carries two parallel recommendations rather than one combined label,
+because a single label conflated two different questions and made them mutually exclusive -
+when the most valuable places need both.
+
+**Tourism infrastructure** - one of *Develop new capacity*, *Upgrade and diversify*,
+*Low-impact access only*, *No new development* - plus a specific, data-derived list of what to
+build or upgrade: accommodation, access (road condition, or pier/landing/airstrip where access
+is maritime), visitor facilities, trails and viewpoints, marine facilities, water and
+sanitation, solid waste and visitor management.
+
+**Nature** - one of *Protect*, *Restore*, *Protect and restore*, *Maintain* - with the
+ecosystem-specific zones and hectares behind it.
+
+The two are computed independently from the same evidence and can take any combination.
+
+## 6e. Coverage of government priority destinations
+
+Where the national threshold leaves one of the ten priority destinations with no Opportunity
+Area, its own best-scoring contiguous cluster is added at a threshold relative to that
+destination rather than to the country. These are flagged `selected_by = "government priority
+coverage"` so a reader can distinguish a nationally-strong area from one included for policy
+coverage. Two of the forty areas were added this way.
 
 ## 7. Narratives
 

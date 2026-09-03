@@ -28,7 +28,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from common import CRS_M, PROC, log, save_geojson  # noqa: E402
 
 # --- tourism node admission rules ---
-MAX_ROAD_KM = 2.5          # a site nobody can reach is not an infrastructure site
+MAX_ROAD_KM = 4.0          # a site nobody can reach is not an infrastructure site
 MAX_SETTLEMENT_KM = 12     # labour, services and supply have to come from somewhere
 CLUSTER_KM = 4.0           # assets within this of each other form one node
 MAX_NODES_PER_AREA = 5
@@ -61,16 +61,25 @@ def build_nodes(opps, pois, roads_u, places_u, grid_m):
     """Concrete candidate sites for visitor infrastructure, anchored on named features."""
     named = pois[pois.name.notna() & pois.theme.isin(ANCHOR_THEMES)].copy()
     named["road_km"] = named.geometry.distance(roads_u) / 1000
+    # island and coastal sites are reached by boat or air, not by road
+    ap = pois[pois.theme.isin(["marina_port", "airport"])]
+    if len(ap):
+        ap_u = ap.geometry.union_all()
+        named["access_km"] = named.geometry.apply(
+            lambda g: min(g.distance(roads_u), g.distance(ap_u)) / 1000)
+    else:
+        named["access_km"] = named["road_km"]
     named["settle_km"] = named.geometry.distance(places_u) / 1000
 
     strict = grid_m[grid_m.pa_strict_frac > STRICT_PROTECTED].geometry.union_all()
 
     rows = []
     for area in opps.itertuples():
-        if area.action not in ("INVEST", "ADAPT"):
-            continue
+        # Nodes are produced for every area, not only development ones. A Protect area still
+        # needs somewhere to put a ranger post, a trail head or a mooring - restricting nodes
+        # to Invest/Adapt left conservation areas with no actionable location at all.
         inside = named[named.within(area.geometry)].copy()
-        ok = inside[(inside.road_km <= MAX_ROAD_KM) &
+        ok = inside[(inside.access_km <= MAX_ROAD_KM) &
                     (inside.settle_km <= MAX_SETTLEMENT_KM)]
         if not len(ok):
             continue
@@ -105,7 +114,7 @@ def build_nodes(opps, pois, roads_u, places_u, grid_m):
                 "assets": "; ".join(asset_names),
                 "n_natural": int(near.theme.isin(NATURAL_ANCHORS).sum()),
                 "asset_mix": "; ".join(f"{ASSET_LABEL.get(k, k)} x{v}" for k, v in themes.items()),
-                "road_km": round(float(near.road_km.min()), 2),
+                "road_km": round(float(near.access_km.min()), 2),
                 "settlement_km": round(float(near.settle_km.min()), 2),
                 "geometry": seed.geometry,
             })

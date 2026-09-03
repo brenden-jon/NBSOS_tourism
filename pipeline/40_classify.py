@@ -212,7 +212,8 @@ def main() -> None:
     log(f"  cells inside a government priority destination: {int(d.in_gov_dest.sum())}")
     inv = d[d.primary == "INVEST"]
     log(f"  INVEST sanity: max travel time {inv.tt_gateway_h.max():.1f} h, "
-        f"max road distance {inv.dist_road_km.max():.1f} km, "
+        f"max access distance {inv.dist_access_km.max():.1f} km "
+        f"({int((inv.access_mode == 'boat or air').sum())} reached by boat/air), "
         f"advisory-zone cells {int(inv.advisory_zone.sum())} (must be 0)")
     d.to_csv(PROC / "grid_classified.csv", index=False)
     log(f"  wrote grid_classified.csv ({d.shape[0]} rows, {d.shape[1]} cols)")

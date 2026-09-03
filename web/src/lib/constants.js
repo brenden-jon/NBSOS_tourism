@@ -1,12 +1,14 @@
+// Labels name the action explicitly. "Invest / Develop" was ambiguous - readers could not
+// tell whether it meant building infrastructure or building up ecosystems.
 export const ACTIONS = {
-  PROTECT: { key: 'PROTECT', label: 'Protect / Restore', color: '#2E7D5B',
-    blurb: 'High nature and biodiversity value with a protection gap — conserve or restore first.' },
-  INVEST:  { key: 'INVEST',  label: 'Invest / Develop',  color: '#3E7CAB',
-    blurb: 'Real attraction and workable access, but little tourism supply yet.' },
-  ADAPT:   { key: 'ADAPT',   label: 'Adapt / Strengthen', color: '#D99A2B',
-    blurb: 'Established destination whose natural base needs shoring up.' },
-  MANAGE:  { key: 'MANAGE',  label: 'Manage / Avoid',    color: '#9B4B54',
-    blurb: 'Sensitive places where tourism pressure should be limited or carefully managed.' },
+  PROTECT: { key: 'PROTECT', label: 'Protect ecosystems', color: '#2E7D5B',
+    blurb: 'High nature and biodiversity value with a protection gap. Conservation leads; visitor access stays low-impact.' },
+  INVEST:  { key: 'INVEST',  label: 'Build tourism infrastructure', color: '#3E7CAB',
+    blurb: 'Real attraction and workable access with little existing supply. New visitor infrastructure is the binding constraint.' },
+  ADAPT:   { key: 'ADAPT',   label: 'Upgrade destination', color: '#D99A2B',
+    blurb: 'An established destination. Upgrade what exists and shore up the ecosystems it depends on.' },
+  MANAGE:  { key: 'MANAGE',  label: 'Limit development',  color: '#9B4B54',
+    blurb: 'Sensitive and reachable. Steer new construction elsewhere and invest in management capacity.' },
   NONE:    { key: 'NONE',    label: 'No strong basis',   color: '#D3DAE0',
     blurb: 'Nothing here meets the evidence threshold for a screening-level recommendation.' },
 }
@@ -25,6 +27,22 @@ export const FAMILIES = [
 export const GOV_PLAN = {
   1: { label: 'In a government priority destination', color: '#7FA23A' },
   0: { label: 'Outside the government plan', color: '#8EA0AF' },
+}
+
+// The two independent recommendations. Blue is the built side, green the ecosystem side,
+// used consistently on cards, dossiers and the map.
+export const INFRA_LEVELS = {
+  develop: { label: 'Develop new capacity', color: '#1F4E6E', short: 'Develop' },
+  upgrade: { label: 'Upgrade and diversify', color: '#4E8FBF', short: 'Upgrade' },
+  light:   { label: 'Low-impact access only', color: '#9CC3DC', short: 'Low-impact' },
+  none:    { label: 'No new development', color: '#C7D2DA', short: 'None' },
+}
+
+export const NATURE_LEVELS = {
+  protect_restore: { label: 'Protect and restore', color: '#14513C', short: 'Protect + restore' },
+  protect:         { label: 'Protect', color: '#3E9B7E', short: 'Protect' },
+  restore:         { label: 'Restore', color: '#8FBF6A', short: 'Restore' },
+  maintain:        { label: 'Maintain', color: '#CFD9CE', short: 'Maintain' },
 }
 
 export const BASE = import.meta.env.BASE_URL

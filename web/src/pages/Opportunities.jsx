@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import MapCanvas from '../components/MapCanvas'
 import RichText from '../components/RichText'
 import { Hero, Callout, Loading, ErrorBox, ScoreBar, ActionChip } from '../components/ui'
-import { ACTIONS, FAMILIES } from '../lib/constants'
+import { ACTIONS, FAMILIES, INFRA_LEVELS, NATURE_LEVELS } from '../lib/constants'
 import { useData } from '../lib/useData'
 
 const TOURISM_BLUE = '#2A5A7E'
@@ -91,7 +91,14 @@ function Detail({ area, narr, nodes, zones, onClose }) {
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-2">
               <span className="chip bg-wb-wash text-wb-slate border border-wb-line">#{area.rank}</span>
-              <ActionChip action={area.action} />
+              <span className="chip text-white"
+                style={{ backgroundColor: INFRA_LEVELS[area.infra_level]?.color ?? '#C7D2DA' }}>
+                Infrastructure: {INFRA_LEVELS[area.infra_level]?.short ?? '—'}
+              </span>
+              <span className="chip text-white"
+                style={{ backgroundColor: NATURE_LEVELS[area.nature_level]?.color ?? '#CFD9CE' }}>
+                Nature: {NATURE_LEVELS[area.nature_level]?.short ?? '—'}
+              </span>
               <span className="chip border"
                 style={{ borderColor: area.in_gov_plan ? '#7FA23A' : '#8EA0AF',
                          color: area.in_gov_plan ? '#5C7A22' : '#67788A' }}>
@@ -111,37 +118,92 @@ function Detail({ area, narr, nodes, zones, onClose }) {
         {n.headline && <p className="mt-4 text-[15px] leading-relaxed text-wb-slateDk font-medium">{n.headline}</p>}
       </div>
 
-      {/* ---- the two answers, side by side ---- */}
+      {/* ---- the two recommendations, side by side ---- */}
       <div className="grid lg:grid-cols-2 border-b border-wb-line">
         <div className="p-6 border-b lg:border-b-0 lg:border-r border-wb-line">
-          <div className="flex items-center gap-2 mb-1">
-            <span className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: TOURISM_BLUE }} />
-            <h4 className="text-[15px] font-bold" style={{ color: TOURISM_BLUE }}>
-              Where to invest in tourism infrastructure
+          <div className="eyebrow mb-2" style={{ color: TOURISM_BLUE }}>Tourism infrastructure</div>
+          <div className="flex items-center gap-2.5 mb-2">
+            <span className="w-3 h-3 rounded-sm"
+              style={{ backgroundColor: INFRA_LEVELS[n.infrastructure?.level]?.color ?? TOURISM_BLUE }} />
+            <h4 className="text-[17px] font-bold text-wb-slateDk">
+              {n.infrastructure?.label ?? '—'}
             </h4>
           </div>
-          <p className="text-[11.5px] text-wb-muted mb-4">
-            {nodes.length
-              ? `${nodes.length} site${nodes.length === 1 ? '' : 's'} with road access and a settlement within reach`
-              : 'No site here passes the access test'}
-          </p>
-          <Bullets items={n.tourism_investment} colour={TOURISM_BLUE} />
+          <p className="prose-wb text-[13px] text-wb-slate mb-4">{n.infrastructure?.rationale}</p>
+          <dl className="space-y-3">
+            {(n.infrastructure?.actions ?? []).map(([k, v], i) => (
+              <div key={i} className="border-l-2 pl-3" style={{ borderColor: '#CBDCE8' }}>
+                <dt className="text-[13px] font-bold text-wb-slateDk">{k}</dt>
+                <dd className="prose-wb text-[13px] mt-0.5">{v}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
+
         <div className="p-6 bg-wb-green/[0.035]">
-          <div className="flex items-center gap-2 mb-1">
-            <span className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: NATURE_GREEN }} />
-            <h4 className="text-[15px] font-bold" style={{ color: NATURE_GREEN }}>
-              Where to invest in nature
-            </h4>
+          <div className="eyebrow mb-2" style={{ color: NATURE_GREEN }}>Nature</div>
+          <div className="flex items-center gap-2.5 mb-2">
+            <span className="w-3 h-3 rounded-sm"
+              style={{ backgroundColor: NATURE_LEVELS[n.nature?.level]?.color ?? NATURE_GREEN }} />
+            <h4 className="text-[17px] font-bold text-wb-slateDk">{n.nature?.label ?? '—'}</h4>
           </div>
-          <p className="text-[11.5px] text-wb-muted mb-4">
-            {zones.length
-              ? `${zones.length} ecosystem zone${zones.length === 1 ? '' : 's'} to protect or restore`
-              : 'No ecosystem action zone identified'}
-          </p>
-          <Bullets items={n.nature_investment} colour={NATURE_GREEN} />
+          <p className="prose-wb text-[13px] text-wb-slate mb-1">{n.nature?.rationale}</p>
+          {(n.nature?.protect_ha > 0 || n.nature?.restore_ha > 0) && (
+            <div className="flex gap-5 text-[12.5px] mb-4 mt-2">
+              {n.nature.protect_ha > 0 && (
+                <div><span className="font-bold text-wb-slateDk">
+                  {n.nature.protect_ha.toLocaleString()} ha</span>
+                  <span className="text-wb-muted"> to protect</span></div>
+              )}
+              {n.nature.restore_ha > 0 && (
+                <div><span className="font-bold text-wb-slateDk">
+                  {n.nature.restore_ha.toLocaleString()} ha</span>
+                  <span className="text-wb-muted"> to restore</span></div>
+              )}
+            </div>
+          )}
+          {['protect', 'restore'].map(kind => (
+            (n.nature?.[kind] ?? []).length > 0 && (
+              <div key={kind} className="mb-4">
+                <div className="text-[11px] font-bold uppercase tracking-wider mb-2"
+                  style={{ color: kind === 'protect' ? '#14513C' : '#5E8A3A' }}>
+                  {kind === 'protect' ? 'Protect' : 'Restore'}
+                </div>
+                <dl className="space-y-3">
+                  {n.nature[kind].map((z, i) => (
+                    <div key={i} className="border-l-2 pl-3"
+                      style={{ borderColor: kind === 'protect' ? '#9CCBB8' : '#C3DDA4' }}>
+                      <dt className="text-[13px] font-bold text-wb-slateDk capitalize">
+                        {z.ecosystem} — {z.hectares.toLocaleString()} ha
+                      </dt>
+                      <dd className="prose-wb text-[13px] mt-0.5">{z.rationale}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            )
+          ))}
         </div>
       </div>
+
+      {(n.sites ?? []).length > 0 && (
+        <div className="px-6 py-5 border-b border-wb-line bg-wb-wash">
+          <div className="eyebrow mb-3">Candidate sites for visitor infrastructure</div>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {n.sites.map((st, i) => (
+              <div key={i} className="card p-3.5">
+                <div className="font-bold text-[13.5px] text-wb-slateDk">{st.name}</div>
+                <div className="text-[11.5px] text-wb-muted mt-0.5 capitalize">{st.anchor_type}</div>
+                <div className="text-[11.5px] text-wb-slate mt-2">
+                  {st.n_assets} asset{st.n_assets === 1 ? '' : 's'} within 4 km ·
+                  {' '}{st.access_km.toFixed(1)} km to access ·
+                  {' '}{st.settlement_km.toFixed(1)} km to a settlement
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div className="p-6 grid gap-7 lg:grid-cols-[1fr_290px]">
         <div className="space-y-7 order-2 lg:order-1">
@@ -233,7 +295,8 @@ export default function Opportunities({ param }) {
   const { data: zoneFC } = useData('nature_zones.geojson')
   const [basemap, setBasemap] = useState('light')
   const [selId, setSelId] = useState(param || null)
-  const [fAction, setFAction] = useState('ALL')
+  const [colourBy, setColourBy] = useState('infra')   // 'infra' | 'nature'
+  const [fLevel, setFLevel] = useState('ALL')
   const [showGov, setShowGov] = useState(false)
   const [showNodes, setShowNodes] = useState(true)
 
@@ -241,8 +304,10 @@ export default function Opportunities({ param }) {
 
   const areas = useMemo(() =>
     opps ? opps.features.map(f => f.properties).sort((a, b) => a.rank - b.rank) : [], [opps])
+  const levelKey = colourBy === 'infra' ? 'infra_level' : 'nature_level'
+  const levelDefs = colourBy === 'infra' ? INFRA_LEVELS : NATURE_LEVELS
   const shown = useMemo(() =>
-    areas.filter(a => fAction === 'ALL' || a.action === fAction), [areas, fAction])
+    areas.filter(a => fLevel === 'ALL' || a[levelKey] === fLevel), [areas, fLevel, levelKey])
 
   const selected = areas.find(a => a.cluster_id === selId) || null
   const selNarr = narr?.areas?.find(n => n.cluster_id === selId) || null
@@ -265,18 +330,17 @@ export default function Opportunities({ param }) {
         paint: { 'line-color': '#C9A800', 'line-width': 1.8 } })
     }
 
+    const colourMatch = ['match', ['get', levelKey],
+      ...Object.entries(levelDefs).flatMap(([k, v]) => [k, v.color]), '#C7D2DA']
     out.push({ id: 'opp-fill', data: filtered, type: 'fill',
       paint: {
-        'fill-color': ['match', ['get', 'action'],
-          'PROTECT', ACTIONS.PROTECT.color, 'INVEST', ACTIONS.INVEST.color,
-          'ADAPT', ACTIONS.ADAPT.color, 'MANAGE', ACTIONS.MANAGE.color, '#999'],
-        'fill-opacity': ['case', ['==', ['get', 'cluster_id'], selId ?? ''], 0.72, 0.40],
+        'fill-color': colourMatch,
+        'fill-opacity': ['case', ['==', ['get', 'cluster_id'], selId ?? ''], 0.78, 0.52],
       } })
     out.push({ id: 'opp-line', data: filtered, type: 'line', sourceOf: 'opp-fill',
       paint: {
-        'line-color': ['match', ['get', 'action'],
-          'PROTECT', '#1F5C4A', 'INVEST', '#2A5A7E', 'ADAPT', '#A8741B', 'MANAGE', '#6E343B', '#666'],
-        'line-width': ['case', ['==', ['get', 'cluster_id'], selId ?? ''], 3, 1.1],
+        'line-color': '#3F4C57',
+        'line-width': ['case', ['==', ['get', 'cluster_id'], selId ?? ''], 2.6, 0.7],
       } })
 
     // nature zones for the selected area
@@ -306,7 +370,7 @@ export default function Opportunities({ param }) {
         } })
     }
     return out
-  }, [opps, dests, zoneFC, nodeFC, shown, selId, showGov, showNodes])
+  }, [opps, dests, zoneFC, nodeFC, shown, selId, showGov, showNodes, levelKey, levelDefs])
 
   if (loading) return <Loading what="the opportunity areas" />
   if (error) return <div className="wrap py-16"><ErrorBox message={error} /></div>
@@ -319,13 +383,24 @@ export default function Opportunities({ param }) {
       <div className="wrap py-8">
         <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mb-4">
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className="text-[11px] uppercase tracking-wider text-wb-muted mr-1">Type</span>
-            {['ALL', 'INVEST', 'PROTECT', 'ADAPT', 'MANAGE'].map(k => (
-              <button key={k} onClick={() => setFAction(k)}
+            <span className="text-[11px] uppercase tracking-wider text-wb-muted mr-1">Show</span>
+            {[['infra', 'Tourism infrastructure'], ['nature', 'Nature']].map(([k, lbl]) => (
+              <button key={k} onClick={() => { setColourBy(k); setFLevel('ALL') }}
+                className={`px-3 py-1 rounded text-[11.5px] font-semibold border transition-colors
+                  ${colourBy === k ? 'bg-wb-slateDk text-white border-wb-slateDk'
+                                   : 'bg-white text-wb-slate border-wb-line hover:border-wb-blue'}`}>
+                {lbl}
+              </button>
+            ))}
+          </div>
+          <div className="flex flex-wrap items-center gap-1.5">
+            <span className="text-[11px] uppercase tracking-wider text-wb-muted mr-1">Filter</span>
+            {['ALL', ...Object.keys(levelDefs)].map(k => (
+              <button key={k} onClick={() => setFLevel(k)}
                 className={`px-2.5 py-1 rounded text-[11.5px] font-semibold border transition-colors
-                  ${fAction === k ? 'text-white border-transparent' : 'bg-white text-wb-slate border-wb-line hover:border-wb-blue'}`}
-                style={fAction === k ? { backgroundColor: k === 'ALL' ? '#4D5C69' : ACTIONS[k].color } : {}}>
-                {k === 'ALL' ? 'All' : ACTIONS[k].label}
+                  ${fLevel === k ? 'text-white border-transparent' : 'bg-white text-wb-slate border-wb-line hover:border-wb-blue'}`}
+                style={fLevel === k ? { backgroundColor: k === 'ALL' ? '#4D5C69' : levelDefs[k].color } : {}}>
+                {k === 'ALL' ? 'All' : levelDefs[k].label}
               </button>
             ))}
           </div>
@@ -347,9 +422,12 @@ export default function Opportunities({ param }) {
             <div className="absolute bottom-6 left-3 z-10 bg-white/95 backdrop-blur rounded-md
                             border border-wb-line shadow px-3.5 py-3">
               <div className="space-y-1.5">
-                {Object.values(ACTIONS).filter(a => a.key !== 'NONE').map(a => (
-                  <div key={a.key} className="flex items-center gap-2 text-[11.5px] text-wb-slate">
-                    <span className="w-3.5 h-3.5 rounded-sm" style={{ backgroundColor: a.color }} />{a.label}
+                <div className="text-[10.5px] font-bold uppercase tracking-wider text-wb-slateDk pb-0.5">
+                  {colourBy === 'infra' ? 'Tourism infrastructure' : 'Nature'}
+                </div>
+                {Object.entries(levelDefs).map(([k, v]) => (
+                  <div key={k} className="flex items-center gap-2 text-[11.5px] text-wb-slate">
+                    <span className="w-3.5 h-3.5 rounded-sm" style={{ backgroundColor: v.color }} />{v.label}
                   </div>
                 ))}
                 <div className="pt-1.5 mt-1.5 border-t border-wb-line space-y-1.5">
@@ -399,11 +477,24 @@ export default function Opportunities({ param }) {
                 <div className="text-[11.5px] text-wb-muted mt-1">
                   {a.districts?.split('; ')[0]} · {Math.round(a.area_km2).toLocaleString()} km²
                 </div>
-                <div className="mt-3 flex flex-wrap gap-1.5 text-[10.5px]">
-                  <span className="px-1.5 py-0.5 rounded font-semibold text-white"
-                    style={{ backgroundColor: TOURISM_BLUE }}>{nn} tourism site{nn === 1 ? '' : 's'}</span>
-                  <span className="px-1.5 py-0.5 rounded font-semibold text-white"
-                    style={{ backgroundColor: NATURE_GREEN }}>{nz} nature zone{nz === 1 ? '' : 's'}</span>
+                <div className="mt-3 space-y-1.5">
+                  <div className="flex items-center gap-2 text-[11.5px]">
+                    <span className="w-2.5 h-2.5 rounded-sm shrink-0"
+                      style={{ backgroundColor: INFRA_LEVELS[a.infra_level]?.color ?? '#C7D2DA' }} />
+                    <span className="text-wb-muted">Infrastructure:</span>
+                    <span className="font-semibold text-wb-slateDk">{a.infra_label ?? '—'}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-[11.5px]">
+                    <span className="w-2.5 h-2.5 rounded-sm shrink-0"
+                      style={{ backgroundColor: NATURE_LEVELS[a.nature_level]?.color ?? '#CFD9CE' }} />
+                    <span className="text-wb-muted">Nature:</span>
+                    <span className="font-semibold text-wb-slateDk">{a.nature_label ?? '—'}</span>
+                  </div>
+                  <div className="text-[11px] text-wb-muted pt-0.5">
+                    {nn} site{nn === 1 ? '' : 's'} · {nz} ecosystem zone{nz === 1 ? '' : 's'}
+                    {a.protect_ha > 0 ? ` · ${Number(a.protect_ha).toLocaleString()} ha to protect` : ''}
+                    {a.restore_ha > 0 ? ` · ${Number(a.restore_ha).toLocaleString()} ha to restore` : ''}
+                  </div>
                 </div>
                 <div className="mt-3 pt-2.5 border-t border-wb-line text-[11px] font-semibold"
                   style={{ color: a.in_gov_plan ? '#5C7A22' : '#8EA0AF' }}>

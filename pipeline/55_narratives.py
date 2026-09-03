@@ -16,6 +16,7 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).parent))
 from common import PROC, WEB_DATA, log  # noqa: E402
 from jobs_model import RANGES, estimate  # noqa: E402
+import recommendations as rec  # noqa: E402
 
 
 def sfield(r, name: str) -> str:
@@ -417,6 +418,8 @@ def main() -> None:
         nodes = nodes_all[nodes_all.area_id == r.cluster_id] if len(nodes_all) else nodes_all
         zones = zones_all[zones_all.area_id == r.cluster_id] if len(zones_all) else zones_all
         jobs = jobs_block(r, nodes, zones)
+        infra = rec.infrastructure(r, nodes)
+        nat = rec.nature(r, zones)
         out.append({
             "cluster_id": r.cluster_id, "rank": int(r.rank), "name": str(r.name),
             "action": r.action, "in_gov_plan": int(r.in_gov_plan),
@@ -433,6 +436,13 @@ def main() -> None:
                 f"protection gap {r.protection_gap:.0f}/100."),
             "resilience": resilience_text(r),
             "conservation_action": conservation_action(r),
+            "infrastructure": infra,
+            "nature": nat,
+            "sites": [{"name": n.name, "anchor_type": n.anchor_type,
+                       "n_assets": int(n.n_assets), "access_km": float(n.road_km),
+                       "settlement_km": float(n.settlement_km),
+                       "asset_mix": str(n.asset_mix), "assets": str(n.assets)}
+                      for n in nodes.itertuples()] if len(nodes) else [],
             "tourism_investment": tourism_investment(r, nodes),
             "nature_investment": nature_investment(r, zones),
             "jobs": jobs["narrative"],

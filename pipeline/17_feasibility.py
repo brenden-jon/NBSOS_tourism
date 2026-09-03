@@ -9,7 +9,14 @@ this tool should be talking about.
 Three screens are computed here and applied as HARD GATES on development recommendations
 in step 40, rather than as soft score penalties:
 
-  road_access_km    distance to the nearest mapped road of tertiary class or better
+  access_km         distance to the nearest ACCESS POINT - a road, or a marina, ferry
+                    terminal or airstrip. Panama's tourism is substantially island-based
+                    (Bocas del Toro, Las Perlas, Guna Yala, the Golfo de Chiriqui
+                    archipelagos), and an earlier version of this screen used road distance
+                    alone. That excluded 131 high-attraction coastal and island cells -
+                    including Bocas del Toro nearshore, three hours from a gateway - purely
+                    because islands do not have roads to them. Boats and airstrips are how
+                    those destinations are reached, and they count.
   remoteness        modelled travel time to the nearest tourism gateway
   advisory_zone     the Darien Gap border region
 
@@ -40,6 +47,8 @@ ROAD_CLASSES = ["motorway", "trunk", "primary", "secondary", "tertiary",
                 "unclassified", "motorway_link", "trunk_link", "primary_link", "secondary_link"]
 
 BORDER_BUFFER_KM = 40
+MAX_ACCESS_KM = 15      # a road, pier or airstrip within this counts as reachable
+MAX_GATEWAY_H = 8
 
 
 def main() -> None:
@@ -55,6 +64,23 @@ def main() -> None:
     out["dist_road_km"] = (cent.distance(road_union) / 1000).round(2).values
     log(f"  road distance: median {out.dist_road_km.median():.1f} km, "
         f"cells >10 km from a road: {int((out.dist_road_km > 10).sum())}")
+
+    # ---- distance to the nearest maritime or air access point ----
+    pois = gpd.read_file("data/processed/osm_pois.geojson").to_crs(CRS_M)
+    access_pts = pois[pois.theme.isin(["marina_port", "airport"])]
+    if len(access_pts):
+        ap_union = access_pts.geometry.union_all()
+        out["dist_port_air_km"] = (cent.distance(ap_union) / 1000).round(2).values
+    else:
+        out["dist_port_air_km"] = 9999.0
+    out["dist_access_km"] = out[["dist_road_km", "dist_port_air_km"]].min(axis=1).round(2)
+    out["access_mode"] = np.where(out.dist_road_km <= out.dist_port_air_km,
+                                  "road", "boat or air")
+    log(f"  access distance: median {out.dist_access_km.median():.1f} km; "
+        f"cells reachable within {MAX_ACCESS_KM} km: "
+        f"{int((out.dist_access_km <= MAX_ACCESS_KM).sum())}")
+    log(f"  cells whose nearest access is maritime/air: "
+        f"{int((out.access_mode == 'boat or air').sum())}")
 
     # ---- distance to the nearest settlement ----
     places = gpd.read_file("data/raw/stri_places.geojson").to_crs(CRS_M)
@@ -84,13 +110,15 @@ def main() -> None:
     tt = pd.read_csv(PROC / "grid_access.csv").set_index("h3").tt_gateway_h
     out["tt_gateway_h"] = out.h3.map(tt).values
     out["dev_feasible"] = (
-        (out.dist_road_km <= 10)
-        & (out.tt_gateway_h <= 8)
+        (out.dist_access_km <= MAX_ACCESS_KM)
+        & (out.tt_gateway_h <= MAX_GATEWAY_H)
         & (out.advisory_zone == 0)
     ).astype(int)
     reasons = pd.Series("feasible", index=out.index)
-    reasons[out.dist_road_km > 10] = "no road access within 10 km"
-    reasons[out.tt_gateway_h > 8] = "over 8 h from the nearest tourism gateway"
+    reasons[out.dist_access_km > MAX_ACCESS_KM] = (
+        f"no road, pier or airstrip within {MAX_ACCESS_KM} km")
+    reasons[out.tt_gateway_h > MAX_GATEWAY_H] = (
+        f"over {MAX_GATEWAY_H} h from the nearest tourism gateway")
     reasons[out.advisory_zone == 1] = "Darien Gap border region (standing travel advisories)"
     out["infeasible_reason"] = np.where(out.dev_feasible == 1, None, reasons)
 

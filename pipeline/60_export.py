@@ -110,6 +110,18 @@ def main() -> None:
     log(f"  wrote grid_detail.json ({len(detail)} cells, {len(det_cols)} fields)")
 
     opp = gpd.read_file("data/processed/opportunity_areas.geojson")
+    # carry the two headline recommendations onto the polygons so the map can colour by them
+    narr_path = PROC / "narratives.json"
+    if narr_path.exists():
+        na = json.loads(narr_path.read_text())["areas"]
+        lut = {a["cluster_id"]: a for a in na}
+        opp["infra_level"] = opp.cluster_id.map(lambda c: lut.get(c, {}).get("infrastructure", {}).get("level"))
+        opp["infra_label"] = opp.cluster_id.map(lambda c: lut.get(c, {}).get("infrastructure", {}).get("label"))
+        opp["nature_level"] = opp.cluster_id.map(lambda c: lut.get(c, {}).get("nature", {}).get("level"))
+        opp["nature_label"] = opp.cluster_id.map(lambda c: lut.get(c, {}).get("nature", {}).get("label"))
+        opp["n_sites"] = opp.cluster_id.map(lambda c: len(lut.get(c, {}).get("sites", [])))
+        opp["protect_ha"] = opp.cluster_id.map(lambda c: lut.get(c, {}).get("nature", {}).get("protect_ha", 0))
+        opp["restore_ha"] = opp.cluster_id.map(lambda c: lut.get(c, {}).get("nature", {}).get("restore_ha", 0))
     save_geojson(opp.drop(columns=["h3_cells"], errors="ignore"),
                  "opportunity_areas", decimals=4, to_web=True)
 
