@@ -82,7 +82,7 @@ export default function Explorer() {
           'fill-color': matchExpr(V.field, V.classes, '#E4E9ED'),
           'fill-opacity': view === 'tourism' ? 0.88 : 0.8,
         } })
-      out.push({ id: 'grid-edge', data: grid, type: 'line',
+      out.push({ id: 'grid-edge', data: grid, type: 'line', sourceOf: 'grid-cat',
         paint: { 'line-color': '#FFFFFF', 'line-width': 0.3, 'line-opacity': 0.45 } })
     }
     if (pas && (showPA || view === 'protection')) {
@@ -92,7 +92,7 @@ export default function Explorer() {
             '100% Marine', '#3FA9C4', 'Marine', '#3FA9C4',
             'Land and Marine', '#3E9B7E', '#5C8A2E'],
           'fill-opacity': view === 'protection' ? 0.45 : 0.22 } })
-      out.push({ id: 'pa-line', data: pas, type: 'line',
+      out.push({ id: 'pa-line', data: pas, type: 'line', sourceOf: 'pa-fill',
         paint: { 'line-color': '#1F5C4A', 'line-width': view === 'protection' ? 1.1 : 0.7 } })
     }
     if (dests && showGov) {

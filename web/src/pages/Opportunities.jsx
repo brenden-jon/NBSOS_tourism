@@ -160,7 +160,7 @@ export default function Opportunities({ param }) {
           'ADAPT', ACTIONS.ADAPT.color, 'MANAGE', ACTIONS.MANAGE.color, '#999'],
         'fill-opacity': ['case', ['==', ['get', 'cluster_id'], selId ?? ''], 0.75, 0.42],
       } })
-    out.push({ id: 'opp-line', data: filtered, type: 'line',
+    out.push({ id: 'opp-line', data: filtered, type: 'line', sourceOf: 'opp-fill',
       paint: {
         'line-color': ['match', ['get', 'action'],
           'PROTECT', '#1F5C4A', 'INVEST', '#2A5A7E', 'ADAPT', '#A8741B', 'MANAGE', '#6E343B', '#666'],

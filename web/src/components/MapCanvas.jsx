@@ -39,8 +39,10 @@ const layerId = (id) => `${PREFIX}${id}`
 /**
  * Declarative MapLibre wrapper.
  *
- * `layers`: [{ id, data, type, paint, layout, filter, beforeId }] — each entry becomes one
- * GeoJSON source and one layer.
+ * `layers`: [{ id, data, type, paint, layout, filter, beforeId, sourceOf }] — each entry
+ * becomes one layer. It creates its own GeoJSON source unless `sourceOf` names another
+ * layer whose source it should share: a fill and its outline are the same 3,417 polygons,
+ * and giving each its own source doubles the tiling work for no benefit.
  *
  * Layer state is applied through a single `apply()` reading from a ref rather than from
  * effect closures. Style changes (basemap switches, and MapLibre's own async style load)
@@ -56,7 +58,6 @@ export default function MapCanvas({
   const mapRef = useRef(null)
   const appliedRef = useRef(new Map())   // layer id -> last applied {data, paint, filter}
   const retryRef = useRef(null)
-  const retriesRef = useRef(0)
   const layersRef = useRef(layers)
   const clickRef = useRef(onFeatureClick)
   const cursorRef = useRef(cursorLayers)
@@ -75,15 +76,18 @@ export default function MapCanvas({
     let styleReady = false
     try { styleReady = m.isStyleLoaded() } catch { styleReady = false }
     if (!styleReady) {
-      // A pending 'idle' is not guaranteed to fire again if the map is already quiescent,
-      // so poll briefly instead. Bounded so a genuinely broken style cannot spin forever.
-      if (retryRef.current === null && retriesRef.current < 40) {
-        retriesRef.current += 1
-        retryRef.current = setTimeout(() => { retryRef.current = null; apply() }, 250)
+      // Keep trying until the style is ready. A pending 'idle' is not guaranteed to fire
+      // again once the map is quiescent, and a fixed budget is wrong too: on a slow
+      // connection - or in a throttled/background tab, where MapLibre's render loop stalls
+      // and 'load' may never fire at all - the style can take far longer than any figure
+      // worth hard-coding. Each tick is trivial and the timer is cleared on unmount, so
+      // there is no runaway.
+      if (retryRef.current === null) {
+        retryRef.current = setTimeout(() => { retryRef.current = null; apply() }, 300)
       }
       return
     }
-    retriesRef.current = 0
+    if (retryRef.current) { clearTimeout(retryRef.current); retryRef.current = null }
     const current = layersRef.current || []
     const wanted = new Set(current.map(l => layerId(l.id)))
     const applied = appliedRef.current
@@ -97,8 +101,9 @@ export default function MapCanvas({
 
     for (const cfg of current) {
       if (!cfg?.data) continue
-      const sid = srcId(cfg.id)
+      const sid = srcId(cfg.sourceOf || cfg.id)
       const lid = layerId(cfg.id)
+      const ownsSource = !cfg.sourceOf
       const prev = applied.get(lid)
       const paintKey = JSON.stringify(cfg.paint || {})
       const layoutKey = JSON.stringify(cfg.layout || {})
@@ -107,7 +112,7 @@ export default function MapCanvas({
       const src = m.getSource(sid)
       if (!src) {
         m.addSource(sid, { type: 'geojson', data: cfg.data })
-      } else if (!prev || prev.data !== cfg.data) {
+      } else if (ownsSource && (!prev || prev.data !== cfg.data)) {
         // Only push data when the reference actually changed. Calling setData on every
         // event re-tiles the source, which fires another event, which calls apply again -
         // an idle/setData loop that pegs the renderer and never paints.

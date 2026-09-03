@@ -108,7 +108,7 @@ export default function Analysis() {
     if (grid) {
       out.push({ id: 'grid-fill', data: grid, type: 'fill', filter,
         paint: { 'fill-color': colourExpr(mode), 'fill-opacity': 0.82 } })
-      out.push({ id: 'grid-line', data: grid, type: 'line', filter,
+      out.push({ id: 'grid-line', data: grid, type: 'line', filter, sourceOf: 'grid-fill',
         paint: { 'line-color': '#ffffff', 'line-width': 0.25, 'line-opacity': 0.5 } })
     }
     if (pas && showPA) {
@@ -123,7 +123,7 @@ export default function Analysis() {
         } })
     }
     if (sel) {
-      out.push({ id: 'grid-sel', data: grid, type: 'line',
+      out.push({ id: 'grid-sel', data: grid, type: 'line', sourceOf: 'grid-fill',
         filter: ['==', ['get', 'h3'], sel.h3],
         paint: { 'line-color': '#2E3944', 'line-width': 2.6 } })
     }

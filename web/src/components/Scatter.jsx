@@ -10,20 +10,28 @@ import { ACTIONS } from '../lib/constants'
  * are emitted as plain <circle> nodes with no listeners, and hover is resolved by a single
  * mousemove on the SVG doing a nearest-point search.
  */
+const MAX_POINTS = 1600
+
 export default function Scatter({ features, x = 'TDL', y = 'NAV', xLabel, yLabel, height = 380 }) {
   const [hover, setHover] = useState(null)
   const svgRef = useRef(null)
   const W = 560, H = height, P = { t: 16, r: 16, b: 44, l: 48 }
   const iw = W - P.l - P.r, ih = H - P.t - P.b
 
-  const pts = useMemo(() => (features || [])
-    .filter(f => f && f[x] != null && f[y] != null)
+  const pts = useMemo(() => {
+    const all = (features || []).filter(f => f && f[x] != null && f[y] != null)
+    // Evenly sample rather than draw every cell. At 3,400+ points the cloud is already
+    // saturated, and the DOM cost competes with the map on the same page for main-thread
+    // time. The shape of the distribution is unchanged.
+    const step = Math.max(1, Math.ceil(all.length / MAX_POINTS))
+    return all.filter((_, i) => i % step === 0)
     .map(f => ({
       cx: P.l + (Number(f[x]) / 100) * iw,
       cy: P.t + ih - (Number(f[y]) / 100) * ih,
       c: ACTIONS[f.primary || f.action]?.color || '#8EA0AF',
       d: f,
-    })), [features, x, y, iw, ih])
+    }))
+  }, [features, x, y, iw, ih])
 
   function onMove(e) {
     const svg = svgRef.current
