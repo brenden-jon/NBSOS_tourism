@@ -21,3 +21,30 @@ export function useData(file) {
 
   return state
 }
+
+
+/**
+ * One-shot staleness check. Compares the build id compiled into this bundle against the one
+ * the server is currently publishing; if they differ, the browser is running a cached bundle
+ * from a previous deploy and is reloaded once. Guarded by sessionStorage so a genuine
+ * mismatch can never turn into a reload loop.
+ */
+const RELOAD_FLAG = 'tnos-reloaded-for'
+
+export async function ensureLatestBuild() {
+  // eslint-disable-next-line no-undef
+  const mine = typeof __BUILD_ID__ !== 'undefined' ? __BUILD_ID__ : null
+  if (!mine) return
+  try {
+    const r = await fetch(`${import.meta.env.BASE_URL}version.json?t=${Date.now()}`,
+      { cache: 'no-store' })
+    if (!r.ok) return
+    const { build } = await r.json()
+    if (!build || build === mine) return
+    if (sessionStorage.getItem(RELOAD_FLAG) === build) return  // already tried for this build
+    sessionStorage.setItem(RELOAD_FLAG, build)
+    window.location.reload()
+  } catch {
+    /* offline or blocked - keep showing what we have */
+  }
+}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import Gate from './components/Gate.jsx'
+import { ensureLatestBuild } from './lib/useData'
 import Overview from './pages/Overview.jsx'
 import Strategy from './pages/Strategy.jsx'
 import Explorer from './pages/Explorer.jsx'
@@ -116,6 +117,7 @@ function Footer() {
 
 export default function App() {
   const { id, param } = useHashRoute()
+  useEffect(() => { ensureLatestBuild() }, [])
   const Page = PAGES.find(p => p.id === id).C
   return (
     <Gate>
