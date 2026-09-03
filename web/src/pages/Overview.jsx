@@ -44,7 +44,7 @@ export default function Overview() {
         {s && (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Stat value={s.cells.toLocaleString()} label="Screening cells"
-              sub={`${s.cell_km2} km² hexagons over ${s.land_km2.toLocaleString()} km² of land plus a ${s.coastal_band_km} km coastal band`} />
+              sub={`${s.cell_km2} km² hexagons over ${s.land_km2.toLocaleString()} km² of land plus tourism-relevant coastal water`} />
             <Stat value={s.opportunity_areas} label="Opportunity areas"
               sub="Contiguous clusters of strongly-scoring cells, named and written up" />
             <Stat value={`${s.share_in_gov_dest}%`} label="Of Panama inside a priority destination"

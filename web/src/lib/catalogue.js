@@ -63,7 +63,7 @@ export const NOT_USED = [
 
 export const STEPS = [
   { n: '10–12', t: 'Fetch', d: 'National layers from the STRI GIS Portal, OSM features via Overpass, and the government strategy encoded as structured data with derived destination polygons.' },
-  { n: '20', t: 'Grid', d: 'H3 resolution-6 hexagons (~37 km²) covering all land plus a 30 km band measured from every coastline, so island archipelagos get real marine cells. 4,434 cells.' },
+  { n: '20', t: 'Grid', d: 'H3 resolution-6 hexagons (~37 km²) covering all land plus tourism-relevant coastal water — 10 km from every coastline, extended to 30 km over shallow shelf and marine protected areas — so island archipelagos get real marine cells. 3,417 cells.' },
   { n: '13–16', t: 'Measure', d: 'Zonal statistics from WorldCover, Copernicus DEM and WorldPop; GBIF richness; a 500 m least-cost travel-time surface; and vector joins for protection, ecosystems, bathymetry and tourism assets.' },
   { n: '30', t: 'Indicators', d: 'Six named families built from ~25 sub-indicators, each percentile-ranked. Zone-aware weighting so marine cells are not penalised for having no forest.' },
   { n: '40', t: 'Classify', d: 'Continuous fit scores for four action types; the strongest becomes the primary recommendation and the others are retained as secondary. Development fit is damped where sensitivity is high.' },

@@ -29,16 +29,19 @@ export default function Methods() {
           </div>
           <Callout title="Unit of analysis" tone="blue">
             <p>
-              H3 resolution-6 hexagons, about 37 km² each. 4,434 cells cover Panama's land area and
-              a 30 km band measured from every coastline — including island coastlines, so Bocas del
-              Toro, Guna Yala, Las Perlas, Coiba and Taboga get genuine marine cells rather than
-              being clipped at the shore.
+              H3 resolution-6 hexagons, about 37 km² each. 3,417 cells cover Panama's land area
+              plus the coastal water that tourism actually uses: 10 km from every coastline —
+              island coastlines included, so Bocas del Toro, Guna Yala, Las Perlas, Coiba and
+              Taboga get genuine marine cells rather than being clipped at the shore — extended
+              out to 30 km wherever shallow shelf under 20 m or a marine protected area makes the
+              water relevant.
             </p>
             <p className="mt-2.5">
               All areas and distances are computed in UTM zone 17N (EPSG:32617); display is WGS 84.
+              Open ocean beyond that is searched but not scored: it produced roughly 1,000
+              near-empty cells that dragged every coastal aggregate down and cluttered the map.
               Panama's very large offshore marine protected areas — Banco Volcán and Cordillera de
-              Coiba — extend far beyond the band and are carried as context, not scored, because
-              tourism relevance there is negligible.
+              Coiba — remain available as context layers throughout.
             </p>
           </Callout>
         </div>

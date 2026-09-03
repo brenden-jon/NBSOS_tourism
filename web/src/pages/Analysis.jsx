@@ -133,7 +133,7 @@ export default function Analysis() {
   return (
     <>
       <Hero eyebrow="National screening" title="The analysis, cell by cell"
-        lead="Every 37 km² hexagon across Panama's land area and a 30 km coastal band, scored on six indicator families and classified into a recommendation type. Colour the map by any indicator; click any cell to see the evidence behind it." />
+        lead="Every 37 km² hexagon across Panama's land area and the coastal water around it — 10 km from every coastline, extended to 30 km over shallow shelf and marine protected areas — scored on six indicator families and classified into a recommendation type. Colour the map by any indicator; click any cell to see the evidence behind it." />
 
       <div className="wrap py-8">
         <div className="flex flex-wrap items-center gap-2 mb-4">

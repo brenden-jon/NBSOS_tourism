@@ -19,7 +19,7 @@ protected-area designation recommendation or a jobs forecast.
 
 ## What it produces
 
-- A national screening grid: **4,434 H3 resolution-6 hexagons** (~37 km²) covering Panama's
+- A national screening grid: **3,417 H3 resolution-6 hexagons** (~37 km²) covering Panama's
   land area plus a 30 km coastal band measured from *every* coastline, so island
   archipelagos get genuine marine cells.
 - Six named indicator families per cell — nature attraction, tourism development,
@@ -27,7 +27,7 @@ protected-area designation recommendation or a jobs forecast.
   named, inspectable sub-indicators. **No single opaque composite index.**
 - Four recommendation types per cell, as continuous fit scores: **Protect / Restore**,
   **Invest / Develop**, **Adapt / Strengthen**, **Manage / Avoid**.
-- **Named Opportunity Areas**: contiguous clusters of strongly-scoring cells, each with a
+- **28 named Opportunity Areas**: contiguous clusters of strongly-scoring cells, each with a
   generated investment narrative — assets, biodiversity, protection status, resilience,
   recommended conservation action, recommended tourism investment, job channels, risks, and
   what further analysis is needed.
@@ -37,7 +37,7 @@ protected-area designation recommendation or a jobs forecast.
 ### The government plan is an input, not a boundary
 
 The analysis runs across all of Panama. The ATP priority destinations are overlaid on the
-results afterwards. Only ~14.5% of the screening grid falls inside a priority destination, so
+results afterwards. Only ~19% of the screening grid falls inside a priority destination, so
 opportunities can and do surface both inside and outside declared policy geography. That
 comparison is a deliverable, not a filter.
 
@@ -52,7 +52,7 @@ pipeline/        numbered, reproducible analysis steps (Python)
   11_fetch_osm.py        tourism, nature and transport features via Overpass
   12_gov_strategy.py     ATP master plan encoded as data + derived destination polygons
   gov_strategy_source.py the structured encoding of the plan itself
-  20_grid.py             H3 grid over land + 30 km coastal band
+  20_grid.py             H3 grid over land + tourism-relevant coastal water
   13_rasters.py          WorldCover / Copernicus DEM / WorldPop zonal statistics
   14_gbif.py             vertebrate species richness and recording effort
   15_access.py           500 m least-cost travel-time surface

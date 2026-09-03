@@ -20,18 +20,24 @@ ecological sensitivity is high.
 
 ## 2. Unit of analysis
 
-H3 resolution-6 hexagons, mean area ~37 km². **4,434 cells** cover:
+H3 resolution-6 hexagons, mean area ~37 km². **3,417 cells** cover:
 
 - all of Panama's land area (74,274 km² as measured from the official province layer, against a
   reference figure of ~75,420 km²), plus
-- a **30 km coastal band measured from every coastline**, island coastlines included.
+- the coastal water tourism actually uses: **10 km from every coastline**, island coastlines
+  included, **extended to 30 km wherever shallow shelf (<20 m) or a marine protected area makes
+  the water relevant**.
 
 The band is computed by buffering the dissolved national land polygon and subtracting it, so
 Bocas del Toro, Guna Yala, Las Perlas, Coiba, Taboga and the Islas Secas all generate genuine
 marine cells rather than being clipped at the shore.
 
-Cells are typed by land fraction: `inland` (≥98% land), `coastal` (2–98%), `nearshore` (marine
-but within 5 km of land), `marine`. Panama's very large offshore MPAs — Banco Volcán
+The 30 km buffer is a *search* extent, not an analysis extent. Scoring all of it produced ~1,000
+near-empty open-ocean cells that dragged every coastal aggregate down and cluttered the map, so
+open water with no shelf and no designation is dropped.
+
+Cells are typed by land fraction: `inland` (≥98% land), `coastal` (2–98%), `nearshore` (water
+within 10 km of land), `marine` (retained only over shelf or inside an MPA). Panama's very large offshore MPAs — Banco Volcán
 (9.3 M ha) and Cordillera de Coiba (6.8 M ha) — extend well beyond the band and are carried as
 context layers rather than scored cells, because tourism relevance there is negligible.
 
@@ -97,29 +103,57 @@ hydrodynamic or probabilistic modelling has been done and no avoided damages are
 ## 5. Classification
 
 Four action types, each scored continuously so that a place can be several things at once.
+Each fit is a **weighted geometric mean** of 0–100 factors (weights sum to 1, values floored
+at 1):
 
 ```
-fit_invest  = (0.34·NAV + 0.22·ACC + 0.24·(100−TDL) + 0.20·JOBS) × damp
-fit_protect =  0.42·BCV + 0.26·(100−strict protection) + 0.20·max(NAV,RES) + 0.12·JOBS
-fit_adapt   =  0.38·TDL + 0.30·RES + 0.20·BCV + 0.12·ACC
-fit_manage  =  0.45·BCV + 0.25·(any protection) + 0.30·pressure
+fit_invest  = geo(NAV·0.40, ACC·0.25, supply_headroom·0.20, JOBS·0.15) × damp
+fit_protect = geo(BCV·0.40, protection_headroom·0.28, max(NAV,RES)·0.22, JOBS·0.10)
+fit_adapt   = geo(TDL·0.40, RES·0.28, BCV·0.20, ACC·0.12)
+fit_manage  = geo(BCV·0.38, sensitivity·0.30, ACC·0.22, pressure·0.10)
 ```
 
 where
 
 ```
-sensitivity = 0.6·BCV + 0.4·strict protection
-damp        = 1 − 0.5·clip((sensitivity − 70)/30, 0, 1)
-pressure    = clip((BCV−60)/40, 0, 1) × clip((ACC−40)/60, 0, 1)
+sensitivity          = 0.6·BCV + 0.4·strict protection
+damp                 = 1 − 0.5·clip((sensitivity − 70)/30, 0, 1)
+supply_headroom      = clip(100 − TDL, 1, 100)
+protection_headroom  = clip(100 − strict protection, 1, 100)
+pressure             = 100 · clip((BCV−50)/50, 0, 1) · clip((ACC−35)/65, 0, 1)
 ```
 
-The strongest fit becomes the **primary** recommendation; any other action scoring ≥55 is kept
-as a **secondary** recommendation. That matters: the most interesting places in Panama are
-exactly those where "protect the reef" and "develop the snorkelling access" are the same
-recommendation.
+### Why geometric, not additive
+
+An additive score lets a missing condition be bought back by the others, and in a first pass
+that produced nonsense. Because most of Panama has no mapped tourism supply, the term
+`(100 − TDL)` sat near 100 almost everywhere and handed every empty cell ~24 free points of
+Invest fit — so cells with a nature-attraction score of 25 were being recommended for tourism
+development. "Manage / Avoid" landed on roadless Darién forest with an accessibility score of 7,
+where there is no visitor pressure to manage. A geometric mean makes each factor **necessary**:
+if attraction is low, no amount of accessibility or headroom rescues the score.
 
 `damp` is the deliberate asymmetry that stops the tool recommending construction in every
-accessible beautiful place.
+accessible beautiful place. `pressure` is what stops Manage / Avoid landing on the unreachable.
+
+### Comparing the four fits
+
+The four scores do not share a natural scale — protection headroom is high almost everywhere in
+Panama, so `fit_protect` sits structurally above `fit_invest`, and a raw argmax labelled 69% of
+the country "Protect". Each fit is therefore **ranked against its own national distribution**,
+and the primary recommendation is the action for which a cell ranks highest. The question
+becomes: *is this cell more exceptional as a protection case than as a development case?*
+
+Any action also ranking in the national top quartile is retained as a **secondary**
+recommendation. That matters: the most interesting places in Panama are exactly those where
+"protect the reef" and "develop the snorkelling access" are the same recommendation.
+
+### Spatial smoothing
+
+Before ranking, each fit is blended with a discounted share (0.40) of its immediate H3
+neighbours. Recommendations are regional — a destination, a reef system or a catchment spans
+several 37 km² cells — and ranking raw per-cell fits produced a salt-and-pepper map where
+neighbours flipped class on trivial differences.
 
 Two derived diagnostics are also carried:
 
@@ -128,10 +162,13 @@ Two derived diagnostics are also carried:
 
 ## 6. Opportunity Areas
 
-Within each action class, cells above the 80th percentile of that class's fit score are
+Within each action class, cells above the 85th percentile of that class's fit score are
 retained, joined into connected components over H3 adjacency, and kept where the component has
-≥3 cells (~110 km²). Each area is named from the protected area covering it, else the largest
-settlement or most prominent named feature inside it, else the dominant district.
+≥4 cells (~150 km²). This yields **28 areas**. Each area is named from authoritative geography only: a protected area covering ≥35% of it,
+else the government destination containing ≥50% of it, else the dominant district (or the two
+dominant districts). Naming from individual OSM points was tried and abandoned — it produced
+area names like "Mi jardín es su jardín" (a garden in Boquete) and "Panama Outdoor Adventures"
+(a tour operator).
 
 Areas are ranked by `fit × log(1 + cells)`, so a strong small cluster does not outrank a strong
 large one.
