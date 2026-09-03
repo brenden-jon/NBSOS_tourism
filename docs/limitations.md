@@ -5,10 +5,22 @@ deliberately blunt: a screening tool that overstates its own confidence is worse
 
 ## What this is not
 
-- **Not a flood-risk model.** The resilience family (RES) is a spatial coincidence measure —
-  protective ecosystems in front of low-lying people and assets, or catchment tree cover on
-  slopes above them. No hydrodynamic or probabilistic modelling has been undertaken and **no
-  avoided damages are estimated**. RES flags where such analysis would be worth doing.
+- **Not a flood-risk study.** Flood exposure comes from WRI Aqueduct Floods, a *global* model
+  at ~1 km. It does not resolve flood defences, urban drainage or Canal Zone water
+  infrastructure, so exposure is likely overstated where protection exists and understated in
+  small catchments the model omits. The nature-based protection estimate applies published
+  attenuation coefficients to mapped ecosystem extent — it is a screening calculation, **not a
+  hydrodynamic model, and no avoided damages are estimated**.
+- **Wave attenuation is not flood-depth reduction.** Mangrove and reef coefficients describe
+  wave energy. Aqueduct's coastal layer is a surge-plus-depth product. The two are related but
+  not equivalent, and the result should be read as "the share of wave energy existing
+  ecosystems remove from what reaches these people", not as people protected from flooding.
+- **Mangrove width is a proxy.** It is mangrove area divided by coastline length in the cell,
+  which is wrong wherever mangrove sits in a lagoon or estuary rather than as a shore-parallel
+  belt — common in the Gulf of Chiriquí and Bocas del Toro.
+- **Riverine NBS benefit is not quantified at all.** Catchment forest moderates runoff, but the
+  effect on peak flows at basin scale is contested. Catchments are ranked by exposure against
+  forest cover; no percentage reduction in flood peak is claimed or implied.
 - **Not a tourism master plan, feasibility study or ecological assessment.**
 - **Not a protected-area designation recommendation.** Areas classified *Protect / Restore* —
   including any implied new or extended marine protection — are analytical candidates for
@@ -25,6 +37,10 @@ used as a proxy for existing tourism development, but OSM coverage is best where
 already go. A low count partly reflects genuinely low development and partly reflects low
 mapping effort. Where an Opportunity Area shows zero mapped accommodation, that is a
 ground-truthing task, not a finding.
+
+**Threatened-species counts inherit GBIF's biases.** A cell shows threatened species where
+someone has recorded them and the species has an IUCN assessment. Unsurveyed ground reads as
+zero. The counts are a floor, not a census.
 
 **GBIF measures recording, not biodiversity.** Occurrence density is heavily biased toward
 research stations (Barro Colorado above all), roadsides and established birding sites. Richness

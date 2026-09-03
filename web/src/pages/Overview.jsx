@@ -17,8 +17,8 @@ const TABS = [
 
 const STEPS = [
   { n: '1', t: 'Divide the country', d: 'A national grid of 37 km² hexagons over all land and the coastal water tourism uses.' },
-  { n: '2', t: 'Measure each cell', d: 'Ecosystems, terrain, biodiversity records, protection status, existing tourism supply, modelled travel time and population — from open data.' },
-  { n: '3', t: 'Score six dimensions', d: 'Six indicator families, each built from sub-indicators that remain inspectable throughout.' },
+  { n: '2', t: 'Measure each cell', d: 'Ecosystems, terrain, biodiversity and threatened species, protection status, existing tourism supply, modelled travel time, population and modelled flood hazard — all from open data.' },
+  { n: '3', t: 'Score six dimensions', d: 'Six indicator families, each built from sub-indicators that remain inspectable throughout. Resilience is modelled: published mangrove and reef attenuation rates applied to the population standing in the modelled flood zone.' },
   { n: '4', t: 'Screen for feasibility', d: 'Places without road access, more than 8 hours from a gateway, or inside the Darién Gap advisory zone cannot receive a development recommendation.' },
   { n: '5', t: 'Classify and cluster', d: 'Each cell receives the recommendation its evidence supports, or none. Contiguous strong cells form named Opportunity Areas.' },
   { n: '6', t: 'Identify sites and zones', d: 'Within each area, locate specific sites for visitor infrastructure and specific zones for ecosystem protection or restoration.' },
@@ -65,7 +65,7 @@ export default function Overview() {
           </div>
           <Callout title="What it is not" tone="amber">
             <ul className="list-disc pl-5 space-y-1.5">
-              <li>Not a flood-risk model — resilience indicators are screening proxies and no avoided damages are estimated.</li>
+              <li>Not a flood-risk study — hazard comes from a global ~1 km model that cannot see flood defences or urban drainage, and no avoided damages are estimated.</li>
               <li>Not a tourism master plan, feasibility study or ecological assessment.</li>
               <li>Not a recommendation to designate protected areas — candidates need ecological, social, legal and stakeholder assessment.</li>
               <li>Not a jobs forecast — employment figures are order-of-magnitude ranges for a stated hypothetical package.</li>
@@ -123,7 +123,8 @@ export default function Overview() {
             ['ESA WorldCover 10 m', 'Land cover including mangrove, read remotely so nothing large is stored.'],
             ['Copernicus DEM & WorldPop', 'Terrain, relief and population at 30 m and 100 m.'],
             ['OpenStreetMap', 'Accommodation, attractions, beaches, trails, dive sites, marinas, roads — with its biases documented.'],
-            ['GBIF', '10.1 million vertebrate occurrence records, aggregated to species richness.'],
+            ['GBIF', '9.5 million vertebrate occurrence records, aggregated to species richness and to threatened (IUCN CR/EN/VU) richness — up to 81 threatened species in a single cell.'],
+            ['WRI Aqueduct Floods', 'Modelled 1-in-10 and 1-in-100 year riverine and coastal inundation at ~1 km, intersected with population at the hazard’s own resolution.'],
           ].map(([t, d]) => (
             <div key={t} className="card p-5">
               <div className="font-bold text-[14px] text-wb-slateDk">{t}</div>

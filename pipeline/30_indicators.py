@@ -103,6 +103,8 @@ def main() -> None:
     r = pd.read_csv(PROC / "grid_rasters.csv")
     v = pd.read_csv(PROC / "grid_vectors.csv")
     a = pd.read_csv(PROC / "grid_access.csv")
+    fl_path = PROC / "grid_flood.csv"
+    nbs_path = PROC / "grid_nbs.csv"
     gb_path = PROC / "grid_gbif.csv"
     d = grid.drop(columns="geometry").merge(r, on="h3").merge(v, on="h3").merge(a, on="h3")
     if gb_path.exists():
@@ -113,6 +115,13 @@ def main() -> None:
         d["gbif_records"] = 0
     for c in ["gbif_species", "gbif_records"]:
         d[c] = d[c].fillna(0)
+    for extra in (fl_path, nbs_path):
+        if extra.exists():
+            d = d.merge(pd.read_csv(extra), on="h3", how="left")
+        else:
+            log(f"  !! {extra.name} missing - resilience will fall back to proxies")
+    if "gbif_threatened" in d.columns:
+        d["gbif_threatened"] = d.gbif_threatened.fillna(0)
     n_cols = [c for c in d.columns if c.startswith("n_")]
     for c in n_cols:
         d[c] = d[c].fillna(0)
@@ -153,6 +162,13 @@ def main() -> None:
     # -- wildlife
     d["s_species"] = prank(d.gbif_species)
     d["s_records"] = prank(logn(d.gbif_records))
+    # Threatened (IUCN CR/EN/VU) species recorded in the cell. A place with 40 threatened
+    # species is a different conservation proposition from one with 40 common ones, and this
+    # is the single strongest biodiversity signal available without a restricted dataset.
+    if "gbif_threatened" in d.columns:
+        d["s_threatened"] = prank(d.gbif_threatened)
+    else:
+        d["s_threatened"] = 0.0
 
     # -- ecoregion / life-zone rarity: rarer contexts carry more conservation weight
     for src, dst in [("ecoregion", "s_eco_rare"), ("lifezone", "s_lz_rare")]:
@@ -208,52 +224,45 @@ def main() -> None:
     # ------------------------------------------------------------------ #
     # BCV - Biodiversity & Conservation Value
     # ------------------------------------------------------------------ #
-    land_bcv = {"s_species": .26, "s_forest": .22, "s_eco_rare": .14, "s_lz_rare": .10,
-                "s_pa_cover": .10, "s_mangrove": .10, "s_ramsar": .08}
-    sea_bcv = {"s_shallow_nb": .26, "s_mangrove_nb": .20, "s_species": .18, "s_pa_cover": .14,
-               "s_ramsar": .12, "s_eco_rare": .10}
+    land_bcv = {"s_threatened": .24, "s_species": .18, "s_forest": .18, "s_eco_rare": .12,
+                "s_lz_rare": .08, "s_pa_cover": .08, "s_mangrove": .06, "s_ramsar": .06}
+    sea_bcv = {"s_shallow_nb": .22, "s_threatened": .20, "s_mangrove_nb": .16,
+               "s_species": .14, "s_pa_cover": .12, "s_ramsar": .08, "s_eco_rare": .08}
     d["BCV"] = np.where(is_land,
                         weighted(d, land_bcv, pd.Series(True, index=d.index)),
                         weighted(d, sea_bcv, pd.Series(True, index=d.index)))
     d["BCV"] = d["BCV"].round(1)
 
     # ------------------------------------------------------------------ #
-    # RES - screening-level resilience contribution of nature
-    #   Coastal: protective ecosystems in front of low-lying people and tourism assets.
-    #   Inland : catchment tree cover on slopes above people and tourism assets downstream.
-    # NOT a hazard model. No avoided damages are implied. See docs/limitations.md.
+    # RES - resilience, now built on modelled flood hazard rather than proxies
+    #
+    # Coastal: the share of wave energy that existing mangrove and reef remove from what
+    # reaches people standing in the 1-in-100-year coastal flood zone (step 19), plus the
+    # share that restoration could add.
+    # Inland: forested headwaters sitting above flood-exposed population in the same
+    # catchment. Deliberately a prioritisation, not a modelled discharge reduction.
     # ------------------------------------------------------------------ #
-    idx = {h: i for i, h in enumerate(d.h3)}
-    assets = (d.population.fillna(0) / 1000.0
-              + d.n_accommodation.fillna(0) * 2.0 + d.n_food_service.fillna(0))
-    low_lying = (d.elev_mean.fillna(999) < 10).astype(float)
+    have_flood = "coastal_pop_buffered" in d.columns
+    if have_flood:
+        d["s_coast_service"] = prank(logn(d.coastal_pop_buffered))
+        d["s_coast_restore"] = prank(logn(d.coastal_pop_gain))
+        d["s_riv_retention"] = prank(d.riv_retention_value)
+        d["s_riv_restore"] = prank(d.riv_restore_priority)
+        d["s_flood_exposure"] = prank(logn(d.flood_pop_rp100))
 
-    # exposure behind each cell: assets in the cell and its 2-ring neighbourhood that are low-lying
-    exposure = np.zeros(len(d))
-    for i, h in enumerate(d.h3):
-        ring = h3.grid_disk(h, 2)
-        tot = 0.0
-        for nb in ring:
-            j = idx.get(nb)
-            if j is not None:
-                tot += assets.iloc[j] * low_lying.iloc[j]
-        exposure[i] = tot
-    d["coastal_exposure"] = np.round(exposure, 2)
-    d["s_coastal_exposure"] = prank(pd.Series(exposure, index=d.index), is_coastal)
-    protective = (d.lc_mangrove.fillna(0) * 2.0 + d.shallow_frac.fillna(0)
-                  + d.lc_wetland.fillna(0))
-    d["s_protective_eco"] = prank(protective, is_coastal)
-    res_coastal = np.sqrt(d.s_protective_eco.clip(lower=0) * d.s_coastal_exposure.clip(lower=0))
-
-    # inland: exposure downstream within the same watershed (lower mean elevation)
-    ws_assets = d.assign(a=assets).groupby("watershed")["a"].transform("sum")
-    ws_rank = d.groupby("watershed")["elev_mean"].rank(pct=True)
-    d["s_upper_catchment"] = prank(ws_rank.fillna(0.5) * d.lc_tree.fillna(0), is_land)
-    d["s_ws_exposure"] = prank(logn(ws_assets), is_land)
-    res_inland = np.sqrt(d.s_upper_catchment.clip(lower=0) * d.s_ws_exposure.clip(lower=0))
-
-    d["RES"] = np.where(is_coastal, np.fmax(res_coastal, res_inland * 0.7),
-                        np.where(is_land, res_inland, res_coastal)).round(1)
+        coastal_res = weighted(d, {"s_coast_service": .50, "s_coast_restore": .20,
+                                   "s_riv_retention": .20, "s_flood_exposure": .10},
+                               pd.Series(True, index=d.index))
+        inland_res = weighted(d, {"s_riv_retention": .50, "s_riv_restore": .25,
+                                  "s_flood_exposure": .25},
+                              pd.Series(True, index=d.index))
+        d["RES"] = np.where(is_coastal, np.fmax(coastal_res, inland_res * 0.8),
+                            inland_res).round(1)
+        log(f"  RES built on modelled hazard: {int((d.flood_pop_rp100 > 0).sum())} cells with "
+            f"RP100 flood-exposed population, "
+            f"{int((d.coastal_pop_buffered > 0).sum())} with a coastal ecosystem buffer")
+    else:
+        d["RES"] = 0.0
 
     # ------------------------------------------------------------------ #
     # JOBS - local economic opportunity from nature tourism
@@ -261,6 +270,7 @@ def main() -> None:
     #   base that could capture tourism value, and would investment here advance the
     #   government's own decentralisation objective?
     # ------------------------------------------------------------------ #
+    idx = {h: i for i, h in enumerate(d.h3)}
     pop_nb = np.zeros(len(d))
     for i, h in enumerate(d.h3):
         for nb in h3.grid_disk(h, 1):

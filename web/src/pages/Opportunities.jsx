@@ -225,9 +225,32 @@ function Detail({ area, narr, nodes, zones, onClose }) {
               <p className="prose-wb text-[13.5px]">{n.biodiversity}</p>
             </div>
           )}
+          {n.flood && (
+            <div className="card p-5 border-l-4" style={{ borderLeftColor: '#4A83AF' }}>
+              <div className="eyebrow mb-2">Flood exposure and what nature does about it</div>
+              {n.flood_stats && (n.flood_stats.riv_pop > 0 || n.flood_stats.cst_pop > 0) && (
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-3">
+                  {[
+                    ['River flood zone', n.flood_stats.riv_pop],
+                    ['Coastal flood zone', n.flood_stats.cst_pop],
+                    ['Buffered by ecosystems', n.flood_stats.buffered],
+                    ['Gain from restoration', n.flood_stats.gain],
+                  ].filter(([, v]) => v > 0).map(([k, v]) => (
+                    <div key={k}>
+                      <div className="text-[18px] font-bold text-wb-slateDk leading-none">
+                        {Number(v).toLocaleString()}
+                      </div>
+                      <div className="text-[10.5px] uppercase tracking-wider text-wb-muted mt-1">{k}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
+              <p className="prose-wb text-[13.5px]">{n.flood}</p>
+            </div>
+          )}
           {n.resilience && (
             <div>
-              <div className="eyebrow mb-2">Resilience contribution</div>
+              <div className="eyebrow mb-2">Resilience indicator</div>
               <p className="prose-wb text-[13.5px]">{n.resilience}</p>
             </div>
           )}
@@ -265,6 +288,8 @@ function Detail({ area, narr, nodes, zones, onClose }) {
                 ['Shallow shelf', `${(100 * area.shallow_frac).toFixed(0)}%`],
                 ['Local relief', `${Math.round(area.relief_m)} m`],
                 ['Species / cell', Math.round(area.gbif_species)],
+                ['Threatened species', Math.round(area.gbif_threatened ?? 0)],
+                ['In 1-in-100 flood zone', Math.round((area.riv_rp100_pop ?? 0) + (area.cst_rp100_pop ?? 0)).toLocaleString()],
                 ['To gateway', `${Number(area.tt_gateway_h).toFixed(1)} h`],
                 ['Population', Math.round(area.population).toLocaleString()],
               ].map(([k, v]) => (

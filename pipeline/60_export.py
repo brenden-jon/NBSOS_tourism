@@ -64,14 +64,22 @@ GRID_FIELDS = [
     "NAV", "TDL", "ACC", "BCV", "RES", "JOBS",
     "sensitivity", "protection_gap", "supply_gap",
     "eco_class", "tourism_class",
+    # biodiversity and hazard, mappable in their own right
+    "gbif_species", "gbif_threatened",
+    "flood_pop_rp100", "flood_frac_rp100", "riv_rp100_frac", "cst_rp100_frac",
+    "att_total", "mangrove_ha",
 ]
 
 DETAIL_FIELDS = [
     "district", "province", "gov_dest", "in_gov_dest", "primary_label", "secondary",
-    "infeasible_reason", "dist_road_km", "advisory_zone",
+    "infeasible_reason", "dist_access_km", "access_mode", "advisory_zone",
     "primary_fit", "pa_name", "ecoregion", "lc_tree", "lc_mangrove", "shallow_frac",
-    "pa_frac", "pa_strict_frac", "relief_m", "gbif_species", "tt_gateway_h",
+    "pa_frac", "pa_strict_frac", "relief_m", "tt_gateway_h",
     "population", "n_accommodation",
+    "sp_aves", "sp_mammalia", "sp_amphibia", "sp_reptilia", "gbif_threatened_records",
+    "riv_rp100_pop", "cst_rp100_pop", "riv_rp100_depth", "cst_rp100_depth",
+    "coastal_pop_buffered", "coastal_pop_gain", "mangrove_width_m",
+    "ws_flood_pop", "ws_forest_frac", "catchment_role",
 ]
 
 
@@ -92,7 +100,7 @@ def main() -> None:
             # every numeric kept for drawing is a 0-100 score; integers are plenty
             web[c] = web[c].round(0).astype("int32")
     # 3 decimals is ~110 m - far finer than a 37 km2 screening cell needs
-    save_geojson(web, "grid", decimals=3, to_web=True)
+    save_geojson(web, "grid", decimals=3, to_web=True, processed=False)
 
     # per-cell detail for the click inspector, keyed by h3 and loaded separately
     det_cols = [c for c in DETAIL_FIELDS if c in g.columns]
@@ -159,6 +167,13 @@ def main() -> None:
         "coastal_band_km": 30,
         "by_action": {k: int(v) for k, v in d.primary.value_counts().items()},
         "cells_no_basis": int((d.primary == "NONE").sum()),
+        "flood_pop_rp100": int(d.flood_pop_rp100.sum()) if "flood_pop_rp100" in d else 0,
+        "riv_pop_rp100": int(d.riv_rp100_pop.sum()) if "riv_rp100_pop" in d else 0,
+        "cst_pop_rp100": int(d.cst_rp100_pop.sum()) if "cst_rp100_pop" in d else 0,
+        "coastal_pop_buffered": int(d.coastal_pop_buffered.sum()) if "coastal_pop_buffered" in d else 0,
+        "coastal_pop_gain": int(d.coastal_pop_gain.sum()) if "coastal_pop_gain" in d else 0,
+        "mangrove_restore_ha": int(d.mangrove_restore_ha.sum()) if "mangrove_restore_ha" in d else 0,
+        "threatened_species_max": int(d.gbif_threatened.max()) if "gbif_threatened" in d else 0,
         "dev_feasible_cells": int(d.dev_feasible.sum()) if "dev_feasible" in d else None,
         "cells_in_gov_dest": int(d.gov_dest.notna().sum()),
         "share_in_gov_dest": round(100 * float(d.gov_dest.notna().mean()), 1),

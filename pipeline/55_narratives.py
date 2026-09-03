@@ -174,6 +174,57 @@ def tourism_context(r):
     return " ".join(p)
 
 
+def flood_text(r):
+    """Modelled flood exposure and what the ecosystems do about it. Real numbers."""
+    riv = int(getattr(r, "riv_rp100_pop", 0) or 0)
+    cst = int(getattr(r, "cst_rp100_pop", 0) or 0)
+    buf = int(getattr(r, "coastal_pop_buffered", 0) or 0)
+    gain = int(getattr(r, "coastal_pop_gain", 0) or 0)
+    att = float(getattr(r, "att_total", 0) or 0)
+    mw = float(getattr(r, "mangrove_width_m", 0) or 0)
+    ws_pop = int(getattr(r, "ws_flood_pop", 0) or 0)
+    ws_for = float(getattr(r, "ws_forest_frac", 0) or 0)
+
+    parts = []
+    if riv or cst:
+        bits = []
+        if riv:
+            bits.append(f"{people(riv)} in the 1-in-100-year river flood zone")
+        if cst:
+            bits.append(f"{people(cst)} in the 1-in-100-year coastal flood zone")
+        parts.append("Modelled flood exposure here covers " + listify(bits, 2) +
+                     " (WRI Aqueduct, ~1 km).")
+    else:
+        parts.append("No population falls inside the modelled 1-in-100-year flood zone "
+                     "within this area.")
+
+    # Report the effective share directly from buffered / exposed so the percentage and the
+    # headcount can never disagree.
+    eff = (buf / cst) if cst else 0.0
+    if cst and eff > 0.02:
+        belt = f"about {mw:.0f} m of mangrove belt and the shallow shelf in front of it" if mw >= 20 \
+            else "the shallow shelf and what mangrove remains"
+        parts.append(
+            f"On the exposed shoreline here, {belt} removes an estimated {eff*100:.0f}% of the "
+            f"wave energy reaching it - moderating conditions for roughly {people(buf)} of those "
+            f"people. This applies published attenuation rates (50% wave-height reduction per "
+            f"100 m of mangrove; reefs capped well below the literature because we have extent, "
+            f"not condition) to mapped ecosystem extent. It is not a surge model and it is not "
+            f"an avoided-damage estimate.")
+    if gain > 0:
+        parts.append(
+            f"Widening that belt toward 150 m would extend comparable moderation to roughly "
+            f"{people(gain)} more exposed people.")
+    if ws_pop > 5000:
+        parts.append(
+            f"Upstream, the {sfield(r, 'watershed') or 'local'} catchment carries "
+            f"{people(ws_pop)} people in the river flood zone downstream, with {ws_for*100:.0f}% "
+            f"forest cover across the catchment. Retaining that cover is treated here as a "
+            f"prioritisation signal, not a modelled reduction in peak flow - the effect of "
+            f"forest on flood peaks at basin scale is real but contested and not quantified.")
+    return " ".join(parts)
+
+
 def resilience_text(r):
     kinds = dict(ecosystems(r))
     if "mangrove" in kinds or "reef" in kinds:
@@ -435,6 +486,18 @@ def main() -> None:
                 f"in a strict IUCN category. Biodiversity value scores {r.BCV:.0f}/100 and the "
                 f"protection gap {r.protection_gap:.0f}/100."),
             "resilience": resilience_text(r),
+            "flood": flood_text(r),
+            "flood_stats": {
+                "riv_pop": int(getattr(r, "riv_rp100_pop", 0) or 0),
+                "cst_pop": int(getattr(r, "cst_rp100_pop", 0) or 0),
+                "buffered": int(getattr(r, "coastal_pop_buffered", 0) or 0),
+                "gain": int(getattr(r, "coastal_pop_gain", 0) or 0),
+                "attenuation": round(float(getattr(r, "att_total", 0) or 0), 3),
+                "mangrove_width_m": int(getattr(r, "mangrove_width_m", 0) or 0),
+                "ws_flood_pop": int(getattr(r, "ws_flood_pop", 0) or 0),
+                "ws_forest_frac": round(float(getattr(r, "ws_forest_frac", 0) or 0), 3),
+            },
+            "threatened_species": int(getattr(r, "gbif_threatened", 0) or 0),
             "conservation_action": conservation_action(r),
             "infrastructure": infra,
             "nature": nat,

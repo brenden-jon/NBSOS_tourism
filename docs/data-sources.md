@@ -20,6 +20,7 @@ that can be regenerated over large files committed to the repository.
 | **WorldPop 2020 constrained (UN-adjusted)** | WorldPop, U. Southampton | Population, labour pool, coastal exposure | **CC BY 4.0** | Per-hexagon aggregates only |
 | **GBIF occurrences** | GBIF | Vertebrate species richness and recording effort | Mixed by publisher (CC0 / CC BY / CC BY-NC) | **Aggregate counts only** — no records republished |
 | **PMTS 2025–2030** | Autoridad de Turismo de Panamá | Priority destinations, objectives, destination value propositions, thematic routes | Public government document | Quoted and summarised with attribution and direct link |
+| **WRI Aqueduct Floods v2** | World Resources Institute (Ward et al.) | Riverine and coastal inundation depth, 1-in-10 and 1-in-100 year return periods, 30 arcsec (~1 km) | **CC BY 4.0** | Per-hexagon aggregates only |
 | **CARTO basemaps, Esri World Imagery** | CARTO / Esri, Maxar | Cartographic basemaps only | Free tiles, attribution | Not redistributed; loaded at runtime |
 
 ### Why SINAP rather than WDPA
@@ -38,7 +39,12 @@ redistribution restriction or API token requirement. WDPA was therefore not used
 - **WorldPop** totals 4.02 million over the grid against roughly 4.3 million for 2020 — a modest
   undercount typical of constrained gridded estimates.
 - **GBIF** richness is capped at 1,000 species per vertebrate class per resolution-5 cell by the
-  faceting API; a small number of the richest cells hit that cap.
+  faceting API; no cell hit that cap in the current run. Threatened-species counts use GBIF's
+  own `iucnRedListCategory` facet (CR, EN, VU), which carries the IUCN assessment on the
+  occurrence record and needs no separate Red List API token.
+- **Aqueduct Floods** is a global model at ~1 km. It does not resolve flood defences, urban
+  drainage or the Canal Zone's water infrastructure. The riverine layer uses the historical
+  WATCH baseline; the coastal layer is the no-subsidence, historical sea-level variant.
 
 ## Considered and deliberately not used
 
@@ -47,7 +53,7 @@ redistribution restriction or API token requirement. WDPA was therefore not used
 | **Allen Coral Atlas** | Reproduction of the dataset is restricted without written consent from ASU. Reef-capable habitat is instead proxied from shelf depth <20 m, OSM-mapped reefs and marine protected-area designation. | High priority: reef extent **and condition** |
 | **Key Biodiversity Areas / IBAs** | Access requires a data agreement that prohibits redistribution. GBIF richness, ecoregion rarity and Ramsar status stand in. | High priority under a data agreement |
 | **WDPA / Protected Planet** | Requires an API token and carries redistribution conditions; SINAP is better for Panama. | Not needed |
-| **World Bank ~90 m flood hazard** | Not yet supplied. | Designed for — see below |
+| **World Bank ~90 m flood hazard** | Not yet supplied. Aqueduct Floods at ~1 km is used in the interim and would be superseded directly. | Drop-in replacement |
 | **Global Mangrove Watch** | WorldCover class 95 provides mangrove extent inside the same zonal-statistics pass. GMW would improve mangrove accuracy and add change over time. | Useful refinement |
 | **HydroSHEDS** | The 334 MB South America basin file was avoided in favour of the national 52-watershed layer, which is authoritative for Panama and far lighter. | Not needed |
 | **eBird** | Requires an API key; GBIF already carries 8.5 M Panamanian bird records. | Optional |

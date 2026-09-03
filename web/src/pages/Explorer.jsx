@@ -24,6 +24,15 @@ const NATURE_POIS = ['beach', 'waterfall', 'peak', 'reef_natural', 'hotspring', 
 const SUPPLY_POIS = ['accommodation', 'food_service', 'attraction', 'visitor_infra',
                      'dive_surf', 'marina_port', 'airport']
 
+// Numeric views use a ramp keyed on a single field; categorical views use a class list.
+const RAMPS = {
+  flood:      ['#F3F6F8', '#BBD4E4', '#7FAECE', '#4A83AF', '#255C86', '#0E3D5E'],
+  floodpop:   ['#F7F4F2', '#E5CDBE', '#D3A183', '#BB7350', '#96482A', '#6B2B12'],
+  richness:   ['#F6F3EE', '#DCD6BE', '#B9C48D', '#88A860', '#57853C', '#2E5C22'],
+  threatened: ['#FAF3F4', '#EBCBCF', '#D89CA4', '#BE6C79', '#9B4453', '#6E2331'],
+  buffer:     ['#F1F7F5', '#C3E1D5', '#8FC7B1', '#5AA88C', '#328468', '#175E47'],
+}
+
 const VIEWS = {
   ecosystems: {
     label: 'Ecosystems',
@@ -34,6 +43,28 @@ const VIEWS = {
     label: 'Tourism assets',
     blurb: 'Existing tourism supply from OpenStreetMap, smoothed across each cell and its immediate neighbours since destinations do not stop at cell boundaries. Roughly one cell in eight carries any mapped supply.',
     field: 'tourism_class', classes: TOURISM_CLASSES, defaultPois: SUPPLY_POIS,
+  },
+  flood: {
+    label: 'Flood hazard',
+    blurb: 'Modelled 1-in-100-year flood extent from WRI Aqueduct Floods (~1 km), and the population standing in it. Riverine flooding dominates in Panama: about 724,000 people fall inside the modelled river flood zone against roughly 12,000 on the coast. Population is intersected with the hazard at the hazard\u2019s own resolution rather than scaled from cell totals.',
+    field: null, classes: [], defaultPois: [],
+    numeric: [
+      { key: 'flood_frac_rp100', label: 'Flood extent, 1-in-100 yr (share of cell)', ramp: RAMPS.flood, max: 1 },
+      { key: 'riv_rp100_frac', label: 'River flood extent, 1-in-100 yr', ramp: RAMPS.flood, max: 1 },
+      { key: 'cst_rp100_frac', label: 'Coastal flood extent, 1-in-100 yr', ramp: RAMPS.flood, max: 1 },
+      { key: 'flood_pop_rp100', label: 'People in the 1-in-100 yr flood zone', ramp: RAMPS.floodpop, max: 20000 },
+      { key: 'att_total', label: 'Wave energy removed by mangrove & reef', ramp: RAMPS.buffer, max: 1 },
+      { key: 'mangrove_ha', label: 'Mangrove (hectares per cell)', ramp: RAMPS.buffer, max: 800 },
+    ],
+  },
+  biodiversity: {
+    label: 'Biodiversity',
+    blurb: 'Species recorded in GBIF, aggregated to the screening grid. Threatened richness counts distinct species assessed by the IUCN Red List as Critically Endangered, Endangered or Vulnerable. These measure where people have recorded wildlife, not where wildlife is \u2014 recording effort concentrates at research stations, roadsides and established birding sites.',
+    field: null, classes: [], defaultPois: [],
+    numeric: [
+      { key: 'gbif_threatened', label: 'Threatened species (IUCN CR/EN/VU)', ramp: RAMPS.threatened, max: 60 },
+      { key: 'gbif_species', label: 'Vertebrate species recorded', ramp: RAMPS.richness, max: 700 },
+    ],
   },
   protection: {
     label: 'Protection',
@@ -49,6 +80,7 @@ export default function Explorer() {
   const { data: dests } = useData('gov_destinations.geojson')
   const { data: detail } = useData('grid_detail.json')
   const [view, setView] = useState('ecosystems')
+  const [numField, setNumField] = useState(null)
   const [basemap, setBasemap] = useState('light')
   const [showPA, setShowPA] = useState(false)
   const [showGov, setShowGov] = useState(false)
@@ -61,6 +93,7 @@ export default function Explorer() {
     setView(next)
     setThemes(new Set(VIEWS[next].defaultPois))
     setShowPA(next === 'protection')
+    setNumField(VIEWS[next].numeric ? VIEWS[next].numeric[0] : null)
     setInfo(null)
   }
 
@@ -108,7 +141,7 @@ export default function Explorer() {
           'circle-stroke-width': 0.8, 'circle-stroke-color': '#fff', 'circle-opacity': 0.92 } })
     }
     return out
-  }, [grid, pas, dests, poiData, V, view, showPA, showGov])
+  }, [grid, pas, dests, poiData, V, view, showPA, showGov, numField])
 
   if (loading) return <Loading what="the source data layers" />
   if (error) return <div className="wrap py-16"><ErrorBox message={error} /></div>
@@ -133,6 +166,30 @@ export default function Explorer() {
 
         <div className="grid gap-5 lg:grid-cols-[250px_1fr]">
           <aside className="space-y-4">
+            {V.numeric && (
+              <div className="card p-4">
+                <div className="eyebrow mb-2.5">{V.label}</div>
+                <div className="space-y-1.5 mb-3">
+                  {V.numeric.map(nf => (
+                    <label key={nf.key} className="flex items-start gap-2 text-[12px] text-wb-slate cursor-pointer">
+                      <input type="radio" name="numfield" className="accent-wb-green mt-0.5"
+                        checked={numField?.key === nf.key} onChange={() => setNumField(nf)} />
+                      <span>{nf.label}</span>
+                    </label>
+                  ))}
+                </div>
+                {numField && (
+                  <>
+                    <div className="h-3 rounded" style={{ backgroundImage:
+                      `linear-gradient(90deg, ${numField.ramp.join(',')})` }} />
+                    <div className="flex justify-between text-[10.5px] text-wb-muted mt-1">
+                      <span>0</span>
+                      <span>{numField.max >= 1000 ? numField.max.toLocaleString() : numField.max}</span>
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
             {V.classes.length > 0 && (
               <div className="card p-4">
                 <div className="eyebrow mb-2.5">{V.label}</div>
@@ -200,7 +257,7 @@ export default function Explorer() {
 
           <div className="card overflow-hidden relative">
             <MapCanvas className="h-[680px]" layers={layers} basemap={basemap}
-              onBasemapChange={setBasemap} cursorLayers={['poi', 'pa-fill', 'grid-cat']}
+              onBasemapChange={setBasemap} cursorLayers={['poi', 'pa-fill', 'grid-cat', 'grid-num']}
               onFeatureClick={p => setInfo(p)}>
               {info && (
                 <div className="absolute bottom-3 left-3 z-10 max-w-[320px] bg-white rounded-md
@@ -240,6 +297,19 @@ export default function Explorer() {
                         <div className="text-wb-muted">
                           {info.tourism_class} · {Math.round(d.n_accommodation ?? 0)} accommodation
                         </div>
+                        <div className="text-wb-muted">
+                          {Math.round(info.gbif_threatened ?? 0)} threatened ·
+                          {' '}{Math.round(info.gbif_species ?? 0)} species recorded
+                        </div>
+                        {(info.flood_pop_rp100 ?? 0) > 0 && (
+                          <div className="text-wb-muted">
+                            {Math.round(info.flood_pop_rp100).toLocaleString()} people in the
+                            1-in-100 yr flood zone
+                            {(info.att_total ?? 0) > 0.02
+                              ? ` · ${Math.round(100 * info.att_total)}% wave energy removed by mangrove/reef`
+                              : ''}
+                          </div>
+                        )}
                       </div>
                     )
                   })()}

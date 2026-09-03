@@ -92,8 +92,8 @@ sub-indicators apply in which zone and renormalises its weights over the applica
 | **NAV** Nature attraction | What a visitor would travel for | forest, relief, named natural features, protected-area draw, species richness, mangrove, beaches — or, at sea: shallow shelf, mangrove, reefs, marine operators |
 | **TDL** Tourism development | What is already built | accommodation, food service, attractions and visitor infrastructure, trails, marine operators, airports |
 | **ACC** Accessibility | Modelled travel time | time to nearest gateway (65%), time to Panama City (35%) |
-| **BCV** Biodiversity value | Conservation significance | species richness, forest, ecoregion and life-zone rarity, protection cover, mangrove, Ramsar |
-| **RES** Resilience function | Screening-level protective role of nature | coastal: protective ecosystems × low-lying exposure in a two-ring neighbourhood; inland: upper-catchment tree cover × downstream assets in the same watershed |
+| **BCV** Biodiversity value | Conservation significance | **threatened (IUCN CR/EN/VU) species richness**, total species richness, forest, ecoregion and life-zone rarity, protection cover, mangrove, Ramsar |
+| **RES** Resilience function | Nature's protective role against modelled flood hazard | coastal: modelled wave attenuation by mangrove and reef over the population in the 1-in-100 yr coastal flood zone, plus restoration headroom; inland: catchment forest above flood-exposed population — see section 4c |
 | **JOBS** Local opportunity | Capacity to capture value locally | local labour pool, decentralisation distance, comarca context, accessibility |
 
 **RES is not a hazard model.** It is a spatial coincidence measure: protective ecosystems in
@@ -130,6 +130,55 @@ Chiriqui archipelagos) and boats and airstrips are how those destinations are re
 *Why this was needed:* the first version recommended tourism development on cells with a
 nature-attraction score of 0, no population, no road and a modelled 17-hour journey from the
 nearest gateway, deep inside the Darien Gap.
+
+## 4c. Flood hazard and the nature-based protection it meets
+
+Steps 18 and 19 replace the earlier proxy-based resilience family with modelled hazard.
+
+### Exposure (step 18)
+
+WRI Aqueduct Floods v2, 30 arcsec (~1 km), CC BY 4.0: riverine and coastal inundation depth
+for the 1-in-10 and 1-in-100 year return periods.
+
+Population is intersected with the hazard **at the hazard's own resolution**: WorldPop (100 m)
+is summed onto the 30 arcsec flood lattice, masked by depth, and only then aggregated to
+hexagons. Taking a cell's total population and scaling it by the flooded fraction would smear
+people evenly across terrain they do not occupy.
+
+National result: **724,000 people in the 1-in-100-year riverine flood zone** and **12,400 in
+the coastal one** — riverine exposure dominates in Panama by roughly sixty to one.
+
+### Nature-based protection (step 19)
+
+**Coastal — quantified.** Mangrove wave attenuation follows McIvor et al. (2012), who report
+13–66% wave-height reduction per 100 m of mangrove width; the central case of 50% per 100 m is
+applied exponentially, `attenuation = 1 − 0.5^(width/100)`. Width is estimated as mangrove area
+divided by coastline length in the cell — conventional, and wrong wherever mangrove sits in a
+lagoon rather than as a shore-parallel belt. Coral reef attenuation follows Ferrario et al.
+(2014), who find reefs dissipate 97% of wave energy, but is capped at 60% here because the
+input is reef-capable shelf extent, not reef condition. The two combine on the residual.
+
+National result: of the 12,400 people in the coastal flood zone, wave energy reaching about
+**8,300 of them (67%) is already moderated** by existing mangrove and reef. Widening thin belts
+toward 150 m across **2,000 ha** would extend comparable moderation to roughly **1,600 more**.
+
+**What this is not.** Wave attenuation is not the same as reducing still-water flood depth, and
+Aqueduct's coastal layer is a surge-plus-depth product. Read the result as the share of wave
+energy that existing ecosystems remove — not as avoided flooding, and certainly not as avoided
+damages.
+
+**Riverine — deliberately not quantified.** Catchment forest does moderate runoff, but the
+effect on peak flows at basin scale is contested and depends on soil, antecedent conditions and
+event size. Instead catchments are ranked by flood-exposed population downstream against forest
+cover upstream — a prioritisation, not a hydrological claim. The catchments carrying most
+exposure are Río Chiriquí (191,000 people, 53% forest), the Caimito–Juan Díaz basins around
+Panama City (128,000, 45%) and Río Juan Díaz (87,000, 41%).
+
+### The resilience family
+
+RES is now built from these: for coastal cells, the coastal protection service delivered plus
+the service restoration could add plus catchment retention plus exposure; for inland cells,
+catchment retention, restoration priority and exposure.
 
 ## 5. Classification
 

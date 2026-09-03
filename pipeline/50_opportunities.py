@@ -24,6 +24,17 @@ MIN_CELLS = 3          # ~110 km2 - below this it is a site, not an area
 FIT_PCTL = 0.78
 
 
+def _wmean(sub, col, weight_col, nd=3):
+    """Mean of `col` weighted by `weight_col`, falling back to a plain mean."""
+    if col not in sub:
+        return 0.0
+    w = sub[weight_col] if weight_col in sub else None
+    if w is not None and float(w.sum()) > 0:
+        return round(float((sub[col] * w).sum() / w.sum()), nd)
+    vals = sub.loc[sub[col] > 0, col]
+    return round(float(vals.mean()), nd) if len(vals) else 0.0
+
+
 def components(cells: set[str]) -> list[list[str]]:
     """Connected components over H3 adjacency."""
     seen, out = set(), []
@@ -170,6 +181,18 @@ def main() -> None:
             "relief_m": round(sub.relief_m.mean(), 0),
             "elev_max": round(sub.elev_max.max(), 0),
             "gbif_species": int(sub.gbif_species.mean()),
+            "gbif_threatened": int(sub.gbif_threatened.max()) if "gbif_threatened" in sub else 0,
+            "riv_rp100_pop": int(sub.riv_rp100_pop.sum()) if "riv_rp100_pop" in sub else 0,
+            "cst_rp100_pop": int(sub.cst_rp100_pop.sum()) if "cst_rp100_pop" in sub else 0,
+            "coastal_pop_buffered": int(sub.coastal_pop_buffered.sum()) if "coastal_pop_buffered" in sub else 0,
+            "coastal_pop_gain": int(sub.coastal_pop_gain.sum()) if "coastal_pop_gain" in sub else 0,
+            # Weighted by the people actually exposed, not the maximum anywhere in the area:
+            # a single kilometre-wide mangrove block should not make a whole region read as
+            # fully sheltered.
+            "att_total": _wmean(sub, "att_total", "cst_rp100_pop"),
+            "mangrove_width_m": int(_wmean(sub, "mangrove_width_m", "cst_rp100_pop", 0)),
+            "ws_flood_pop": int(sub.ws_flood_pop.max()) if "ws_flood_pop" in sub else 0,
+            "ws_forest_frac": round(float(sub.ws_forest_frac.mean()), 3) if "ws_forest_frac" in sub else 0.0,
             "tt_gateway_h": round(sub.tt_gateway_h.median(), 2),
             "population": int(sub.population.sum()),
             "n_accommodation": int(sub.n_accommodation.sum()),

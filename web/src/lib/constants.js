@@ -17,8 +17,8 @@ export const FAMILIES = [
   { key: 'NAV',  label: 'Nature attraction',   desc: 'Ecosystems, terrain and named natural features that a visitor would travel for.' },
   { key: 'TDL',  label: 'Tourism development', desc: 'Accommodation, food service, attractions, trails and marine operators already present.' },
   { key: 'ACC',  label: 'Accessibility',       desc: 'Modelled travel time to tourism gateways and to Panama City over a road and sea friction surface.' },
-  { key: 'BCV',  label: 'Biodiversity value',  desc: 'Recorded species richness, forest, mangrove and shelf habitat, ecoregion rarity and protection.' },
-  { key: 'RES',  label: 'Resilience function', desc: 'Screening-level contribution of nature to coastal and watershed protection. Not a hazard model.' },
+  { key: 'BCV',  label: 'Biodiversity value',  desc: 'Threatened (IUCN CR/EN/VU) species richness, total recorded richness, forest, mangrove and shelf habitat, ecoregion rarity and protection.' },
+  { key: 'RES',  label: 'Resilience function', desc: 'Nature’s protective role against modelled flood hazard: the share of wave energy mangrove and reef remove from what reaches people in the 1-in-100 year coastal flood zone, plus catchment forest above river-flood-exposed population.' },
   { key: 'JOBS', label: 'Local opportunity',   desc: 'Local labour pool, community-tourism context and contribution to decentralisation.' },
 ]
 

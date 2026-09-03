@@ -16,6 +16,10 @@ const MODES = [
     desc: 'Natural attraction minus existing tourism development.' },
   { key: 'sensitivity', label: 'Ecological sensitivity', kind: 'num',
     desc: 'Biodiversity value weighted with strict protection. Damps development recommendations.' },
+  { key: 'flood_pop_rp100', label: 'Flood-exposed people', kind: 'num', maxv: 20000,
+    desc: 'Population inside the modelled 1-in-100-year flood zone (WRI Aqueduct Floods, ~1 km), intersected with the hazard at its own resolution.' },
+  { key: 'gbif_threatened', label: 'Threatened species', kind: 'num', maxv: 60,
+    desc: 'Distinct species recorded in GBIF and assessed by the IUCN Red List as Critically Endangered, Endangered or Vulnerable.' },
   { key: 'dev_feasible', label: 'Development feasibility', kind: 'bool',
     desc: 'Green where a cell has road access within 10 km, is under 8 hours from a tourism gateway, and lies outside the Darién Gap advisory zone. Development recommendations are gated on this.' },
 ]
@@ -29,8 +33,9 @@ function colourExpr(mode) {
       'PROTECT', ACTIONS.PROTECT.color, 'INVEST', ACTIONS.INVEST.color,
       'ADAPT', ACTIONS.ADAPT.color, 'MANAGE', ACTIONS.MANAGE.color, '#CBD5DC']
   }
+  const m = mode.maxv ?? 100
   return ['interpolate', ['linear'], ['coalesce', ['get', mode.key], 0],
-    0, RAMP[0], 20, RAMP[1], 40, RAMP[2], 60, RAMP[3], 80, RAMP[4], 100, RAMP[5]]
+    ...RAMP.flatMap((c, i) => [(i / (RAMP.length - 1)) * m, c])]
 }
 
 function Inspector({ f, detail, onClose }) {
@@ -68,6 +73,9 @@ function Inspector({ f, detail, onClose }) {
           <Kv k="Strict IUCN" v={`${(100 * (d.pa_strict_frac ?? 0)).toFixed(0)}%`} />
           <Kv k="Relief" v={`${Math.round(d.relief_m ?? 0)} m`} />
           <Kv k="Species recorded" v={Math.round(d.gbif_species ?? 0)} />
+          <Kv k="Threatened species" v={Math.round(f.gbif_threatened ?? 0)} />
+          <Kv k="In flood zone" v={Math.round(f.flood_pop_rp100 ?? 0).toLocaleString()} />
+          <Kv k="Wave energy removed" v={`${Math.round(100 * (f.att_total ?? 0))}%`} />
           <Kv k="To gateway" v={`${Number(d.tt_gateway_h ?? 0).toFixed(1)} h`} />
           <Kv k="Population" v={Math.round(d.population ?? 0).toLocaleString()} />
           <Kv k="Accommodation" v={Math.round(d.n_accommodation ?? 0)} />
@@ -217,7 +225,9 @@ export default function Analysis() {
                     {RAMP.map(c => <div key={c} className="flex-1" style={{ backgroundColor: c }} />)}
                   </div>
                   <div className="flex justify-between text-[10.5px] text-wb-muted mt-1">
-                    <span>0</span><span>50</span><span>100</span>
+                    <span>0</span>
+                    <span>{((mode.maxv ?? 100) / 2).toLocaleString()}</span>
+                    <span>{(mode.maxv ?? 100).toLocaleString()}</span>
                   </div>
                   {mode.desc && <p className="text-[10.5px] leading-snug text-wb-muted mt-2">{mode.desc}</p>}
                 </>

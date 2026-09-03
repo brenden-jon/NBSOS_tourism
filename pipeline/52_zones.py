@@ -160,16 +160,28 @@ def build_nature_zones(opps, cells):
         # that never existed.
         area_has_mangrove = float(sub.lc_mangrove.max()) >= MANGROVE_PRESENT
         area_has_forest = float(sub.lc_tree.max()) >= FOREST_INTACT
-        exposure_cut = float(sub.coastal_exposure.median()) if coastal.any() else 0.0
+        # Exposure is now the modelled 1-in-100-year coastal flood population (step 18),
+        # not the earlier proximity proxy.
+        exposed = sub["cst_rp100_pop"] if "cst_rp100_pop" in sub else pd.Series(0.0, index=sub.index)
         # --- mangrove ---
         add(coastal & (sub.lc_mangrove >= MANGROVE_PRESENT), "mangrove", "protect",
             "Mangrove is present and functioning between open water and low-lying assets; "
             "protecting standing mangrove is cheaper and more certain than replanting it.")
-        add(coastal & (sub.lc_mangrove < MANGROVE_PRESENT) & area_has_mangrove
-            & (sub.coastal_exposure >= exposure_cut), "mangrove", "restore",
-            "Mangrove is thin or fragmented here but the coastal setting supports it and there "
-            "are people and tourism assets behind it; replanting at the landward margin and "
-            "restoring tidal flow is indicated.")
+        thin = coastal & (sub.lc_mangrove < MANGROVE_PRESENT) & area_has_mangrove
+        # Two distinct cases, because the reason to replant differs and so does who pays.
+        add(thin & (exposed > 0), "mangrove", "restore",
+            "Mangrove is thin or fragmented here and people sit behind it inside the modelled "
+            "1-in-100-year coastal flood zone. Replanting at the landward margin and restoring "
+            "tidal flow widens the belt that attenuates wave energy reaching them.")
+        tourism_here = (sub.n_accommodation + sub.n_food_service + sub.n_dive_surf
+                        + sub.n_marina_port) > 0
+        add(thin & (exposed <= 0) & (tourism_here | (sub.shallow_frac > 0.2)),
+            "mangrove", "restore",
+            "Mangrove is thin or fragmented on a stretch of coast that already carries tourism "
+            "or sits over shallow shelf. Replanting rebuilds nursery habitat for the fish and "
+            "birdlife visitors come to see, filters runoff reaching nearshore water, and "
+            "improves the setting itself - the flood-protection case is secondary here because "
+            "few people are modelled as exposed.")
         # --- reef / shelf ---
         add(coastal & (sub.shallow_frac >= SHELF_PRESENT) & (sub.pa_strict_frac < STRICT_PROTECTED),
             "reef and shallow shelf", "protect",

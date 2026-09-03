@@ -32,6 +32,12 @@ from common import PROC, RAW, UA, log  # noqa: E402
 API = "https://api.gbif.org/v1/occurrence/search"
 CACHE = RAW / "gbif"
 CACHE.mkdir(parents=True, exist_ok=True)
+THREAT_CACHE = RAW / "gbif_threatened"
+THREAT_CACHE.mkdir(parents=True, exist_ok=True)
+
+# IUCN Red List categories counted as threatened. GBIF exposes the assessment directly on
+# occurrence search, so this needs no separate Red List API token.
+THREATENED = ["CR", "EN", "VU"]
 
 # Vertebrate classes: well recorded and the ones tourists actually come to see.
 CLASS_KEYS = {"Aves": 212, "Mammalia": 359, "Amphibia": 131, "Reptilia": 358}
@@ -82,6 +88,31 @@ def query_cell(cell: str) -> dict:
     return out
 
 
+def query_threatened(cell: str) -> dict:
+    """Distinct threatened (CR/EN/VU) species recorded in a cell, across all taxa."""
+    cpath = THREAT_CACHE / f"{cell}.json"
+    if cpath.exists():
+        return json.loads(cpath.read_text())
+    params = [("hasCoordinate", "true"), ("hasGeospatialIssue", "false"),
+              ("geometry", cell_wkt(cell)), ("facet", "speciesKey"),
+              ("facetLimit", 800), ("limit", 0)]
+    params += [("iucnRedListCategory", c) for c in THREATENED]
+    out = {"h3_5": cell, "threatened_records": 0, "threatened_species": 0}
+    for attempt in range(4):
+        try:
+            r = requests.get(API, params=params, headers=UA, timeout=90)
+            r.raise_for_status()
+            d = r.json()
+            facets = d.get("facets") or []
+            out["threatened_records"] = d.get("count", 0)
+            out["threatened_species"] = len(facets[0]["counts"]) if facets else 0
+            break
+        except Exception:  # noqa: BLE001
+            time.sleep(2 * (attempt + 1))
+    cpath.write_text(json.dumps(out))
+    return out
+
+
 def main() -> None:
     g = gpd.read_file("data/processed/grid.geojson")
     g["h3_5"] = [h3.cell_to_parent(c, 5) for c in g.h3]
@@ -101,14 +132,33 @@ def main() -> None:
     with ThreadPoolExecutor(max_workers=8) as ex:
         rows = list(ex.map(work, parents))
     df = pd.DataFrame(rows)
+
+    log("  querying threatened (CR/EN/VU) species per cell")
+    tdone = [0]
+
+    def twork(cell):
+        o = query_threatened(cell)
+        tdone[0] += 1
+        if tdone[0] % 100 == 0:
+            log(f"    threatened {tdone[0]}/{len(parents)}")
+        return o
+
+    with ThreadPoolExecutor(max_workers=8) as ex:
+        trows = list(ex.map(twork, parents))
+    df = df.merge(pd.DataFrame(trows), on="h3_5", how="left")
+    log(f"  threatened species per res-5 cell: median {df.threatened_species.median():.0f}, "
+        f"max {df.threatened_species.max()}")
     log(f"  queried. capped cells: {int(df.capped.sum())} of {len(df)}")
     log(f"  species per res-5 cell: median {df.species.median():.0f}, max {df.species.max()}")
     log(f"  total records seen: {df.records.sum():,}")
 
     out = g[["h3", "h3_5"]].merge(df, on="h3_5", how="left")
     out = out.rename(columns={"records": "gbif_records", "species": "gbif_species"})
+    out = out.rename(columns={"threatened_species": "gbif_threatened",
+                              "threatened_records": "gbif_threatened_records"})
     out[["h3", "gbif_records", "gbif_species", "sp_aves", "sp_mammalia",
-         "sp_amphibia", "sp_reptilia"]].to_csv(PROC / "grid_gbif.csv", index=False)
+         "sp_amphibia", "sp_reptilia", "gbif_threatened",
+         "gbif_threatened_records"]].to_csv(PROC / "grid_gbif.csv", index=False)
     log(f"  wrote grid_gbif.csv ({len(out)} rows)")
 
 

@@ -118,15 +118,23 @@ def overpass(query: str, cache: str, timeout: int = 600) -> dict:
 
 
 def save_geojson(gdf: gpd.GeoDataFrame, name: str, decimals: int = 5,
-                 to_web: bool = False) -> Path:
-    """Write a coordinate-rounded GeoJSON to data/processed (and optionally web/public/data)."""
+                 to_web: bool = False, processed: bool = True) -> Path:
+    """Write a coordinate-rounded GeoJSON to data/processed and/or web/public/data.
+
+    `processed=False` is for web-only, field-trimmed copies of a layer that an earlier
+    pipeline step also owns. Writing those back to data/processed silently clobbered the
+    full version - step 60's slimmed grid overwrote step 20's, so re-running the analysis
+    afterwards failed on the missing columns.
+    """
     out = gdf.to_crs(CRS_WGS)
     path = PROC / f"{name}.geojson"
-    out.to_file(path, driver="GeoJSON", coordinate_precision=decimals)
+    if processed:
+        out.to_file(path, driver="GeoJSON", coordinate_precision=decimals)
     if to_web:
         wpath = WEB_DATA / f"{name}.geojson"
         out.to_file(wpath, driver="GeoJSON", coordinate_precision=decimals)
-        log(f"  wrote {name}.geojson ({path.stat().st_size/1e6:.2f} MB) -> processed + web")
+        log(f"  wrote {name}.geojson ({wpath.stat().st_size/1e6:.2f} MB) -> "
+            f"{'processed + web' if processed else 'web only'}")
     else:
         log(f"  wrote {name}.geojson ({path.stat().st_size/1e6:.2f} MB)")
     return path
