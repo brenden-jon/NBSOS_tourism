@@ -28,14 +28,16 @@ function colourExpr(mode) {
     0, RAMP[0], 20, RAMP[1], 40, RAMP[2], 60, RAMP[3], 80, RAMP[4], 100, RAMP[5]]
 }
 
-function Inspector({ f, onClose }) {
+function Inspector({ f, detail, onClose }) {
   if (!f) return null
+  // display fields travel with the geometry; the rest is looked up by h3
+  const d = { ...f, ...(detail || {}) }
   return (
     <div className="absolute top-3 right-3 z-10 w-[310px] max-h-[calc(100%-24px)] overflow-y-auto
                     bg-white rounded-md shadow-xl border border-wb-line">
       <div className="p-4 border-b border-wb-line flex items-start justify-between gap-2">
         <div>
-          <div className="eyebrow">{f.district}, {f.province}</div>
+          <div className="eyebrow">{d.district}, {d.province}</div>
           <div className="font-bold text-[14px] text-wb-slateDk mt-0.5 capitalize">{f.zone} cell</div>
         </div>
         <button onClick={onClose} className="text-wb-muted hover:text-wb-slateDk text-lg leading-none">×</button>
@@ -43,8 +45,8 @@ function Inspector({ f, onClose }) {
       <div className="p-4 space-y-4">
         <div>
           <ActionChip action={f.primary} />
-          {f.secondary && <div className="mt-2 text-[11.5px] text-wb-muted">
-            Also scores as: {String(f.secondary).split('; ').map(s => ACTIONS[s]?.label).join(', ')}
+          {d.secondary && <div className="mt-2 text-[11.5px] text-wb-muted">
+            Also scores as: {String(d.secondary).split('; ').map(s => ACTIONS[s]?.label).join(', ')}
           </div>}
         </div>
         <div className="space-y-2.5">
@@ -54,23 +56,23 @@ function Inspector({ f, onClose }) {
           ))}
         </div>
         <div className="pt-3 border-t border-wb-line grid grid-cols-2 gap-x-3 gap-y-2 text-[12px]">
-          <Kv k="Forest cover" v={`${(100 * (f.lc_tree ?? 0)).toFixed(0)}%`} />
-          <Kv k="Mangrove" v={`${(100 * (f.lc_mangrove ?? 0)).toFixed(1)}%`} />
-          <Kv k="Shallow shelf" v={`${(100 * (f.shallow_frac ?? 0)).toFixed(0)}%`} />
-          <Kv k="Protected" v={`${(100 * (f.pa_frac ?? 0)).toFixed(0)}%`} />
-          <Kv k="Strict IUCN" v={`${(100 * (f.pa_strict_frac ?? 0)).toFixed(0)}%`} />
-          <Kv k="Relief" v={`${Math.round(f.relief_m ?? 0)} m`} />
-          <Kv k="Species recorded" v={Math.round(f.gbif_species ?? 0)} />
-          <Kv k="To gateway" v={`${Number(f.tt_gateway_h ?? 0).toFixed(1)} h`} />
-          <Kv k="Population" v={Math.round(f.population ?? 0).toLocaleString()} />
-          <Kv k="Accommodation" v={Math.round(f.n_accommodation ?? 0)} />
+          <Kv k="Forest cover" v={`${(100 * (d.lc_tree ?? 0)).toFixed(0)}%`} />
+          <Kv k="Mangrove" v={`${(100 * (d.lc_mangrove ?? 0)).toFixed(1)}%`} />
+          <Kv k="Shallow shelf" v={`${(100 * (d.shallow_frac ?? 0)).toFixed(0)}%`} />
+          <Kv k="Protected" v={`${(100 * (d.pa_frac ?? 0)).toFixed(0)}%`} />
+          <Kv k="Strict IUCN" v={`${(100 * (d.pa_strict_frac ?? 0)).toFixed(0)}%`} />
+          <Kv k="Relief" v={`${Math.round(d.relief_m ?? 0)} m`} />
+          <Kv k="Species recorded" v={Math.round(d.gbif_species ?? 0)} />
+          <Kv k="To gateway" v={`${Number(d.tt_gateway_h ?? 0).toFixed(1)} h`} />
+          <Kv k="Population" v={Math.round(d.population ?? 0).toLocaleString()} />
+          <Kv k="Accommodation" v={Math.round(d.n_accommodation ?? 0)} />
         </div>
-        {f.pa_name && <div className="text-[12px]"><span className="text-wb-muted">Protected area: </span>
-          <span className="font-semibold text-wb-slateDk">{f.pa_name}</span></div>}
-        {f.ecoregion && <div className="text-[12px]"><span className="text-wb-muted">Ecoregion: </span>{f.ecoregion}</div>}
+        {d.pa_name && <div className="text-[12px]"><span className="text-wb-muted">Protected area: </span>
+          <span className="font-semibold text-wb-slateDk">{d.pa_name}</span></div>}
+        {d.ecoregion && <div className="text-[12px]"><span className="text-wb-muted">Ecoregion: </span>{d.ecoregion}</div>}
         <div className="pt-3 border-t border-wb-line text-[12px]">
           <span className="text-wb-muted">Government plan: </span>
-          {f.gov_dest ? <span className="font-semibold text-wb-slateDk">{f.gov_dest} ({f.gov_relation})</span>
+          {d.gov_dest ? <span className="font-semibold text-wb-slateDk">{d.gov_dest} ({d.gov_relation})</span>
                       : <span className="text-wb-slate">outside priority destinations</span>}
         </div>
       </div>
@@ -87,6 +89,7 @@ export default function Analysis() {
   const { data: dests } = useData('gov_destinations.geojson')
   const { data: pas } = useData('protected_areas.geojson')
   const { data: s } = useData('summary.json')
+  const { data: detail } = useData('grid_detail.json')
   const [mode, setMode] = useState(MODES[0])
   const [basemap, setBasemap] = useState('light')
   const [sel, setSel] = useState(null)
@@ -170,7 +173,7 @@ export default function Analysis() {
           <MapCanvas className="h-[600px]" layers={layers} basemap={basemap}
             onBasemapChange={setBasemap} cursorLayers={['grid-fill']}
             onFeatureClick={p => setSel(p)}>
-            <Inspector f={sel} onClose={() => setSel(null)} />
+            <Inspector f={sel} detail={sel ? detail?.[sel.h3] : null} onClose={() => setSel(null)} />
             <div className="absolute bottom-6 left-3 z-10 bg-white/95 backdrop-blur rounded-md
                             border border-wb-line shadow px-3.5 py-3 max-w-[260px]">
               <div className="text-[11px] font-bold uppercase tracking-wider text-wb-slateDk mb-2">

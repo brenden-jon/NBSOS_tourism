@@ -55,17 +55,22 @@ def tourism_class(tdl):
     return "No mapped supply"
 
 
+# Split deliberately. Everything needed to DRAW the map travels with the geometry; everything
+# needed only when a user clicks a cell goes into a separate lookup keyed by h3. Carrying all
+# 33 fields on 3,417 polygons produced a 3.25 MB payload that took tens of seconds to tile -
+# and nine of those fields were repeated strings (ecoregion, protected-area name, district).
 GRID_FIELDS = [
-    # Kept deliberately lean: attributes, not geometry, dominate the payload. A 45-field
-    # grid came to 4.5 MB and visibly stalled first paint; this set is everything the
-    # application actually reads.
-    "h3", "zone", "province", "district", "gov_dest", "gov_relation",
+    "h3", "zone", "primary",
     "NAV", "TDL", "ACC", "BCV", "RES", "JOBS",
-    "primary", "primary_label", "secondary", "primary_fit",
     "sensitivity", "protection_gap", "supply_gap",
-    "lc_tree", "lc_mangrove", "shallow_frac", "pa_frac", "pa_strict_frac", "pa_name",
-    "relief_m", "gbif_species", "tt_gateway_h", "population", "n_accommodation",
-    "ecoregion", "eco_class", "tourism_class",
+    "eco_class", "tourism_class",
+]
+
+DETAIL_FIELDS = [
+    "district", "province", "gov_dest", "gov_relation", "primary_label", "secondary",
+    "primary_fit", "pa_name", "ecoregion", "lc_tree", "lc_mangrove", "shallow_frac",
+    "pa_frac", "pa_strict_frac", "relief_m", "gbif_species", "tt_gateway_h",
+    "population", "n_accommodation",
 ]
 
 
@@ -83,10 +88,25 @@ def main() -> None:
     web = g[keep + ["geometry"]].copy()
     for c in web.columns:
         if web[c].dtype == "float64":
-            # scores are 0-100 and fractions are 0-1; neither needs more than this
-            web[c] = web[c].round(1) if web[c].abs().max() > 1.5 else web[c].round(3)
+            # every numeric kept for drawing is a 0-100 score; integers are plenty
+            web[c] = web[c].round(0).astype("int32")
     # 3 decimals is ~110 m - far finer than a 37 km2 screening cell needs
     save_geojson(web, "grid", decimals=3, to_web=True)
+
+    # per-cell detail for the click inspector, keyed by h3 and loaded separately
+    det_cols = [c for c in DETAIL_FIELDS if c in g.columns]
+    det = g[["h3"] + det_cols].copy()
+    for c in det.columns:
+        if det[c].dtype == "float64":
+            det[c] = det[c].round(3) if det[c].abs().max() <= 1.5 else det[c].round(1)
+    detail = {
+        r["h3"]: {k: (None if pd.isna(v) else v) for k, v in r.items() if k != "h3"}
+        for r in det.to_dict("records")
+    }
+    for path in (PROC / "grid_detail.json", WEB_DATA / "grid_detail.json"):
+        path.write_text(json.dumps(detail, ensure_ascii=False, allow_nan=False,
+                                   separators=(",", ":")))
+    log(f"  wrote grid_detail.json ({len(detail)} cells, {len(det_cols)} fields)")
 
     opp = gpd.read_file("data/processed/opportunity_areas.geojson")
     save_geojson(opp.drop(columns=["h3_cells"], errors="ignore"),

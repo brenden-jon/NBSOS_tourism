@@ -47,6 +47,7 @@ export default function Explorer() {
   const { data: pas } = useData('protected_areas.geojson')
   const { data: pois } = useData('osm_pois.geojson')
   const { data: dests } = useData('gov_destinations.geojson')
+  const { data: detail } = useData('grid_detail.json')
   const [view, setView] = useState('ecosystems')
   const [basemap, setBasemap] = useState('light')
   const [showPA, setShowPA] = useState(false)
@@ -226,19 +227,22 @@ export default function Explorer() {
                       {POI_STYLE[info.theme]?.label || info.theme}{info.kind ? ` · ${info.kind}` : ''}
                     </div>
                   )}
-                  {info.h3 && (
-                    <div className="mt-2 pt-2 border-t border-wb-line text-[12px] space-y-1">
-                      <div className="text-wb-slate">{info.district}, {info.province}</div>
-                      <div className="text-wb-muted">
-                        Forest {Math.round(100 * (info.lc_tree ?? 0))}% ·
-                        Mangrove {(100 * (info.lc_mangrove ?? 0)).toFixed(1)}% ·
-                        Shelf {Math.round(100 * (info.shallow_frac ?? 0))}%
+                  {info.h3 && (() => {
+                    const d = detail?.[info.h3] || {}
+                    return (
+                      <div className="mt-2 pt-2 border-t border-wb-line text-[12px] space-y-1">
+                        <div className="text-wb-slate">{d.district}, {d.province}</div>
+                        <div className="text-wb-muted">
+                          Forest {Math.round(100 * (d.lc_tree ?? 0))}% ·
+                          Mangrove {(100 * (d.lc_mangrove ?? 0)).toFixed(1)}% ·
+                          Shelf {Math.round(100 * (d.shallow_frac ?? 0))}%
+                        </div>
+                        <div className="text-wb-muted">
+                          {info.tourism_class} · {Math.round(d.n_accommodation ?? 0)} accommodation
+                        </div>
                       </div>
-                      <div className="text-wb-muted">
-                        {info.tourism_class} · {Math.round(info.n_accommodation ?? 0)} accommodation
-                      </div>
-                    </div>
-                  )}
+                    )
+                  })()}
                 </div>
               )}
             </MapCanvas>
