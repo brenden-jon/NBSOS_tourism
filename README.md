@@ -80,17 +80,65 @@ docs/            methodology, data sources, limitations
 
 ## Reproducing the analysis
 
+Needs Python 3.11 or newer. No system GDAL, GEOS or PROJ install is required — those ship
+inside the `geopandas` and `rasterio` wheels.
+
 ```bash
-uv venv --python 3.12 .venv
-. .venv/bin/activate
-uv pip install geopandas rasterio shapely pyproj h3 requests pandas numpy pyogrio scikit-image
-make all
+make setup          # creates .venv and installs requirements.txt
+make all            # fetch + analyse, start to finish
 ```
 
-The pipeline downloads roughly 400 MB into `data/raw/` (cached; re-runs are cheap) and writes
-a few megabytes of derived outputs. No large raster is ever written to disk: WorldCover and
-Copernicus DEM are read remotely as cloud-optimised GeoTIFFs at decimated resolution, and only
-per-hexagon aggregates are kept.
+Or without `make`:
+
+```bash
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+.venv/bin/python pipeline/10_fetch_national.py      # ...and so on, in the order below
+```
+
+If you already have an environment you would rather use, point `make` at it:
+
+```bash
+make all PY=python3
+```
+
+### Order and runtime
+
+Steps are numbered in dependency order. `make fetch` runs the `1x` fetchers; `make analyse`
+runs the rest. A cold run takes roughly 1–1.5 hours, almost all of it network-bound in
+`11_fetch_osm.py` (Overpass, rate-limited) and `14_gbif.py` (~1,100 GBIF queries, cached per
+cell so interruptions resume). `20_grid.py` is the slowest compute step at around 20 minutes.
+Everything is cached in `data/raw/`, so re-runs are minutes, not hours.
+
+The pipeline downloads roughly 600 MB into `data/raw/` and writes about 10 MB of derived
+outputs. No large raster is written to disk: WorldCover and Copernicus DEM are read remotely as
+cloud-optimised GeoTIFFs at decimated resolution, and only per-hexagon aggregates are kept.
+
+### What each step does
+
+| Step | Does |
+|---|---|
+| `10_fetch_national.py` | MiAmbiente/STRI national layers: protected areas, watersheds, admin, places |
+| `11_fetch_osm.py` | OSM tourism, nature and road features via Overpass |
+| `12_gov_strategy.py` | ATP master plan destinations → mappable polygons |
+| `20_grid.py` | H3 res-6 grid over land + 30 km coastal band |
+| `13_rasters.py` | WorldCover land cover, Copernicus DEM, WorldPop → zonal stats |
+| `14_gbif.py` | Species and threatened-species richness from GBIF |
+| `15_access.py` | Least-cost travel-time surface from tourism gateways |
+| `16_vectors.py` | Protected areas, ecoregions, POI density joined to the grid |
+| `17_feasibility.py` | Road/sea/air access, remoteness, Darién Gap advisory screens |
+| `18_flood.py` | WRI Aqueduct flood hazard + exposed population |
+| `19_nbs.py` | Mangrove and reef wave attenuation over exposed population |
+| `30_indicators.py` | The six indicator families |
+| `40_classify.py` | Qualification gates and action classification |
+| `50_opportunities.py` | Clustering into named Opportunity Areas |
+| `52_zones.py` | Tourism investment sites and nature protect/restore zones |
+| `55_narratives.py` | Investment narratives and employment estimates |
+| `60_export.py` | Web-ready outputs into `web/public/data/` |
+
+Supporting modules (not steps): `common.py` (shared I/O and CRS helpers),
+`gov_strategy_source.py` (the encoded master plan), `jobs_model.py` (employment benchmarks),
+`recommendations.py` (the two recommendation axes).
 
 ## Running the application
 

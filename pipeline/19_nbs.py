@@ -50,10 +50,17 @@ MANGROVE_RESTORE_TARGET_M = 150.0   # width a restoration programme could plausi
 
 
 def main() -> None:
+    # Reads the measurement CSVs directly rather than grid_indicators.csv. Depending on the
+    # indicators would be circular - step 30 consumes this step's output to build the
+    # resilience family - and forced step 30 to be run twice.
     grid = gpd.read_file("data/processed/grid.geojson").to_crs(CRS_M)
-    cls = pd.read_csv(PROC / "grid_indicators.csv")
-    fl = pd.read_csv(PROC / "grid_flood.csv")
-    d = grid.merge(cls, on="h3").merge(fl, on="h3")
+    rasters = pd.read_csv(PROC / "grid_rasters.csv")      # lc_mangrove, lc_tree, elev_mean
+    vectors = pd.read_csv(PROC / "grid_vectors.csv")      # shallow_frac, watershed
+    fl = pd.read_csv(PROC / "grid_flood.csv")             # riv/cst exposure
+    d = (grid.merge(rasters, on="h3")
+             .merge(vectors[[c for c in ("h3", "shallow_frac", "watershed")
+                             if c in vectors.columns]], on="h3")
+             .merge(fl, on="h3"))
     log(f"  {len(d)} cells")
 
     # ---- coastline length inside each cell ----

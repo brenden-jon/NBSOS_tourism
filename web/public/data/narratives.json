@@ -36,7 +36,7 @@
  },
  "areas": [
   {
-   "cluster_id": "PR25",
+   "cluster_id": "PR22",
    "rank": 1,
    "name": "Palo Seco",
    "action": "PROTECT",
@@ -64,7 +64,7 @@
     "gain": 0,
     "attenuation": 0.508,
     "mangrove_width_m": 32,
-    "ws_flood_pop": 190712,
+    "ws_flood_pop": 190710,
     "ws_forest_frac": 0.76
    },
    "threatened_species": 66,
@@ -261,7 +261,7 @@
    "gov_alignment": "This area sits mostly outside the ten priority destinations of the Plan Maestro 2025-2030, though it touches “Bocas del Toro” (15% of the area)."
   },
   {
-   "cluster_id": "PR24",
+   "cluster_id": "PR23",
    "rank": 2,
    "name": "Alto Darién",
    "action": "PROTECT",
@@ -407,8 +407,8 @@
     "cst_pop": 0,
     "buffered": 0,
     "gain": 0,
-    "attenuation": 0.19,
-    "mangrove_width_m": 131,
+    "attenuation": 0.189,
+    "mangrove_width_m": 128,
     "ws_flood_pop": 128008,
     "ws_forest_frac": 0.66
    },
@@ -584,7 +584,7 @@
    "gov_alignment": "This area lies within the government's priority destination “Colon - Portobelo - Santa Isabel” (94% of the area), so the findings here speak to a destination the Plan Maestro 2025-2030 has already committed to."
   },
   {
-   "cluster_id": "IN08",
+   "cluster_id": "IN09",
    "rank": 4,
    "name": "Müna",
    "action": "INVEST",
@@ -774,7 +774,7 @@
    "gov_alignment": "This area sits mostly outside the ten priority destinations of the Plan Maestro 2025-2030, though it touches “Corredor Oriental - San Felix / Las Lajas” (9% of the area)."
   },
   {
-   "cluster_id": "PR29",
+   "cluster_id": "PR32",
    "rank": 5,
    "name": "Narganá",
    "action": "PROTECT",
@@ -800,7 +800,7 @@
     "gain": 0,
     "attenuation": 0.513,
     "mangrove_width_m": 96,
-    "ws_flood_pop": 5548,
+    "ws_flood_pop": 5549,
     "ws_forest_frac": 0.636
    },
    "threatened_species": 65,
@@ -950,7 +950,7 @@
    "gov_alignment": "This area lies outside the ten priority destinations of the Plan Maestro 2025-2030. It is surfaced by the spatial analysis alone."
   },
   {
-   "cluster_id": "AD03",
+   "cluster_id": "AD01",
    "rank": 6,
    "name": "Ciudad de Panama - Taboga",
    "action": "ADAPT",
@@ -968,13 +968,13 @@
    "tourism_context": "OpenStreetMap records 275 accommodation points, 1235 food-service points, 146 attractions, 54 named trails, 1 dive/surf operators and 12 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 0.2 hours; the accessibility score is 83/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
    "biodiversity": "A mean of 593 vertebrate species have been recorded per screening cell here, in the Isthmian-Atlantic moist forests ecoregion. 8% of the area carries protected status and 6% is in a strict IUCN category. Biodiversity value scores 59/100 and the protection gap 50/100.",
    "resilience": "Coastal ecosystems here — mangrove (8 km²) and shallow shelf under 20 m (98 km²) — sit between open water and low-lying settlement and tourism assets. On the screening assumption that intact mangrove and reef attenuate wave energy and stabilise shorelines, the area scores 41/100 for resilience function. This is a spatial coincidence of ecosystem and exposure, not a modelled reduction in flood damage.",
-   "flood": "Modelled flood exposure here covers 210,000 in the 1-in-100-year river flood zone and 5,000 in the 1-in-100-year coastal flood zone (WRI Aqueduct, ~1 km). On the exposed shoreline here, about 92 m of mangrove belt and the shallow shelf in front of it removes an estimated 56% of the wave energy reaching it - moderating conditions for roughly 2,800 of those people. This applies published attenuation rates (50% wave-height reduction per 100 m of mangrove; reefs capped well below the literature because we have extent, not condition) to mapped ecosystem extent. It is not a surge model and it is not an avoided-damage estimate. Widening that belt toward 150 m would extend comparable moderation to roughly 1,400 more exposed people. Upstream, the Ríos entre el Caimito y el Juan Díaz catchment carries 130,000 people in the river flood zone downstream, with 45% forest cover across the catchment. Retaining that cover is treated here as a prioritisation signal, not a modelled reduction in peak flow - the effect of forest on flood peaks at basin scale is real but contested and not quantified.",
+   "flood": "Modelled flood exposure here covers 210,000 in the 1-in-100-year river flood zone and 5,000 in the 1-in-100-year coastal flood zone (WRI Aqueduct, ~1 km). On the exposed shoreline here, about 92 m of mangrove belt and the shallow shelf in front of it removes an estimated 55% of the wave energy reaching it - moderating conditions for roughly 2,700 of those people. This applies published attenuation rates (50% wave-height reduction per 100 m of mangrove; reefs capped well below the literature because we have extent, not condition) to mapped ecosystem extent. It is not a surge model and it is not an avoided-damage estimate. Widening that belt toward 150 m would extend comparable moderation to roughly 1,400 more exposed people. Upstream, the Ríos entre el Caimito y el Juan Díaz catchment carries 130,000 people in the river flood zone downstream, with 45% forest cover across the catchment. Retaining that cover is treated here as a prioritisation signal, not a modelled reduction in peak flow - the effect of forest on flood peaks at basin scale is real but contested and not quantified.",
    "flood_stats": {
     "riv_pop": 212093,
     "cst_pop": 4977,
-    "buffered": 2772,
-    "gain": 1378,
-    "attenuation": 0.558,
+    "buffered": 2733,
+    "gain": 1376,
+    "attenuation": 0.549,
     "mangrove_width_m": 92,
     "ws_flood_pop": 128008,
     "ws_forest_frac": 0.448
@@ -1197,7 +1197,7 @@
     "gain": 0,
     "attenuation": 0.012,
     "mangrove_width_m": 0,
-    "ws_flood_pop": 190712,
+    "ws_flood_pop": 190710,
     "ws_forest_frac": 0.599
    },
    "threatened_species": 65,
@@ -1364,7 +1364,7 @@
    "gov_alignment": "This area lies within the government's priority destination “Boquete” (71% of the area), so the findings here speak to a destination the Plan Maestro 2025-2030 has already committed to."
   },
   {
-   "cluster_id": "IN09",
+   "cluster_id": "IN07",
    "rank": 8,
    "name": "Capira",
    "action": "INVEST",
@@ -1390,8 +1390,8 @@
     "cst_pop": 0,
     "buffered": 0,
     "gain": 0,
-    "attenuation": 0.807,
-    "mangrove_width_m": 839,
+    "attenuation": 0.773,
+    "mangrove_width_m": 840,
     "ws_flood_pop": 642,
     "ws_forest_frac": 0.48
    },
@@ -1960,7 +1960,7 @@
    "gov_alignment": "This area lies within the government's priority destination “Riviera Pacifica - Valle de Anton - El Cope - Penonome” (100% of the area), so the findings here speak to a destination the Plan Maestro 2025-2030 has already committed to."
   },
   {
-   "cluster_id": "MA18",
+   "cluster_id": "MA17",
    "rank": 11,
    "name": "Riviera Pacifica - Valle de Anton - El Cope - Penonome",
    "action": "MANAGE",
@@ -2080,7 +2080,7 @@
    "gov_alignment": "This area lies within the government's priority destination “Riviera Pacifica - Valle de Anton - El Cope - Penonome” (100% of the area), so the findings here speak to a destination the Plan Maestro 2025-2030 has already committed to."
   },
   {
-   "cluster_id": "PR22",
+   "cluster_id": "PR25",
    "rank": 12,
    "name": "Alto Darién (Cémaco (Área 1))",
    "action": "PROTECT",
@@ -2203,7 +2203,7 @@
    "gov_alignment": "This area lies outside the ten priority destinations of the Plan Maestro 2025-2030. It is surfaced by the spatial analysis alone."
   },
   {
-   "cluster_id": "PR26",
+   "cluster_id": "PR24",
    "rank": 13,
    "name": "Bahía de Chame",
    "action": "PROTECT",
@@ -2222,15 +2222,15 @@
    "natural_assets": "The area's natural asset base comprises mangrove (36 km²), shallow shelf under 20 m (47 km²) and 7 mapped beaches. It overlaps the protected area(s) Bahía de Chame, covering 22% of the area. Named features mapped here include Carreras Scooter & Supermoto, Mirador Cerro Chame, Playa Serena, Rancheria de Pablo y Venta de Pescado Rosa, Playa Malibu and Playa Teta. It sits predominantly in the Panamanian dry forests ecoregion, draining the Ríos entre el Antón y el Caimito basin.",
    "tourism_context": "OpenStreetMap records 11 accommodation points, 39 food-service points, 2 attractions, 10 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 0.8 hours; the accessibility score is 81/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
    "biodiversity": "A mean of 416 vertebrate species have been recorded per screening cell here, in the Panamanian dry forests ecoregion. 22% of the area carries protected status and 0% is in a strict IUCN category. Biodiversity value scores 65/100 and the protection gap 60/100.",
-   "resilience": "Coastal ecosystems here — mangrove (36 km²) and shallow shelf under 20 m (47 km²) — sit between open water and low-lying settlement and tourism assets. On the screening assumption that intact mangrove and reef attenuate wave energy and stabilise shorelines, the area scores 7/100 for resilience function. This is a spatial coincidence of ecosystem and exposure, not a modelled reduction in flood damage.",
-   "flood": "Modelled flood exposure here covers 390 in the 1-in-100-year river flood zone and 110 in the 1-in-100-year coastal flood zone (WRI Aqueduct, ~1 km). On the exposed shoreline here, about 164 m of mangrove belt and the shallow shelf in front of it removes an estimated 78% of the wave energy reaching it - moderating conditions for roughly 80 of those people. This applies published attenuation rates (50% wave-height reduction per 100 m of mangrove; reefs capped well below the literature because we have extent, not condition) to mapped ecosystem extent. It is not a surge model and it is not an avoided-damage estimate. Widening that belt toward 150 m would extend comparable moderation to roughly 0 more exposed people.",
+   "resilience": "Coastal ecosystems here — mangrove (36 km²) and shallow shelf under 20 m (47 km²) — sit between open water and low-lying settlement and tourism assets. On the screening assumption that intact mangrove and reef attenuate wave energy and stabilise shorelines, the area scores 8/100 for resilience function. This is a spatial coincidence of ecosystem and exposure, not a modelled reduction in flood damage.",
+   "flood": "Modelled flood exposure here covers 390 in the 1-in-100-year river flood zone and 110 in the 1-in-100-year coastal flood zone (WRI Aqueduct, ~1 km). On the exposed shoreline here, about 161 m of mangrove belt and the shallow shelf in front of it removes an estimated 76% of the wave energy reaching it - moderating conditions for roughly 80 of those people. This applies published attenuation rates (50% wave-height reduction per 100 m of mangrove; reefs capped well below the literature because we have extent, not condition) to mapped ecosystem extent. It is not a surge model and it is not an avoided-damage estimate. Widening that belt toward 150 m would extend comparable moderation to roughly 0 more exposed people.",
    "flood_stats": {
     "riv_pop": 386,
     "cst_pop": 106,
-    "buffered": 83,
+    "buffered": 81,
     "gain": 5,
-    "attenuation": 0.78,
-    "mangrove_width_m": 164,
+    "attenuation": 0.77,
+    "mangrove_width_m": 161,
     "ws_flood_pop": 497,
     "ws_forest_frac": 0.413
    },
@@ -2402,7 +2402,7 @@
    "gov_alignment": "This area lies within the government's priority destination “Riviera Pacifica - Valle de Anton - El Cope - Penonome” (100% of the area), so the findings here speak to a destination the Plan Maestro 2025-2030 has already committed to."
   },
   {
-   "cluster_id": "PR32",
+   "cluster_id": "PR31",
    "rank": 14,
    "name": "Narganá (Chepo)",
    "action": "PROTECT",
@@ -2429,7 +2429,7 @@
     "gain": 0,
     "attenuation": 0.576,
     "mangrove_width_m": 72,
-    "ws_flood_pop": 5548,
+    "ws_flood_pop": 5549,
     "ws_forest_frac": 0.675
    },
    "threatened_species": 23,
@@ -2546,7 +2546,7 @@
    "gov_alignment": "This area lies outside the ten priority destinations of the Plan Maestro 2025-2030. It is surfaced by the spatial analysis alone."
   },
   {
-   "cluster_id": "PR23",
+   "cluster_id": "PR26",
    "rank": 15,
    "name": "Archipiélago de Las Perlas",
    "action": "PROTECT",
@@ -2572,8 +2572,8 @@
     "cst_pop": 0,
     "buffered": 0,
     "gain": 0,
-    "attenuation": 0.511,
-    "mangrove_width_m": 86,
+    "attenuation": 0.513,
+    "mangrove_width_m": 88,
     "ws_flood_pop": 0,
     "ws_forest_frac": 0.108
    },
@@ -2690,7 +2690,7 @@
    "gov_alignment": "This area lies within the government's priority destination “Archipielago de Las Perlas” (100% of the area), so the findings here speak to a destination the Plan Maestro 2025-2030 has already committed to."
   },
   {
-   "cluster_id": "PR31",
+   "cluster_id": "PR27",
    "rank": 16,
    "name": "Tierras Altas - Renacimiento",
    "action": "PROTECT",
@@ -2809,7 +2809,7 @@
    "gov_alignment": "This area lies within the government's priority destination “Tierras Altas - Renacimiento” (100% of the area), so the findings here speak to a destination the Plan Maestro 2025-2030 has already committed to."
   },
   {
-   "cluster_id": "MA17",
+   "cluster_id": "MA18",
    "rank": 17,
    "name": "Humedal de Bahía de Panamá",
    "action": "MANAGE",
@@ -2826,16 +2826,16 @@
    ],
    "natural_assets": "The area's natural asset base comprises mangrove (54 km²), shallow shelf under 20 m (147 km²) and herbaceous wetland (10 km²). It overlaps the protected area(s) Humedal de Bahía de Panamá, covering 58% of the area. Named features mapped here include Cerro Griego. It sits predominantly in the South American Pacific mangroves ecoregion, draining the Río Bayano basin.",
    "tourism_context": "OpenStreetMap records 0 accommodation points, 0 food-service points, 0 attractions, 0 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 1.0 hours; the accessibility score is 77/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
-   "biodiversity": "A mean of 331 vertebrate species have been recorded per screening cell here, in the South American Pacific mangroves ecoregion. 58% of the area carries protected status and 58% is in a strict IUCN category. Biodiversity value scores 61/100 and the protection gap 16/100.",
+   "biodiversity": "A mean of 331 vertebrate species have been recorded per screening cell here, in the South American Pacific mangroves ecoregion. 58% of the area carries protected status and 58% is in a strict IUCN category. Biodiversity value scores 61/100 and the protection gap 15/100.",
    "resilience": "Coastal ecosystems here — mangrove (54 km²) and shallow shelf under 20 m (147 km²) — sit between open water and low-lying settlement and tourism assets. On the screening assumption that intact mangrove and reef attenuate wave energy and stabilise shorelines, the area scores 15/100 for resilience function. This is a spatial coincidence of ecosystem and exposure, not a modelled reduction in flood damage.",
-   "flood": "Modelled flood exposure here covers 4,400 in the 1-in-100-year river flood zone and 540 in the 1-in-100-year coastal flood zone (WRI Aqueduct, ~1 km). On the exposed shoreline here, about 219 m of mangrove belt and the shallow shelf in front of it removes an estimated 71% of the wave energy reaching it - moderating conditions for roughly 380 of those people. This applies published attenuation rates (50% wave-height reduction per 100 m of mangrove; reefs capped well below the literature because we have extent, not condition) to mapped ecosystem extent. It is not a surge model and it is not an avoided-damage estimate. Widening that belt toward 150 m would extend comparable moderation to roughly 80 more exposed people. Upstream, the Río Bayano catchment carries 87,000 people in the river flood zone downstream, with 61% forest cover across the catchment. Retaining that cover is treated here as a prioritisation signal, not a modelled reduction in peak flow - the effect of forest on flood peaks at basin scale is real but contested and not quantified.",
+   "flood": "Modelled flood exposure here covers 4,400 in the 1-in-100-year river flood zone and 540 in the 1-in-100-year coastal flood zone (WRI Aqueduct, ~1 km). On the exposed shoreline here, about 218 m of mangrove belt and the shallow shelf in front of it removes an estimated 69% of the wave energy reaching it - moderating conditions for roughly 380 of those people. This applies published attenuation rates (50% wave-height reduction per 100 m of mangrove; reefs capped well below the literature because we have extent, not condition) to mapped ecosystem extent. It is not a surge model and it is not an avoided-damage estimate. Widening that belt toward 150 m would extend comparable moderation to roughly 80 more exposed people. Upstream, the Río Bayano catchment carries 87,000 people in the river flood zone downstream, with 61% forest cover across the catchment. Retaining that cover is treated here as a prioritisation signal, not a modelled reduction in peak flow - the effect of forest on flood peaks at basin scale is real but contested and not quantified.",
    "flood_stats": {
     "riv_pop": 4415,
     "cst_pop": 541,
-    "buffered": 385,
+    "buffered": 375,
     "gain": 77,
-    "attenuation": 0.712,
-    "mangrove_width_m": 219,
+    "attenuation": 0.692,
+    "mangrove_width_m": 218,
     "ws_flood_pop": 87171,
     "ws_forest_frac": 0.614
    },
@@ -2949,7 +2949,7 @@
    "gov_alignment": "This area lies within the government's priority destination “Ciudad de Panama - Taboga” (40% of the area), so the findings here speak to a destination the Plan Maestro 2025-2030 has already committed to."
   },
   {
-   "cluster_id": "PR34",
+   "cluster_id": "PR35",
    "rank": 18,
    "name": "Kankintú",
    "action": "PROTECT",
@@ -3071,7 +3071,7 @@
    "gov_alignment": "This area lies outside the ten priority destinations of the Plan Maestro 2025-2030. It is surfaced by the spatial analysis alone."
   },
   {
-   "cluster_id": "IN13",
+   "cluster_id": "IN15",
    "rank": 19,
    "name": "San Lorenzo",
    "action": "INVEST",
@@ -3099,7 +3099,7 @@
     "gain": 0,
     "attenuation": 0.315,
     "mangrove_width_m": 20,
-    "ws_flood_pop": 39093,
+    "ws_flood_pop": 39490,
     "ws_forest_frac": 0.631
    },
    "threatened_species": 46,
@@ -3239,7 +3239,7 @@
    "gov_alignment": "This area lies within the government's priority destination “Colon - Portobelo - Santa Isabel” (80% of the area), so the findings here speak to a destination the Plan Maestro 2025-2030 has already committed to."
   },
   {
-   "cluster_id": "AD04",
+   "cluster_id": "AD05",
    "rank": 20,
    "name": "David - Pedregal - Alanje",
    "action": "ADAPT",
@@ -3260,9 +3260,9 @@
     "cst_pop": 0,
     "buffered": 0,
     "gain": 0,
-    "attenuation": 0.105,
-    "mangrove_width_m": 16,
-    "ws_flood_pop": 190712,
+    "attenuation": 0.111,
+    "mangrove_width_m": 17,
+    "ws_flood_pop": 190710,
     "ws_forest_frac": 0.52
    },
    "threatened_species": 32,
@@ -3417,7 +3417,7 @@
    "gov_alignment": "This area lies within the government's priority destination “David - Pedregal - Alanje” (89% of the area), so the findings here speak to a destination the Plan Maestro 2025-2030 has already committed to."
   },
   {
-   "cluster_id": "IN07",
+   "cluster_id": "IN08",
    "rank": 21,
    "name": "Palo Seco (Jirondai)",
    "action": "INVEST",
@@ -3570,7 +3570,7 @@
    "gov_alignment": "This area lies outside the ten priority destinations of the Plan Maestro 2025-2030. It is surfaced by the spatial analysis alone."
   },
   {
-   "cluster_id": "PR35",
+   "cluster_id": "PR28",
    "rank": 22,
    "name": "Sur de Veraguas",
    "action": "PROTECT",
@@ -3592,8 +3592,8 @@
     "cst_pop": 0,
     "buffered": 0,
     "gain": 0,
-    "attenuation": 0.542,
-    "mangrove_width_m": 90,
+    "attenuation": 0.541,
+    "mangrove_width_m": 88,
     "ws_flood_pop": 0,
     "ws_forest_frac": 0.45
    },
@@ -3847,7 +3847,7 @@
    "gov_alignment": "This area lies within the government's priority destination “Pedasi - Tonosi - Cambutal” (100% of the area), so the findings here speak to a destination the Plan Maestro 2025-2030 has already committed to."
   },
   {
-   "cluster_id": "PR27",
+   "cluster_id": "PR36",
    "rank": 24,
    "name": "Golfo de Montijo",
    "action": "PROTECT",
@@ -3872,7 +3872,7 @@
     "buffered": 0,
     "gain": 0,
     "attenuation": 0.709,
-    "mangrove_width_m": 165,
+    "mangrove_width_m": 164,
     "ws_flood_pop": 199,
     "ws_forest_frac": 0.325
    },
@@ -3980,7 +3980,7 @@
    "gov_alignment": "This area lies within the government's priority destination “Pacifico Veraguense - Golfo de Montijo - Santa Catalina - Mariato” (25% of the area), so the findings here speak to a destination the Plan Maestro 2025-2030 has already committed to."
   },
   {
-   "cluster_id": "IN10",
+   "cluster_id": "IN14",
    "rank": 25,
    "name": "La Pintada-Natá",
    "action": "INVEST",
@@ -4143,9 +4143,9 @@
     "cst_pop": 0,
     "buffered": 0,
     "gain": 0,
-    "attenuation": 0.834,
-    "mangrove_width_m": 181,
-    "ws_flood_pop": 39093,
+    "attenuation": 0.838,
+    "mangrove_width_m": 190,
+    "ws_flood_pop": 39490,
     "ws_forest_frac": 0.487
    },
    "threatened_species": 44,
@@ -4286,7 +4286,7 @@
    "gov_alignment": "This area lies within the government's priority destination “Colon - Portobelo - Santa Isabel” (50% of the area), so the findings here speak to a destination the Plan Maestro 2025-2030 has already committed to."
   },
   {
-   "cluster_id": "IN14",
+   "cluster_id": "IN12",
    "rank": 27,
    "name": "David - Pedregal - Alanje (San Lorenzo)",
    "action": "INVEST",
@@ -4309,8 +4309,8 @@
     "cst_pop": 0,
     "buffered": 0,
     "gain": 0,
-    "attenuation": 0.73,
-    "mangrove_width_m": 178,
+    "attenuation": 0.715,
+    "mangrove_width_m": 171,
     "ws_flood_pop": 174,
     "ws_forest_frac": 0.582
    },
@@ -4467,7 +4467,7 @@
    "gov_alignment": "This area lies within the government's priority destination “David - Pedregal - Alanje” (100% of the area), so the findings here speak to a destination the Plan Maestro 2025-2030 has already committed to."
   },
   {
-   "cluster_id": "PR36",
+   "cluster_id": "PR29",
    "rank": 28,
    "name": "Punta Bruja y Dejal",
    "action": "PROTECT",
@@ -4491,8 +4491,8 @@
     "cst_pop": 0,
     "buffered": 0,
     "gain": 0,
-    "attenuation": 0.632,
-    "mangrove_width_m": 39,
+    "attenuation": 0.631,
+    "mangrove_width_m": 38,
     "ws_flood_pop": 128008,
     "ws_forest_frac": 0.333
    },
@@ -4608,7 +4608,7 @@
    "gov_alignment": "This area lies outside the ten priority destinations of the Plan Maestro 2025-2030. It is surfaced by the spatial analysis alone."
   },
   {
-   "cluster_id": "MA21",
+   "cluster_id": "MA19",
    "rank": 29,
    "name": "Volcan Barú",
    "action": "MANAGE",
@@ -4757,7 +4757,7 @@
    "gov_alignment": "This area lies within the government's priority destination “Tierras Altas - Renacimiento” (100% of the area), so the findings here speak to a destination the Plan Maestro 2025-2030 has already committed to."
   },
   {
-   "cluster_id": "PR33",
+   "cluster_id": "PR34",
    "rank": 30,
    "name": "Arraiján-La Chorrera",
    "action": "PROTECT",
@@ -4780,8 +4780,8 @@
     "cst_pop": 0,
     "buffered": 0,
     "gain": 0,
-    "attenuation": 0.785,
-    "mangrove_width_m": 202,
+    "attenuation": 0.788,
+    "mangrove_width_m": 204,
     "ws_flood_pop": 0,
     "ws_forest_frac": 0.442
    },
@@ -4891,7 +4891,7 @@
    "gov_alignment": "This area lies outside the ten priority destinations of the Plan Maestro 2025-2030. It is surfaced by the spatial analysis alone."
   },
   {
-   "cluster_id": "MA20",
+   "cluster_id": "MA21",
    "rank": 31,
    "name": "General de División Omar Torrijos Herrera",
    "action": "MANAGE",
@@ -5011,7 +5011,7 @@
    "gov_alignment": "This area lies outside the ten priority destinations of the Plan Maestro 2025-2030. It is surfaced by the spatial analysis alone."
   },
   {
-   "cluster_id": "IN15",
+   "cluster_id": "IN13",
    "rank": 32,
    "name": "Tierras Altas - Renacimiento (Chiriquí)",
    "action": "INVEST",
@@ -5171,7 +5171,7 @@
    "gov_alignment": "This area lies within the government's priority destination “Tierras Altas - Renacimiento” (100% of the area), so the findings here speak to a destination the Plan Maestro 2025-2030 has already committed to."
   },
   {
-   "cluster_id": "PR28",
+   "cluster_id": "PR33",
    "rank": 33,
    "name": "Kankintú-Jirondai",
    "action": "PROTECT",
@@ -5293,7 +5293,7 @@
    "gov_alignment": "This area lies outside the ten priority destinations of the Plan Maestro 2025-2030. It is surfaced by the spatial analysis alone."
   },
   {
-   "cluster_id": "AD01",
+   "cluster_id": "AD04",
    "rank": 34,
    "name": "Cuenca del Río Santa María (Santa Fe)",
    "action": "ADAPT",
@@ -5415,7 +5415,7 @@
    "gov_alignment": "This area lies outside the ten priority destinations of the Plan Maestro 2025-2030. It is surfaced by the spatial analysis alone."
   },
   {
-   "cluster_id": "IN12",
+   "cluster_id": "IN10",
    "rank": 35,
    "name": "Riviera Pacifica - Valle de Anton - El Cope - Penonome (Penonomé)",
    "action": "INVEST",
@@ -5571,7 +5571,7 @@
    "gov_alignment": "This area lies within the government's priority destination “Riviera Pacifica - Valle de Anton - El Cope - Penonome” (100% of the area), so the findings here speak to a destination the Plan Maestro 2025-2030 has already committed to."
   },
   {
-   "cluster_id": "MA19",
+   "cluster_id": "MA20",
    "rank": 36,
    "name": "Cuenca del Río Santa María (Aguadulce)",
    "action": "MANAGE",
@@ -5588,13 +5588,13 @@
    "tourism_context": "OpenStreetMap records 0 accommodation points, 0 food-service points, 0 attractions, 0 named trails, 0 dive/surf operators and 0 marinas or ferry points. Modelled travel time to the nearest tourism gateway is 2.2 hours; the accessibility score is 67/100. OSM density under-records places that receive few visitors, so a low count here is partly a symptom of low development rather than an independent measure of it.",
    "biodiversity": "A mean of 271 vertebrate species have been recorded per screening cell here, in the Panamanian dry forests ecoregion. 84% of the area carries protected status and 22% is in a strict IUCN category. Biodiversity value scores 63/100 and the protection gap 26/100.",
    "resilience": "Coastal ecosystems here — mangrove (15 km²) — sit between open water and low-lying settlement and tourism assets. On the screening assumption that intact mangrove and reef attenuate wave energy and stabilise shorelines, the area scores 17/100 for resilience function. This is a spatial coincidence of ecosystem and exposure, not a modelled reduction in flood damage.",
-   "flood": "Modelled flood exposure here covers 1,300 in the 1-in-100-year river flood zone and 1,400 in the 1-in-100-year coastal flood zone (WRI Aqueduct, ~1 km). On the exposed shoreline here, about 216 m of mangrove belt and the shallow shelf in front of it removes an estimated 12% of the wave energy reaching it - moderating conditions for roughly 170 of those people. This applies published attenuation rates (50% wave-height reduction per 100 m of mangrove; reefs capped well below the literature because we have extent, not condition) to mapped ecosystem extent. It is not a surge model and it is not an avoided-damage estimate.",
+   "flood": "Modelled flood exposure here covers 1,300 in the 1-in-100-year river flood zone and 1,400 in the 1-in-100-year coastal flood zone (WRI Aqueduct, ~1 km). On the exposed shoreline here, about 216 m of mangrove belt and the shallow shelf in front of it removes an estimated 10% of the wave energy reaching it - moderating conditions for roughly 150 of those people. This applies published attenuation rates (50% wave-height reduction per 100 m of mangrove; reefs capped well below the literature because we have extent, not condition) to mapped ecosystem extent. It is not a surge model and it is not an avoided-damage estimate.",
    "flood_stats": {
     "riv_pop": 1331,
     "cst_pop": 1447,
-    "buffered": 168,
+    "buffered": 151,
     "gain": 0,
-    "attenuation": 0.116,
+    "attenuation": 0.104,
     "mangrove_width_m": 216,
     "ws_flood_pop": 3596,
     "ws_forest_frac": 0.443
@@ -5687,7 +5687,7 @@
    "gov_alignment": "This area lies within the government's priority destination “Chitre - Parita” (75% of the area), so the findings here speak to a destination the Plan Maestro 2025-2030 has already committed to."
   },
   {
-   "cluster_id": "AD05",
+   "cluster_id": "AD03",
    "rank": 37,
    "name": "Riviera Pacifica - Valle de Anton - El Cope - Penonome (Chame)",
    "action": "ADAPT",
